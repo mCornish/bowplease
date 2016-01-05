@@ -1,0 +1,8 @@
+$color-1: rgb(50,50,50); // dark gray
+$color-1-t: transparentize($color-1, .1);
+$color-3: rgb(60,160,60); // green
+$color-2: mix($color-3, white, 3); // greenish white
+$color-2-t: transparentize($color-2, .1);
+$color-4: hsl(0,0,50); // light gray
+$color-5: rgb(235,240,235); // greenish gray
+$color-warning: hsl(0, 60, 50); // red

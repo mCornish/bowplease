@@ -1,4 +1,33 @@
-.login label {
-  display: block;
-  @extend %clearfix;
+.login {
+    color: $color-1;
+}
+.login__services {
+    width: 50%;
+    display: block;
+    position: relative;
+    margin: 0 auto;
+}
+.login__icon i {
+    color: inherit;
+}
+.login__facebook-icon{
+    background-color: rgb(59,89,152); // Facebook brand-blue
+    color: $color-2;
+}
+.login__links {
+    margin-top: .5em;
+}
+.login__link {
+    border: none;
+    color: white;
+}
+.login__link:hover {
+    color: $color-3;
+}
+.login__link:before,
+.login__link:after {
+    display: none;
+}
+.login__buttons {
+    margin-top: 3em;
 }

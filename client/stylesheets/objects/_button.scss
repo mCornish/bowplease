@@ -1,0 +1,151 @@
+.button {
+    background-color: transparent;
+    color: $color-1;
+    letter-spacing: 1px;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 1em;
+    min-width: 4em;
+    text-align: center;
+    display: inline;
+    border-color: $color-1;
+    border-style: solid;
+    border-width: 3px;
+    @include transition(.2s all ease);
+    position: relative;
+    cursor: pointer;
+}
+.button:hover,
+.button:focus:not(.button--submit):not(.menu__button),
+.button.is-active {
+    color: $color-2;
+    text-decoration: none;
+    background-color: $color-1;
+}
+.button:active {
+    text-decoration: none;
+    color: $color-2;
+    background-color: $color-1;
+}
+
+/* Cancel button */
+.button--cancel {
+    background-color: transparent;
+    border-color: $color-warning;
+    color: $color-warning;
+}
+.button--cancel:hover,
+.button--cancel:focus {
+    background-color: $color-warning;
+    color: $color-2;
+    border-color: $color-warning;
+}
+
+/* disabled button */
+.button.is-disabled {
+    cursor: default;
+    background-color: rgb(150, 150, 150);
+    color: rgb(100, 100, 100);
+    border-color: rgb(150, 150, 150);
+}
+.button.disabled:hover, .button.disabled:focus {
+    border-bottom-width: 5px;
+    top: 0;
+}
+.button.disabled:active {
+    border-bottom-width: 5px;
+    top: 0
+}
+
+.button--addon {
+    display: block;
+    padding: 0;
+}
+.button--addon > * {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.button--addon:hover .button--addon__addon {
+    //color: inherit;
+}
+.button--addon .button--addon__addon {
+    //color: inherit;
+}
+
+.button--block {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+}
+.button--select {
+    -webkit-appearance: inherit;
+}
+.button:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    @include transition(all 0.2s);
+    // 101% to fix bug where button would not fill completely
+    width: 101%;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    background-color: $color-1;
+    opacity: 0;
+    @include transform(translateX(-50%) translateY(-50%));
+}
+.button:hover:after {
+    @media #{$break-small} {
+        //No hover affect on phones
+    }
+    @media #{$break-medium} {
+        // 101% to fix bug where button would not fill completely
+        height: 101%;
+        opacity: 1;
+    }
+}
+.button--submit {
+    color: $color-2;
+    background-color: $color-1;
+    border-color: transparent;
+    @media #{$break-small} {
+        bottom: 0;
+        left: 0;
+    }
+    @media #{$break-medium} {
+        position: relative;
+        //width: inherit;
+    }
+}
+.button--submit::before,
+.button--submit::after {
+    display: none;
+}
+.button--submit:hover,
+.button--submit:focus {
+    background-color: $color-3;
+    border-color: $color-3;
+}
+.button--submit:after {
+    display: none;
+}
+
+// (Button) Cancel
+.button--warning {
+    border-color: $color-warning;
+    color: $color-warning;
+}
+.button--warning:after {
+    background-color: $color-warning;
+}
+
+// (Button) Icon
+.button--icon {
+    position: relative;
+}
+.button--icon:hover .hover-text {
+    opacity: 1;
+}
+.button--icon i {
+    font-size: 2.5em;
+}

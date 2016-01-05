@@ -1,5 +1,111 @@
-@import "tools/extends";
+@import 'tools/colors';
+@import 'tools/extends';
+@import 'tools/media-queries';
+@import 'tools/mixins';
 
-@import "objects/forms";
+@import 'objects/button';
+@import 'objects/forms';
 
-@import "components/login";
+@import 'components/login';
+
+
+html {
+    font-family: 'Lato', sans-serif;
+    color: $color-1;
+    @media #{$break-small} {
+        font-size: 16px;
+    }
+    @media #{$break-medium} {
+        font-size: 18px;
+    }
+}
+
+body {
+    background: $color-2;
+    font-size: 1em;
+}
+
+h1, h2, h2, a, p, span, input {
+    font-family: 'Lato', sans-serif;
+    color: inherit;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+p {
+    font-size: 1rem;
+}
+
+// Links
+a,
+.fake-link {
+    color: $color-3;
+    background-color: transparent;
+    border: none;
+    padding-bottom: .1em;
+    position: relative;
+    //width: auto;
+    @include transition(.2s ease color);
+}
+a:hover,
+a:focus,
+.fake-link:hover {
+    color: $color-1;
+    text-decoration: none;
+    cursor: pointer;
+}
+// For links that should have no hover affect
+.no-hover {
+    border-bottom: none;
+}
+.no-hover:after,
+.no-hover:before {
+    display: none;
+}
+
+main {
+    position: relative;
+}
+
+.page {
+    display: block;
+    padding-top: 3em;
+    //margin-bottom: 5em;
+}
+
+// Input placeholder text color
+input::-webkit-input-placeholder {
+    color: $color-4;
+}
+input:-moz-placeholder { /* Firefox 18- */
+    color: $color-4;
+}
+input::-moz-placeholder {  /* Firefox 19+ */
+    color: $color-4;
+}
+input:-ms-input-placeholder {
+    color: $color-4;
+}
+
+textarea {
+    padding: 1em;
+    width: 100%;
+    color: $color-3;
+}
+
+hr {
+    border-top-color: $color-1;
+}
+
+
+.row--margin {
+    margin-top: 2em;
+}

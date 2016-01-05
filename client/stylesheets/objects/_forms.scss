@@ -1,6 +1,113 @@
-label.error {
-  display: block;
-  margin-top: 10px;
-  font-weight: normal;
-  color: lighten( red, 20% );
+input,
+select,
+textarea,
+.input-addon {
+    display: block;
+    position: relative;
+    border: 1px solid hsla(0,0,0,.1);
+    border-radius: 0;
+    color: inherit;
+    background-color: hsla(0,0,0,.05);
+    //width: 100%;
+    @media #{$break-small} {
+        padding: 1em;
+    }
+    @media #{$break-medium} {
+        padding: .5em;
+    }
+}
+input:focus,
+select:focus,
+textarea:focus,
+.input-addon:focus {
+    outline: none;
+    border: 1px solid $color-1;
+}
+
+// input prefix (same style as input)
+.input-addon input:last-of-type {
+    display: inline-block !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: transparent !important;
+}
+.input-prefix input[type=number] {
+    @media #{$break-small} {
+        width: 4em;
+    }
+    @media #{$break-medium} {
+        width: 5em;
+    }
+}
+.input-suffix input[type=number] {
+    width: 3em;
+}
+
+
+.input-group__addon {
+    position: absolute;
+    opacity: 0;
+    color: inherit;
+    top: 50%;
+    left: 8px;
+    @include transition(.2s ease all);
+}
+.input-group__input:focus ~ .input-group__addon,
+.input-group__input:valid ~ .input-group__addon {
+    opacity: 1;
+}
+.input-group--block {
+    display: block;
+    width: 100%;
+}
+// File input
+.file-input {
+    display: none;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+/* SELECT */
+select {
+    -webkit-appearance: inherit;
+    text-transform: capitalize;
+    @media #{$break-small} {
+        padding: 1em;
+    }
+    @media #{$break-medium} {
+        padding: .5em;
+    }
+}
+select:after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    background-color: transparent;
+    font-size: 1em;
+    line-height: inherit;
+    pointer-events: none;
+    @media #{$break-small} {
+        right: 2em;
+    }
+    @media #{$break-medium} {
+        right: 1em;
+    }
+}
+
+/* #RADIO */
+input[type=radio] {
+    //margin-top: 1.5em;
+    //margin-bottom: 1.8em;
+    //margin-right: .5em;
+}
+input[type=radio] + input[type=radio] {
+    //margin-left: 1em;
+}
+
+.form-inline * + .form-group {
+    margin-left: 1em;
 }
