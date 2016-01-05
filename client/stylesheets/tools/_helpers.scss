@@ -1,0 +1,45 @@
+.capitalize {
+    text-transform: capitalize !important;
+}
+.color-3 {
+    color: $color-3 !important;
+}
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+.no-margin {
+    margin: 0;
+}
+.no-scroll {
+    overflow: hidden !important;
+}
+.inline-block {
+    display: inline-block !important;
+}
+.is-rotating {
+    @include transition(transform .3s ease-in);
+    @include transform(rotateY(90deg));
+}
+.is-rotated {
+    @include transition(transform 0s .4s);
+    @include transform(rotateY(270deg));
+}
+.is-unrotating {
+    @include transition(transform .3s ease-out);
+    @include transform(rotateY(360deg));
+}
+.pointer {
+    cursor: pointer;
+}
+.temp-hidden {
+    display: none;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}

@@ -2,6 +2,8 @@
 @import 'tools/extends';
 @import 'tools/media-queries';
 @import 'tools/mixins';
+@import 'tools/keyframes';
+@import 'tools/animations';
 
 @import 'objects/button';
 @import 'objects/forms';
@@ -109,3 +111,6 @@ hr {
 .row--margin {
     margin-top: 2em;
 }
+
+
+@import 'tools/helpers';

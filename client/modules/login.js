@@ -1,7 +1,19 @@
 'use strict';
-let login = ( options ) => {
-    _validate( options.form, options.template );
-};
+let login = {
+    withEmail( options ) {
+        _validate( options.form, options.template );
+    },
+    withFacebook() {
+        _handleFacebook();
+    },
+    togglePass() {
+        _togglePass();
+    },
+    toForgPass() {
+        _toForgPass();
+    },
+}
+
 
 let _validate = ( form, template ) => {
     $( form ).validate( validation( template ) );
@@ -89,9 +101,9 @@ let _createUser = ( email, password ) => {
             email: email
         });
     }
-}
+};
 
-let handleFacebook = ( template ) => {
+let _handleFacebook = () => {
     Meteor.loginWithFacebook(function( err ) {
         if ( err ) {
             Bert.alert(`Facebook login failed: ${err.reason}`, 'danger');
@@ -107,9 +119,18 @@ let handleFacebook = ( template ) => {
             FlowRouter.go('/');
         }
     });
+};
+
+let _togglePass = () => {
+    const state = Session.get('showPass');
+    Session.set('showPass', !state);
+};
+
+let _toForgPass = () => {
+    $('.out-left').addClass('is-active').on('transitionend', function() {
+        $(this).hide().off();
+        $('.in-right').addClass('is-active');
+    });
 }
 
-let _toggle
-
 Modules.client.login = login;
-Modules.client.handleFacebook = handleFacebook;
