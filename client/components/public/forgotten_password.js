@@ -6,6 +6,6 @@ Template.forgottenPassword.onRendered( () => {
 });
 
 Template.forgottenPassword.events({
-  'submit form': ( event ) => event.preventDefault(),
+  'submit form': ( e ) => e.preventDefault(),
   'click [data-hook=go-back]': () => Modules.client.forgPass.goBack()
 });
