@@ -37,3 +37,7 @@ tracker
 react
 kadira:react-layout
 okgrow:analytics
+momentjs:moment
+accounts-facebook
+tomi:upload-jquery
+tomi:upload-server

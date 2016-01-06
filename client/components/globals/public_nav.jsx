@@ -2,8 +2,9 @@ PublicNav = React.createClass({
     beginSubmit() {
         Modules.client.nav.beginSubmit();
     },
-    trackClick() {
-        Modules.client.nav.trackClick();
+    trackClick( e ) {
+        //const pageName = $(e.target).attr('data-page');
+        //analytics.track(`Click header: ${pageName}`);
     },
     render() {
         return (
