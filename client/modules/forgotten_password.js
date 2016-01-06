@@ -1,18 +1,18 @@
 'use strict';
 let forgPass = {
     submit( options ) {
-        _validate( options.form, options.template );
+        _validate( options.form );
     },
     goBack() {
         _goBack();
     }
 }
 
-let _validate = ( form, template ) => {
-    $( form ).validate( validation( template ) );
+let _validate = ( form ) => {
+    $( form ).validate( validation() );
 };
 
-let validation = ( template ) => {
+let validation = () => {
     return {
         rules: {
             email: {
@@ -26,12 +26,12 @@ let validation = ( template ) => {
                 email: 'Please enter a valid email address.'
             }
         },
-        submitHandler() { _handleRecovery( template ); }
+        submitHandler() { _handleRecovery(); }
     };
 };
 
-let _handleRecovery = ( template ) => {
-    const email = template.find( '[name="email"]' ).value;
+let _handleRecovery = () => {
+    const email = $( '[name="email"]' ).val();
     Meteor.call('sendResetEmail', email, function(err) {
         if (err) {
             Bert.alert(`Password reset failed: ${err.reason}`, 'danger');

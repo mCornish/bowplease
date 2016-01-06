@@ -1,7 +1,7 @@
 'use strict';
 let login = {
     withEmail( options ) {
-        _validate( options.form, options.template );
+        _validate( options.form );
     },
     withFacebook() {
         _handleFacebook();
@@ -15,11 +15,11 @@ let login = {
 };
 
 
-let _validate = ( form, template ) => {
-    $( form ).validate( validation( template ) );
+let _validate = ( form ) => {
+    $( form ).validate( validation() );
 };
 
-let validation = ( template ) => {
+let validation = () => {
     return {
         rules: {
             'email': {
@@ -39,13 +39,13 @@ let validation = ( template ) => {
                 required: 'Please enter a password.'
             }
         },
-        submitHandler() { _handleLogin( template ); }
+        submitHandler() { _handleLogin(); }
     };
 };
 
-let _handleLogin = ( template ) => {
-    const email = template.find( '[name="email"]' ).value;
-    const password = template.find( '[name="password"]' ).value;
+let _handleLogin = () => {
+    const email = $( '[name="email"]' ).val();
+    const password = $( '[name="password"]' ).val();
     Meteor.loginWithPassword( email, password, ( err ) => {
         if ( err ) {
             if ( err.reason === 'User not found' ) {
