@@ -17,5 +17,9 @@ Template.registerHelper( 'urlFor', ( path, view ) => {
 
 Template.registerHelper( 'currentRoute', ( route ) => {
   FlowRouter.watchPathChange();
-  return FlowRouter.current().route.name === route ? 'active' : '';
+  return FlowRouter.current().route.name === route ? 'is-active' : '';
 });
+
+Template.registerHelper( 'currentHash', ( hash ) => {
+    return window.location.hash.substr(1) === hash ? 'is-active' : '';
+})

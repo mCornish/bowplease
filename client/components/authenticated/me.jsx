@@ -10,6 +10,21 @@ Me = React.createClass({
             user: Meteor.user().fetch()
         };
     },
+    getInitialState() {
+        let tab = null;
+        if (window.location.hash.length > 1) {
+            tab = window.location.hash.substr(1);
+        }
+        return {
+            activeTab: tab || 'activity'
+        }
+    },
+    setActiveTab( e ) {
+        const tab = $( e.target ).attr( 'data-tab' );
+        this.setState({
+            activeTab: tab
+        });
+    },
     renderActivity() {
         if ( this.data.activity ) {
             return this.data.activity.map((item) => {
@@ -23,17 +38,16 @@ Me = React.createClass({
     },
     renderPosts() {
         if ( this.data.posts ) {
-            const posts = this.data.posts.map((post) => {
-                return (
-                    <a class="user__gift no-hover col-xs-4" href="/gifts/{post._id}">
-                        <img src="{post.image}"/>
-                    </a>
-                );
-            });
             return  (
                 <div class="col-xs-12">
                     <div class="row">
-                        {posts}
+                        {this.data.posts.map((post) => {
+                            return (
+                                <a class="user__gift no-hover col-xs-4" href="/gifts/{post._id}">
+                                    <img src="{post.image}"/>
+                                </a>
+                            );
+                        })}
                     </div>
                     <div class="row row--margin">
                         <a class="col-xs-12 text-center" href="/me/posts">View All</a>
@@ -48,17 +62,16 @@ Me = React.createClass({
     },
     renderWants() {
         if ( this.data.wants ) {
-            const wants = this.data.wants.map((want) => {
-                return (
-                    <a class="user__gift no-hover col-xs-4" href="/gifts/{want._id}">
-                        <img src="{want.image}"/>
-                    </a>
-                );
-            });
             return  (
                 <div class="col-xs-12">
                     <div class="row">
-                        {wants}
+                        {this.data.wants.map((want) => {
+                            return (
+                                <a class="user__gift no-hover col-xs-4" href="/gifts/{want._id}">
+                                    <img src="{want.image}"/>
+                                </a>
+                            );
+                        })}
                     </div>
                     <div class="row row--margin">
                         <a class="col-xs-12 text-center" href="/me/wants">View All</a>
@@ -90,28 +103,28 @@ Me = React.createClass({
                     </div>
 
                     <div class="tabs__menu row row--margin">
-                        <a class="tabs__tab col-xs-4 {this.tabActive( 'activity' )}" href="/me#activity"
-                           data-hook="tab" data-tab="activity">Activity</a>
-                        <a class="tabs__tab col-xs-4 {this.tabActive( 'shares' )}" href="/me#shares"
-                           data-hook="tab" data-tab="shares">Shares</a>
-                        <a class="tabs__tab col-xs-4 {this.tabActive( 'wants' )}" href="/me#wants"
-                           data-hook="tab" data-tab="wants">Wants</a>
+                        <a class="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'activity' )}" href="/me#activity"
+                           data-tab="activity" onClick={this.setActiveTab()}>Activity</a>
+                        <a class="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'shares' )}" href="/me#shares"
+                            data-tab="shares" onClick={this.setActiveTab()}>Shares</a>
+                        <a class="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'wants' )}" href="/me#wants"
+                           data-tab="wants" onClick={this.setActiveTab()}>Wants</a>
                     </div>
 
-                    <div class="tabs__container {this.tabActive( 'activity' )}">
+                    <div class="tabs__container {FlowHelpers.currentHash( 'activity' )}">
                         <div class="row">
                             <h1 class="text-center col-xs-12">Activity</h1>
                         </div>
                         {this.renderActivity()}
                     </div>
-                    <div class="tabs__container {this.tabActive( 'shares' )}">
+                    <div class="tabs__container {FlowHelpers.currentHash( 'shares' )}">
                         <h1 class="text-center col-xs-12">You Shared</h1>
 
                         <div class="user__gifts row">
                             {this.renderPosts()}
                         </div>
                     </div>
-                    <div class="tabs__container {this.tabActive( 'wants' )}">
+                    <div class="tabs__container {FlowHelpers.currentHash( 'wants' )}">
                         <h1 class="text-center col-xs-12">You Want</h1>
 
                         <div class="user__gifts row">
