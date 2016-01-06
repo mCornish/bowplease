@@ -12,7 +12,7 @@ let login = {
     toForgPass() {
         _toForgPass();
     },
-}
+};
 
 
 let _validate = ( form, template ) => {

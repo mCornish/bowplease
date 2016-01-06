@@ -29,7 +29,7 @@ Login = React.createClass({
                   <div className="row">
                       <div className="col-xs-12 col-md-6 col-md-offset-3">
                           <button className="login__facebook button button--addon col-xs-12" type="button"
-                                  onClick={this.facebookLogin}>
+                                  onClick={this.facebookLogin()}>
                               <div className="login__icon login__facebook-icon button--addon__addon col-xs-3"><i
                                       className="fa fa-facebook"></i>
                               </div>
@@ -52,7 +52,7 @@ Login = React.createClass({
                               <div className="col-xs-12">
                                   <label className="input-addon" htmlFor="password">Password:&nbsp;
                                       <input id="password" name="password" data-hook="password" type="{this.state.passType}" required/>
-                                      <span className="float-right pointer" onClick={this.togglePass}><strong>{this.state.passText}</strong></span>
+                                      <span className="float-right pointer" onClick={this.togglePass()}><strong>{this.state.passText}</strong></span>
                                   </label>
                               </div>
                           </div>
@@ -61,7 +61,7 @@ Login = React.createClass({
                       <div className="login__links col-xs-12 col-md-6 col-md-offset-3">
                           <div className="row">
                               <div className="col-xs-12 text-center">
-                                  <a className="login__link" onClick={this.toForgPass}>Forgot Password</a>
+                                  <a className="login__link" onClick={this.toForgPass()}>Forgot Password</a>
                               </div>
                           </div>
                       </div>
