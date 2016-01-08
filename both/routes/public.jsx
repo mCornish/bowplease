@@ -16,6 +16,13 @@ publicRoutes.route( '/login', {
   }
 });
 
+publicRoutes.route( '/browse', {
+  name: 'browse',
+  action() {
+    ReactLayout.render( Default, { yield: <GiftsList /> } );
+  }
+});
+
 publicRoutes.route( '/denied', {
   name: 'accessDenied',
   action() {

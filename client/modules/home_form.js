@@ -1,6 +1,6 @@
 const homeForm = {
-    filterGifts() {
-        _filterGifts();
+    filterGifts( e ) {
+        _filterGifts( e );
     }
 };
 

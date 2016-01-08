@@ -1,6 +1,29 @@
 Occasions = new Mongo.Collection('occasions');
 
-OccasionsSchema = new SimpleSchema({
+Occasions.allow({
+    update: function(userId) {
+        return isAdmin(userId);
+    },
+    remove: function(userId) {
+        return isAdmin(userId);
+    }
+});
+
+Occasions.deny({
+    update: function(userId, occasion, fieldNames) {
+        //may only edit accessible fields:
+        return (_.without(fieldNames, 'name').length > 0);
+    }
+});
+
+Occasions.deny({
+    update: function(userId, occasion, fieldNames, modifier) {
+        const errors = validateOccasion(modifier.$set);
+        return errors.name;
+    }
+});
+
+const OccasionsSchema = new SimpleSchema({
     'name': {
         type: String,
         label: 'Occasion Name'
@@ -48,50 +71,5 @@ OccasionsSchema = new SimpleSchema({
         }
     }
 });
+
 Occasions.attachSchema(OccasionsSchema);
-
-Occasions.allow({
-    update: function(userId) {
-        return isAdmin(userId);
-    },
-    remove: function(userId) {
-        return isAdmin(userId);
-    }
-});
-
-Occasions.deny({
-    update: function(userId, occasion, fieldNames) {
-        //may only edit accessible fields:
-        return (_.without(fieldNames, 'name').length > 0);
-    }
-});
-
-Occasions.deny({
-    update: function(userId, occasion, fieldNames, modifier) {
-        const errors = validateOccasion(modifier.$set);
-        return errors.name;
-    }
-});
-
-validateOccasion = function(occasion) {
-    const errors = {};
-    if (!occasion.name)
-        errors.name = 'Please enter a name';
-    return errors;
-};
-
-Meteor.methods({
-    occasionInsert: function(occasion) {
-        check(Meteor.userId(), String);
-        check(occasion, Occasions.simpleSchema());
-
-        const errors = validateOccasion(occasion);
-        if (errors.name)
-            throw new Meteor.Error('invalid-occasion', 'You must set a name.');
-
-        const occasionId = Occasions.insert(occasion);
-        return {
-            _id: occasionId
-        };
-    }
-});
