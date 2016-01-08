@@ -7,8 +7,13 @@
 
 @import 'objects/button';
 @import 'objects/forms';
+@import 'objects/parallax';
 
+@import 'components/header';
+@import 'components/hero';
+@import 'components/intro';
 @import 'components/login';
+@import 'components/menu';
 
 
 html {

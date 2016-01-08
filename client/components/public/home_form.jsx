@@ -1,15 +1,16 @@
 HomeForm = React.createClass({
     mixins: [ ReactMeteorData ],
     getMeteorData() {
-        const subscriptions = [
-            Meteor.subscribe( 'occasions' ),
-            Meteor.subscribe( 'recipients' ),
-        ];
+        const subscription = Meteor.subscribe('home-form');
         return {
-            isLoading: !subscriptions.ready(),
-            occasions: Occasions.find(),
-            recipients: Recipients.find()
+            isLoading: !subscription.ready(),
+            occasions: Occasions.find().fetch(),
+            recipients: Recipients.find().fetch()
         }
+    },
+    filterGifts( e ) {
+        e.preventDefault();
+        Modules.client.homeForm.filterGifts( e );
     },
     renderOccasions() {
         return this.data.occasions.map((occasion) => {
@@ -23,7 +24,7 @@ HomeForm = React.createClass({
     },
     render() {
         return (
-            <form className="home__form inline-form col-xs-12" onSubmit={this.handleSubmit()}>
+            <form className="home__form inline-form col-xs-12" onSubmit={this.filterGifts}>
                 <label htmlFor="recipient">Recipient</label>
                 <select id="recipient" className="col-xs-4 col-sm-3 col-md-2 col-md-offset-2"
                         name="recipient">
@@ -47,8 +48,7 @@ HomeForm = React.createClass({
                     <option>The occasion?</option>
                     {this.renderOccasions()}
                 </select>
-                <button className="button button--submit col-xs-4 col-sm-3 col-md-2"
-                        type="submit">
+                <button className="button button--submit col-xs-4 col-sm-3 col-md-2" type="submit">
                     FIND IT
                 </button>
             </form>

@@ -1,6 +1,6 @@
 'use strict';
 let forgPass = {
-    submit( options ) {
+    sendEmail( options ) {
         _validate( options.form );
     },
     goBack() {

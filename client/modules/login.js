@@ -63,7 +63,7 @@ let _handleLogin = () => {
                 id: Meteor.userId(),
                 service: 'email'
             });
-            FlowRouter.go('/');
+            FlowRouter.reload();
         }
     });
 };

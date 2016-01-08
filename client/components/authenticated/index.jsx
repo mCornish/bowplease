@@ -1,12 +1,17 @@
 Index = React.createClass({
     render() {
-        return (
-            <div className="jumbotron text-center" style={{padding: '20px'}}>
-                <h2>Base</h2>
-                <p>A starting point for Meteor applications.</p>
-                <p><a className="btn btn-success" href="http://themeteorchef.com/base" role="button">Read the Documentation</a></p>
-                <p style={{fontSize: '16px', color: '#aaa'}}>Currently at v3.1.1</p>
-            </div>
-        );
+        if ( Meteor.userId() ) {
+            return <GiftsList />;
+        } else {
+            return (
+                <div className="parallax">
+                    <HeroBackground />
+                    <div className="parallax__layer parallax__layer--base">
+                        <Hero />
+                        <Intro />
+                    </div>
+                </div>
+            );
+        }
     }
 });

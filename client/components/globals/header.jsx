@@ -1,6 +1,6 @@
 Header = React.createClass({
     renderNav() {
-        if ( !Meteor.loggingIn() && Meteor.user() ) {
+        if ( !Meteor.loggingIn() && Meteor.userId() ) {
             return <AuthenticatedNav />;
         } else {
             return <PublicNav />;
@@ -8,9 +8,14 @@ Header = React.createClass({
     },
     render() {
         return (
-            <header className="header">
-                {this.renderNav()}
-            </header>
+            <div>
+                <header className="header">
+                    {this.renderNav()}
+                </header>
+                <div className="header__placeholder">
+                    {this.renderNav()}
+                </div>
+            </div>
         );
     }
 });

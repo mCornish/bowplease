@@ -3,8 +3,8 @@ const nav = {
     beginSubmit() {
         _beginSubmit();
     },
-    trackClick() {
-        _trackClick();
+    trackClick( e ) {
+        _trackClick( e );
     }
 }
 

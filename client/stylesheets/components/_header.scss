@@ -1,0 +1,21 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: transparentize($color-2,.02);
+    border-bottom: 1px solid mix($color-2, black, 80);
+    width: 100%;
+    text-align: center;
+    z-index: 5;
+}
+.header__button {
+    color: $color-2;
+}
+.header__button:hover,
+.header__button:focus {
+    color: $color-1;
+}
+.header__placeholder .header {
+    visibility: hidden;
+    position: relative;
+}

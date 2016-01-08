@@ -1,12 +1,12 @@
-const authenticatedRoutes = FlowRouter.group({
-  name: 'authenticated'
-});
-
-authenticatedRoutes.route( '/', {
-  name: 'index',
-  action() {
-    ReactLayout.render( Default, { yield: <Index /> } );
+const authenticatedRedirect = () => {
+  if ( !Meteor.loggingIn() && !Meteor.userId() ) {
+    FlowRouter.go( 'accessDenied' );
   }
+};
+
+const authenticatedRoutes = FlowRouter.group({
+  name: 'authenticated',
+  triggersEnter: [ authenticatedRedirect ]
 });
 
 authenticatedRoutes.route( '/me', {
