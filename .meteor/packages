@@ -41,3 +41,6 @@ momentjs:moment
 accounts-facebook
 tomi:upload-jquery
 tomi:upload-server
+alanning:roles
+cfs:gridfs
+cfs:standard-packages

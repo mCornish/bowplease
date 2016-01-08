@@ -9,16 +9,25 @@ const urlFor = ( path, params ) => {
 
 const currentRoute = ( route ) => {
   FlowRouter.watchPathChange();
-  return FlowRouter.current().route.name === route ? 'active' : '';
+  return FlowRouter.current().route.name === route ? 'is-active' : '';
+};
+
+const currentEndpoint = ( endpoint ) => {
+  FlowRouter.watchPathChange();
+  const path = FlowRouter.current().path;
+  const currentEndpoint = path.slice(path.lastIndexOf('/'));
+  return path.indexOf( currentEndpoint, endpoint ) > -1 ? 'is-active' : '';
 };
 
 const currentHash = ( hash ) => {
-    return window.location.hash.substr(1) === hash ? 'is-active' : '';
+  FlowRouter.watchPathChange();
+  return window.location.hash.substr(1) === hash ? 'is-active' : '';
 };
 
 FlowHelpers = {
   pathFor: pathFor,
   urlFor: urlFor,
   currentRoute: currentRoute,
+  currentEndpoint: currentEndpoint,
   currentHash: currentHash
 };

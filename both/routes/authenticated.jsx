@@ -15,3 +15,10 @@ authenticatedRoutes.route( '/me', {
     ReactLayout.render( Default, { yield: <Me /> } );
   }
 });
+
+authenticatedRoutes.route( '/submit', {
+  name: 'submit',
+  action() {
+    ReactLayout.render( Default, { yield: <GiftSubmit /> } );
+  }
+});

@@ -4,10 +4,10 @@ Me = React.createClass({
         const subscription = Meteor.subscribe( 'me' );
         return {
             isLoading: !subscription.ready(),
-            activity: Activity.find(),
-            posts: Gifts.find({'userId': Meteor.userId()}, {limit: 3, sort: {created: -1}}),
-            wants: Gifts.find({'wanters': Meteor.userId()}, {limit: 3, sort: {created: -1}}),
-            user: Meteor.user().fetch()
+            activity: Activity.find().fetch(),
+            posts: Gifts.find({'userId': Meteor.userId()}, {limit: 3, sort: {created: -1}}).fetch(),
+            wants: Gifts.find({'wanters': Meteor.userId()}, {limit: 3, sort: {created: -1}}).fetch(),
+            user: Meteor.user()
         };
     },
     getInitialState() {
@@ -32,25 +32,25 @@ Me = React.createClass({
             });
         } else {
             return (
-                <p class="text-center">You haven't done anything yet! You should try <a href="/">browsing some gifts</a>.</p>
+                <p className="text-center">You haven't done anything yet! You should try <a href="/">browsing some gifts</a>.</p>
             );
         }
     },
     renderPosts() {
         if ( this.data.posts ) {
             return  (
-                <div class="col-xs-12">
-                    <div class="row">
+                <div className="col-xs-12">
+                    <div className="row">
                         {this.data.posts.map((post) => {
                             return (
-                                <a class="user__gift no-hover col-xs-4" href="/gifts/{post._id}">
+                                <a className="user__gift no-hover col-xs-4" href="/gifts/{post._id}">
                                     <img src="{post.image}"/>
                                 </a>
                             );
                         })}
                     </div>
-                    <div class="row row--margin">
-                        <a class="col-xs-12 text-center" href="/me/posts">View All</a>
+                    <div className="row row--margin">
+                        <a className="col-xs-12 text-center" href="/me/posts">View All</a>
                     </div>
                 </div>
             );
@@ -63,18 +63,18 @@ Me = React.createClass({
     renderWants() {
         if ( this.data.wants ) {
             return  (
-                <div class="col-xs-12">
-                    <div class="row">
+                <div className="col-xs-12">
+                    <div className="row">
                         {this.data.wants.map((want) => {
                             return (
-                                <a class="user__gift no-hover col-xs-4" href="/gifts/{want._id}">
+                                <a className="user__gift no-hover col-xs-4" href="/gifts/{want._id}">
                                     <img src="{want.image}"/>
                                 </a>
                             );
                         })}
                     </div>
-                    <div class="row row--margin">
-                        <a class="col-xs-12 text-center" href="/me/wants">View All</a>
+                    <div className="row row--margin">
+                        <a className="col-xs-12 text-center" href="/me/wants">View All</a>
                     </div>
                 </div>
             );
@@ -89,46 +89,46 @@ Me = React.createClass({
             return <Loading />;
         } else {
             return (
-                <div class="me page">
-                    <div class="row">
-                        <div class="col-xs-6">
+                <div className="me page">
+                    <div className="row">
+                        <div className="col-xs-6">
                             <a href="/me/profile">
-                                <img class="me__user-image" src="{this.data.user.image}"/>
+                                <img className="me__user-image" src="{this.data.user.image}"/>
                                 {this.data.user.username}
                             </a>
                         </div>
-                        <div class="col-xs-6 text-right">
-                            <a href="/me/account"><i class="fa fa-cog"> Account</i></a>
+                        <div className="col-xs-6 text-right">
+                            <a href="/me/account"><i className="fa fa-cog"> Account</i></a>
                         </div>
                     </div>
 
-                    <div class="tabs__menu row row--margin">
-                        <a class="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'activity' )}" href="/me#activity"
-                           data-tab="activity" onClick={this.setActiveTab()}>Activity</a>
-                        <a class="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'shares' )}" href="/me#shares"
-                            data-tab="shares" onClick={this.setActiveTab()}>Shares</a>
-                        <a class="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'wants' )}" href="/me#wants"
-                           data-tab="wants" onClick={this.setActiveTab()}>Wants</a>
+                    <div className="tabs__menu row row--margin">
+                        <a className="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'activity' )}" href="/me#activity"
+                           data-tab="activity" onClick={this.setActiveTab}>Activity</a>
+                        <a className="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'shares' )}" href="/me#shares"
+                            data-tab="shares" onClick={this.setActiveTab}>Shares</a>
+                        <a className="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'wants' )}" href="/me#wants"
+                           data-tab="wants" onClick={this.setActiveTab}>Wants</a>
                     </div>
 
-                    <div class="tabs__container {FlowHelpers.currentHash( 'activity' )}">
-                        <div class="row">
-                            <h1 class="text-center col-xs-12">Activity</h1>
+                    <div className="tabs__container {FlowHelpers.currentHash( 'activity' )}">
+                        <div className="row">
+                            <h1 className="text-center col-xs-12">Activity</h1>
                         </div>
                         {this.renderActivity()}
                     </div>
-                    <div class="tabs__container {FlowHelpers.currentHash( 'shares' )}">
-                        <h1 class="text-center col-xs-12">You Shared</h1>
+                    <div className="tabs__container {FlowHelpers.currentHash( 'shares' )}">
+                        <h1 className="text-center col-xs-12">You Shared</h1>
 
-                        <div class="user__gifts row">
+                        <div className="user__gifts row">
                             {this.renderPosts()}
                         </div>
                     </div>
-                    <div class="tabs__container {FlowHelpers.currentHash( 'wants' )}">
-                        <h1 class="text-center col-xs-12">You Want</h1>
+                    <div className="tabs__container {FlowHelpers.currentHash( 'wants' )}">
+                        <h1 className="text-center col-xs-12">You Want</h1>
 
-                        <div class="user__gifts row">
-                            <div class="col-xs-12">
+                        <div className="user__gifts row">
+                            <div className="col-xs-12">
                                 {this.renderWants()}
                             </div>
                         </div>
