@@ -16,8 +16,15 @@ authenticatedRoutes.route( '/me', {
   }
 });
 
+authenticatedRoutes.route( '/me/account', {
+  name: 'account',
+  action() {
+    ReactLayout.render( Default, { yield: <Account /> } );
+  }
+});
+
 authenticatedRoutes.route( '/submit', {
-  name: 'submit',
+  name: 'giftSubmit',
   action() {
     ReactLayout.render( Default, { yield: <GiftSubmit /> } );
   }

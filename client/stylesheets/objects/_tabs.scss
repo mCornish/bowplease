@@ -1,0 +1,20 @@
+.tabs__tab {
+    text-align: center;
+    border: 1px solid $color-3;
+}
+.tabs__tab.is-active,
+.tabs__tab:hover,
+.tabs__tab:focus {
+    color: $color-2;
+    background-color: $color-3;
+}
+.tabs__tab + .tabs__tab {
+    border-left: none;
+}
+.tabs__container {
+    display: none;
+    width: 100%;
+}
+.tabs__container.is-active {
+    display: block;
+}

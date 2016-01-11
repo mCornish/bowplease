@@ -1,6 +1,6 @@
 AuthenticatedNav = React.createClass({
-    beginSubmit() {
-        Modules.client.nav.beginSubmit();
+    beginSubmit( e ) {
+        Modules.client.nav.beginSubmit( e );
     },
     trackClick( e ) {
         Modules.client.nav.trackClick( e );
