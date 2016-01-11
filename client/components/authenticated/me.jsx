@@ -26,7 +26,7 @@ Me = React.createClass({
         });
     },
     renderActivity() {
-        if ( this.data.activity ) {
+        if ( this.data.activity.length > 0 ) {
             return this.data.activity.map((item) => {
                 return <ActivityItem />;
             });
@@ -37,31 +37,31 @@ Me = React.createClass({
         }
     },
     renderPosts() {
-        if ( this.data.posts ) {
-            return  (
-                <div className="col-xs-12">
-                    <div className="row">
-                        {this.data.posts.map((post) => {
-                            return (
-                                <a className="user__gift no-hover col-xs-4" href="/gifts/{post._id}">
-                                    <img src="{post.image}"/>
-                                </a>
-                            );
-                        })}
-                    </div>
-                    <div className="row row--margin">
-                        <a className="col-xs-12 text-center" href="/me/posts">View All</a>
-                    </div>
-                </div>
-            );
+        if ( this.data.posts.length > 0 ) {
+          return  (
+            <div className="col-xs-12">
+              <div className="row">
+                {this.data.posts.map((post) => {
+                  return (
+                    <a className="user__gift no-hover col-xs-4" href="/gifts/{post._id}">
+                      <img src="{post.image}"/>
+                    </a>
+                  );
+                })}
+              </div>
+              <div className="row row--margin">
+                <a className="col-xs-12 text-center" href="/me/posts">View All</a>
+              </div>
+            </div>
+          );
         } else {
             return (
-                <p>You haven't shared any gifts. <a href="/submit">Try it out</a>.</p>
+              <p className="col-xs-12 text-center">You haven't shared any gifts. <a href="/submit">Try it out</a>.</p>
             );
         }
     },
     renderWants() {
-        if ( this.data.wants ) {
+        if ( this.data.wants.length > 0 ) {
             return  (
                 <div className="col-xs-12">
                     <div className="row">
@@ -80,7 +80,7 @@ Me = React.createClass({
             );
         } else {
             return (
-                <p>You don't want anything? Come on, <a href="/">take a look</a>.</p>
+                <p className="col-xs-12 text-center">You don't want anything? Come on, <a href="/">take a look</a>.</p>
             );
         }
     },
@@ -103,28 +103,28 @@ Me = React.createClass({
                     </div>
 
                     <div className="tabs__menu row row--margin">
-                        <a className="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'activity' )}" href="/me#activity"
+                        <a className={ 'tabs__tab col-xs-4 ' + FlowHelpers.currentHash( 'activity' )} href="/me#activity"
                            data-tab="activity" onClick={this.setActiveTab}>Activity</a>
-                        <a className="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'shares' )}" href="/me#shares"
+                        <a className={ 'tabs__tab col-xs-4 ' + FlowHelpers.currentHash( 'shares' )} href="/me#shares"
                             data-tab="shares" onClick={this.setActiveTab}>Shares</a>
-                        <a className="tabs__tab col-xs-4 {FlowHelpers.currentHash( 'wants' )}" href="/me#wants"
+                        <a className={ 'tabs__tab col-xs-4 ' + FlowHelpers.currentHash( 'wants' )} href="/me#wants"
                            data-tab="wants" onClick={this.setActiveTab}>Wants</a>
                     </div>
 
-                    <div className="tabs__container {FlowHelpers.currentHash( 'activity' )}">
+                    <div className={'tabs__container ' + FlowHelpers.currentHash( 'activity' )}>
                         <div className="row">
                             <h1 className="text-center col-xs-12">Activity</h1>
                         </div>
                         {this.renderActivity()}
                     </div>
-                    <div className="tabs__container {FlowHelpers.currentHash( 'shares' )}">
+                    <div className={'tabs__container ' + FlowHelpers.currentHash( 'shares' )}>
                         <h1 className="text-center col-xs-12">You Shared</h1>
 
                         <div className="user__gifts row">
                             {this.renderPosts()}
                         </div>
                     </div>
-                    <div className="tabs__container {FlowHelpers.currentHash( 'wants' )}">
+                    <div className={'tabs__container ' + FlowHelpers.currentHash( 'wants' )}>
                         <h1 className="text-center col-xs-12">You Want</h1>
 
                         <div className="user__gifts row">

@@ -32,14 +32,14 @@
     @include transform(rotateY(360deg));
 }
 .pointer {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 .temp-hidden {
     display: none;
 }
 .text-center {
-    text-align: center;
+    text-align: center !important;
 }
 .text-right {
-    text-align: right;
+    text-align: right !important;
 }
