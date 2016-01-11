@@ -1,5 +1,5 @@
 'use strict';
-let login = {
+const login = {
     withEmail( options ) {
         _validate( options.form );
     },
@@ -15,11 +15,11 @@ let login = {
 };
 
 
-let _validate = ( form ) => {
+const _validate = ( form ) => {
     $( form ).validate( validation() );
 };
 
-let validation = () => {
+const validation = () => {
     return {
         rules: {
             'email': {
@@ -43,7 +43,7 @@ let validation = () => {
     };
 };
 
-let _handleLogin = () => {
+const _handleLogin = () => {
     const email = $( '[name="email"]' ).val();
     const password = $( '[name="password"]' ).val();
     Meteor.loginWithPassword( email, password, ( err ) => {
@@ -68,7 +68,7 @@ let _handleLogin = () => {
     });
 };
 
-let _createUser = ( email, password ) => {
+const _createUser = ( email, password ) => {
     const create = confirm('It looks like you\'re new. Are you ready to jump in?');
     if ( create ) {
         const user = {
@@ -103,7 +103,7 @@ let _createUser = ( email, password ) => {
     }
 };
 
-let _handleFacebook = () => {
+const _handleFacebook = () => {
     Meteor.loginWithFacebook(function( err ) {
         if ( err ) {
             Bert.alert(`Facebook login failed: ${err.reason}`, 'danger');
@@ -121,12 +121,12 @@ let _handleFacebook = () => {
     });
 };
 
-let _togglePass = () => {
+const _togglePass = () => {
     const state = Session.get('showPass');
     Session.set('showPass', !state);
 };
 
-let _toForgPass = () => {
+const _toForgPass = () => {
     $('.out-left').addClass('is-active').on('transitionend', function() {
         $(this).hide().off();
         $('.in-right').addClass('is-active');

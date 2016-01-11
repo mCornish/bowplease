@@ -27,8 +27,8 @@ Me = React.createClass({
     },
     renderActivity() {
         if ( this.data.activity.length > 0 ) {
-            return this.data.activity.map((item) => {
-                return <ActivityItem />;
+            return this.data.activity.map((item, index) => {
+                return <ActivityItem key={index} activity={item} />;
             });
         } else {
             return (

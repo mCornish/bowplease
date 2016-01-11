@@ -12,6 +12,13 @@ FlowRouter.route( '/agreement', {
   }
 });
 
+FlowRouter.route( '/gifts/:id', {
+  name: 'giftsPage',
+  action() {
+    ReactLayout.render( Default, { yield: <GiftsPage /> } );
+  }
+});
+
 FlowRouter.route( '/privacy', {
   name: 'privacy',
   action() {

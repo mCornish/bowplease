@@ -17,7 +17,7 @@ const _beginSubmit = ( e ) => {
     FS.Utility.eachFile(e, function( file ) {
       Images.insert(file, function( err, fileObj ) {
         if ( err ) {
-          alert(err.reason)
+          Bert.alert(`Image upload failed: ${err.reason}`);
         } else {
           Session.set('imageName', fileObj.original.name);
           setTimeout(function () {
@@ -30,7 +30,7 @@ const _beginSubmit = ( e ) => {
   } else {
     Session.set('imageName', null);
     Session.set('imageUrl', null);
-    Bert.alert(`Image must be a JPG or PNG: ${err.reason}`, 'warning');
+    Bert.alert(`Image must be a JPG or PNG`, 'warning');
   }
 }
 

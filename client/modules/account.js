@@ -1,4 +1,5 @@
-account = {
+'use strit';
+const account = {
   changeUsername( e ) {
     _changeUsername( e );
   },
@@ -13,7 +14,7 @@ account = {
   }
 };
 
-_changeUsername = ( e ) => {
+const _changeUsername = ( e ) => {
   const username = $(e.target).find('[name=username]').val();
   Meteor.call('changeUsername', username, function( err ) {
     if ( err ) {
@@ -24,7 +25,7 @@ _changeUsername = ( e ) => {
   });
 };
 
-_changeEmail = ( e ) => {
+const _changeEmail = ( e ) => {
   const newEmail = $(e.target).find('[name=email]').val();
   Meteor.call('changeEmail', newEmail, _getOldEmail(), function( err ) {
     if ( err ) {
@@ -35,7 +36,7 @@ _changeEmail = ( e ) => {
   });
 };
 
-_getOldEmail = () => {
+const _getOldEmail = () => {
   if (Meteor.user().emails.length === 1) {
     return typeof Meteor.user().emails[0] === 'string' ? Meteor.user().emails[0] : Meteor.user().emails[0].address;
   } else {
@@ -52,7 +53,7 @@ _getOldEmail = () => {
   }
 }
 
-_changePassword = ( e ) => {
+const _changePassword = ( e ) => {
   const password = $(e.target).find('[name=password]').val();
   const oldPassword = $(e.target).find('[name=old-password]').val();
   Meteor.call('changePassword', oldPassword, password, function(err) {
@@ -64,7 +65,7 @@ _changePassword = ( e ) => {
   });
 };
 
-_logout = () => {
+const _logout = () => {
   Meteor.logout(function(err) {
     if (err) {
       Bert.alert(`Logout failed: ${err.reason}`, 'danger');

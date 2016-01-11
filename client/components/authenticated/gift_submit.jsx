@@ -7,6 +7,12 @@ GiftSubmit = React.createClass({
           recipients: Recipients.find().fetch()
       };
   },
+  componentDidMount() {
+    Modules.client.giftSubmit.submit( { form: "[data-hook=submit-form]" } );
+  },
+  handleSubmit( e ) {
+    e.preventDefault();
+  },
   renderOccasions() {
     return this.data.occasions.map((occasion, index) => {
       return <option key={index}>{occasion.name}</option>;
@@ -20,7 +26,7 @@ GiftSubmit = React.createClass({
   render() {
     return (
       <div className="page">
-        <form className="submit__form row">
+        <form className="submit__form row" data-hook="submit-form" onSubmit={this.handleGiftSubmit}>
           <div className="col-xs-12 col-md-6 col-md-offset-3">
             <div className="row">
               <p className="text-center col-xs-12"><strong>Sharing is caring:</strong>
