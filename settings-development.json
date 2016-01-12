@@ -1,8 +1,27 @@
 {
   "public": {
-    "key": "value"
+    "analyticsSettings": {
+      "Mixpanel": {
+        "token": "764da3327be88f3a5da19b6c8c8d9750",
+        "people": true
+      }
+    },
+    "facebook": {
+      "appId": "1071202616232123"
+    }
   },
   "private": {
-    "MAIL_URL": ""
+    "facebook": {
+      "secret": "d76e680eedeb236446629798785a529f"
+    },
+    "approvedEmails": [
+      "test@test.com",
+      "cornishmw@gmail.com",
+      "cornish.mw@gmail.com",
+      "mi_wi_co@yahoo.com",
+      "cole_peosoldier@yahoo.com",
+      "mhamurrain@gmail.com",
+      "ygmyg.contact@gmail.com"
+    ]
   }
 }

@@ -85,8 +85,8 @@ Me = React.createClass({
                     <div className="row">
                         <div className="col-xs-6">
                             <a href="/me/profile">
-                                <img className="me__user-image" src="{this.data.user.image}"/>
-                                {this.data.user.username}
+                                <img className="me__user-image" src={this.data.user.profile.image}/>
+                                &nbsp;{this.data.user.username}
                             </a>
                         </div>
                         <div className="col-xs-6 text-right">

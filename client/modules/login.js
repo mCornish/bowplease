@@ -49,7 +49,7 @@ const _handleLogin = () => {
   Meteor.loginWithPassword( email, password, ( err ) => {
     if ( err ) {
       if ( err.reason === 'User not found' ) {
-        createUser(email, password);
+        _createUser(email, password);
       } else {
         analytics.track('Login Failure', {
           user: email,
@@ -93,7 +93,7 @@ const _createUser = ( email, password ) => {
           profile: user.profile,
           service: 'email'
         });
-        FlowRouter.go('/');
+        FlowRouter.reload();
       }
     });
   } else {

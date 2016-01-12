@@ -23,6 +23,13 @@ authenticatedRoutes.route( '/me/account', {
   }
 });
 
+authenticatedRoutes.route( '/me/profile', {
+  name: 'profile',
+  action() {
+    ReactLayout.render( Default, { yield: <Profile /> } );
+  }
+});
+
 authenticatedRoutes.route( '/gifts/:id/edit', {
   name: 'giftEdit',
   action() {
