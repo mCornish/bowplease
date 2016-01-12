@@ -5,8 +5,7 @@ GiftPage = React.createClass({
     return {
       isLoading: !subscription.ready(),
       gift: Gifts.findOne(),
-      comments: [],
-      user: Meteor.user()
+      comments: []
     };
   },
   createdMoment() {
@@ -63,7 +62,7 @@ GiftPage = React.createClass({
   },
   renderCommentForm() {
     if ( Meteor.userId() ) {
-      return <CommentSubmit />;
+      return <CommentSubmit giftId={this.data.gift._id} />;
     } else {
       return (
         <p className="col-xs-12 text-center">Please log in to leave a comment.</p>
@@ -118,10 +117,8 @@ GiftPage = React.createClass({
                   {this.renderOccasion()}
                 </div>
 
-                <a className="gift-page__author no-hover" href="/user/{this.data.gift.userId}">
-                    <img className="comment__image" src="{this.data.user.profile.image}"/>
-                    <span className="comment__author">{this.data.user.username}</span>
-                    <span className="comment__submitted"> {this.createdMoment}</span>
+                <a className="gift-page__author no-hover" href={`/user/${this.data.gift.userId}`}>
+                    <UserInfo userId={this.data.gift.userId} />
                 </a>
 
             </div>

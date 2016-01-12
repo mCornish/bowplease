@@ -1,0 +1,25 @@
+.comments-container {
+    padding: 3em 0;
+}
+.comment {
+    display: block;
+    padding: 1em;
+}
+.comment:nth-child(even) {
+    background-color: $color-2;
+}
+.comment__author {
+    font-weight: bold;
+}
+.comment__submitted {
+    color: rgb(150,150,150);
+    font-weight: normal;
+}
+.comment__image {
+    width: 3em;
+    height: 3em;
+    margin-right: .5em;
+}
+.comment__body {
+    margin-top: 1em;
+}
