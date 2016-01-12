@@ -14,12 +14,12 @@ GiftSubmit = React.createClass({
     e.preventDefault();
   },
   renderOccasions() {
-    return this.data.occasions.map((occasion, index) => {
+    return this.data.occasions.map(( occasion, index ) => {
       return <option key={index}>{occasion.name}</option>;
     });
   },
   renderRecipients() {
-    return this.data.recipients.map((recipient, index) => {
+    return this.data.recipients.map(( recipient, index ) => {
       return <option key={index}>{recipient.name}</option>;
     });
   },

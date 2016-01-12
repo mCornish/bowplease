@@ -8,7 +8,6 @@ const giftSubmit = {
   }
 };
 
-
 const _validate = ( form ) => {
   $( form ).validate( validation() );
 };

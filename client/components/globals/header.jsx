@@ -12,9 +12,6 @@ Header = React.createClass({
                 <header className="header">
                     {this.renderNav()}
                 </header>
-                <div className="header__placeholder">
-                    {this.renderNav()}
-                </div>
             </div>
         );
     }

@@ -10,30 +10,22 @@ Me = React.createClass({
             user: Meteor.user()
         };
     },
-    getInitialState() {
-        let tab = null;
-        if (window.location.hash.length > 1) {
-            tab = window.location.hash.substr(1);
+    componentDidMount() {
+        // Set default tab/hash to activity
+        if (window.location.hash.length < 1) {
+          window.location.hash = '#activity';
         }
-        return {
-            activeTab: tab || 'activity'
-        }
-    },
-    setActiveTab( e ) {
-        const tab = $( e.target ).attr( 'data-tab' );
-        this.setState({
-            activeTab: tab
-        });
     },
     renderActivity() {
         if ( this.data.activity.length > 0 ) {
-            return this.data.activity.map((item, index) => {
-                return <ActivityItem key={index} activity={item} />;
+            return this.data.activity.map(( item, index ) => {
+              const gift = Gifts.findOne( item.giftId );
+              return <ActivityItem key={index} activity={item} gift={gift} />;
             });
         } else {
-            return (
-                <p className="text-center">You haven't done anything yet! You should try <a href="/">browsing some gifts</a>.</p>
-            );
+          return (
+            <p className="text-center">You haven't done anything yet! You should try <a href="/">browsing some gifts</a>.</p>
+          );
         }
     },
     renderPosts() {
@@ -41,10 +33,10 @@ Me = React.createClass({
           return  (
             <div className="col-xs-12">
               <div className="row">
-                {this.data.posts.map((post) => {
+                {this.data.posts.map(( post, index ) => {
                   return (
-                    <a className="user__gift no-hover col-xs-4" href="/gifts/{post._id}">
-                      <img src="{post.image}"/>
+                    <a className="user__gift no-hover col-xs-4" href={`/gifts/${post._id}`} key={index}>
+                      <img src={post.image}/>
                     </a>
                   );
                 })}
@@ -65,10 +57,10 @@ Me = React.createClass({
             return  (
                 <div className="col-xs-12">
                     <div className="row">
-                        {this.data.wants.map((want) => {
+                        {this.data.wants.map(( want, key ) => {
                             return (
-                                <a className="user__gift no-hover col-xs-4" href="/gifts/{want._id}">
-                                    <img src="{want.image}"/>
+                                <a className="user__gift no-hover col-xs-4" href={`/gifts/${want._id}`} key={index}>
+                                    <img src={want.image}/>
                                 </a>
                             );
                         })}
@@ -104,11 +96,11 @@ Me = React.createClass({
 
                     <div className="tabs__menu row row--margin">
                         <a className={ 'tabs__tab col-xs-4 ' + FlowHelpers.currentHash( 'activity' )} href="/me#activity"
-                           data-tab="activity" onClick={this.setActiveTab}>Activity</a>
+                           data-tab="activity">Activity</a>
                         <a className={ 'tabs__tab col-xs-4 ' + FlowHelpers.currentHash( 'shares' )} href="/me#shares"
-                            data-tab="shares" onClick={this.setActiveTab}>Shares</a>
+                            data-tab="shares">Shares</a>
                         <a className={ 'tabs__tab col-xs-4 ' + FlowHelpers.currentHash( 'wants' )} href="/me#wants"
-                           data-tab="wants" onClick={this.setActiveTab}>Wants</a>
+                           data-tab="wants">Wants</a>
                     </div>
 
                     <div className={'tabs__container ' + FlowHelpers.currentHash( 'activity' )}>

@@ -8,7 +8,7 @@
     display: inline-block;
     border: none;
     color: mix($color-2, black, 50);
-    padding: .5em;
+    padding: 1em 0 0;
     height: 100%;
     font-size: .6em;
     font-weight: normal;
@@ -40,38 +40,8 @@
 }
 .menu__button * {
     cursor: pointer;
+    font-weight: normal;
 }
 .row .menu__button + .menu__button {
     margin-top: 0;
-}
-
-.menu--secondary {
-    position: fixed;
-    top: 5em;
-    left: 0;
-    height: auto;
-    width: 100%;
-    border: none;
-    padding-top: .5em;
-    background-color: $color-2-t;
-    border-bottom: 1px solid mix($color-2, black, 80);
-    z-index: 2;
-}
-.menu--secondary.is-popup {
-    top: 0;
-    padding-top: 1em;
-}
-.menu--secondary .menu__button {
-    position: relative;
-    color: mix($color-1, white, 70);
-    font-size: 1em;
-    height: auto;
-}
-.menu--secondary .menu__button:hover,
-.menu--secondary .menu__button:focus,
-.menu--secondary .menu__button.is-active {
-    color: $color-1;
-    background-color: transparent;
-    border-bottom: none;
-    height: auto;
 }

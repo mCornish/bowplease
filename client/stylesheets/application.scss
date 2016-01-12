@@ -7,11 +7,13 @@
 
 @import 'objects/button';
 @import 'objects/forms';
+@import 'objects/inline-form';
 @import 'objects/parallax';
 @import 'objects/tabs';
 
 @import 'components/header';
 @import 'components/hero';
+@import 'components/home-form';
 @import 'components/intro';
 @import 'components/login';
 @import 'components/menu';
@@ -85,8 +87,8 @@ main {
 
 .page {
     display: block;
-    padding-top: 3em;
-    //margin-bottom: 5em;
+    padding-top: 1em;
+    margin-bottom: 5em;
 }
 
 // Input placeholder text color

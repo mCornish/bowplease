@@ -13,9 +13,9 @@ FlowRouter.route( '/agreement', {
 });
 
 FlowRouter.route( '/gifts/:id', {
-  name: 'giftsPage',
+  name: 'giftPage',
   action() {
-    ReactLayout.render( Default, { yield: <GiftsPage /> } );
+    ReactLayout.render( Default, { yield: <GiftPage /> } );
   }
 });
 

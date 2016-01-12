@@ -1,4 +1,4 @@
-GiftsPage = React.createClass({
+GiftPage = React.createClass({
   mixins: [ ReactMeteorData ],
   getMeteorData() {
     const subscription = Meteor.subscribe( 'gifts-page', FlowRouter.getParam('id') );

@@ -28,7 +28,7 @@ Hero = React.createClass({
                     <div className="container">
                         <h1 className="home__logo"><a href="/" onClick={this.toggleLogin}>BP</a></h1>
 
-                        <div className="home__login" data-hook="login-container">
+                        <div className="home__login-button" data-hook="login-container">
                             <button className="button" type="button" onClick={this.toggleLogin}>Login / Register</button>
                         </div>
                     </div>

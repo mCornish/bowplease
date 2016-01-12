@@ -107,25 +107,3 @@ input[type=radio] {
 input[type=radio] + input[type=radio] {
     //margin-left: 1em;
 }
-
-.form-inline * + .form-group {
-    margin-left: 1em;
-}
-
-
-.inline-form input,
-.inline-form select,
-.inline-form button {
-    display: inline-block;
-    padding: .5em 1em;
-    font-size: 1em;
-    border: none;
-}
-.inline-form select,
-.inline-form input {
-    border-right: 1px solid hsla(0,0,0,.3);
-}
-.inline-form label {
-    position: absolute;
-    visibility: hidden;
-}
