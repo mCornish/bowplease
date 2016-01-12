@@ -5,7 +5,7 @@ GiftPage = React.createClass({
     return {
       isLoading: !subscription.ready(),
       gift: Gifts.findOne(),
-      comments: []
+      comments: Comments.find().fetch()
     };
   },
   createdMoment() {
@@ -119,6 +119,7 @@ GiftPage = React.createClass({
 
                 <a className="gift-page__author no-hover" href={`/user/${this.data.gift.userId}`}>
                     <UserInfo userId={this.data.gift.userId} />
+                    <span className="comment__submitted"> {this.createdMoment()}</span>
                 </a>
 
             </div>

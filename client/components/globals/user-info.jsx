@@ -15,7 +15,6 @@ UserInfo = React.createClass({
         <div>
           <img className="comment__image" src={this.data.user.profile.image} />
           <span className="comment__author">{this.data.user.username}</span>
-          <span className="comment__submitted"> {this.data.createdMoment}</span>
         </div>
       );
     }

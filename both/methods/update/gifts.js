@@ -1,9 +1,10 @@
 Meteor.methods({
-  giftUpdate( gift ) {
+  giftUpdate( giftId, gift ) {
+    check(giftId, String);
     check(gift, Gifts.simpleSchema());
 
     try {
-      const giftId = Gifts.update( gift._id, { $set: gift });
+      const giftId = Gifts.update( giftId, { $set: gift });
       return giftId;
     } catch( exception ) {
       return exception;

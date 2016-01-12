@@ -1,16 +1,15 @@
 CommentSubmit = React.createClass({
   componentDidMount() {
-    Modules.client.comments.submit( { form: "[data-hook=comment-form]"}, this.props.giftId  );
-  },
-  handleSubmit( e ) {
-    e.preventDefault();
-  },
-  componentDidMount() {
+    Modules.client.comments.submits({ form: "[data-hook=comment-form]", giftId: this.props.giftId });
+
     // Focus on comment textarea when appropriate
     const hash = window.location.hash.substr(1);
     if ( hash === 'info' ) {
       this.refs.commentBody.getDOMNode().focus();
     }
+  },
+  handleSubmit( e ) {
+    e.preventDefault();
   },
   autoText() {
     const hash = window.location.hash.substr(1);
@@ -22,7 +21,7 @@ CommentSubmit = React.createClass({
         <div className="row">
             <div className="col-xs-12">
                 <label htmlFor="body">Comment on this gift</label>
-                <textarea id="body" name="body" ref="commentBody" rows="3">{this.autoText()}</textarea>
+                <textarea id="body" name="body" defaultValue={this.autoText()} ref="commentBody" rows="3"></textarea>
             </div>
         </div>
         <div className="row row--margin">
