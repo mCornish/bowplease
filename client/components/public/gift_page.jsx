@@ -2,9 +2,11 @@ GiftPage = React.createClass({
   mixins: [ ReactMeteorData ],
   getMeteorData() {
     const subscription = Meteor.subscribe( 'gifts-page', FlowRouter.getParam( 'id' ) );
+    // Will get gift from Gift Item for popup layout, not for page layout
+    const propsGift = this.props.gift;
     return {
       isLoading: !subscription.ready(),
-      gift: Gifts.findOne( FlowRouter.getParam( 'id' ) ),
+      gift: propsGift || Gifts.findOne( FlowRouter.getParam( 'id' ) ),
       comments: Comments.find({ userId: FlowRouter.getParam( 'id' ) }).fetch()
     };
   },
@@ -84,6 +86,14 @@ GiftPage = React.createClass({
   render() {
     if ( this.data.isLoading ) {
       return <Loading />;
+    } else if ( !this.data.gift ) {
+      return (
+        <div className="page">
+          <p className="col-xs-12 text-center">
+            This doesn't seem to be a real gift. Maybe you should <a href='/'>look for a different gift</a>.
+          </p>
+        </div>
+      );
     } else {
       return (
         <div className="page">

@@ -1,0 +1,48 @@
+.browse {
+    color: $color-1;
+}
+.browse__buttons {
+    position: fixed;
+    display: block;
+    width: 100vw;
+    margin-bottom: 5em;
+    padding: .5em 0;
+    bottom: 0;
+    left: 0;
+    font-size: .8em;
+    color: inherit;
+    z-index: 3;
+
+    @media #{$break-small} {
+        margin-bottom: 0;
+        background-color: $color-1;
+    }
+    @media #{$break-medium} {
+        background-color: transparent;
+    }
+}
+.browse__filter-button {
+    font-size: 1em;
+}
+.browse__filter-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: transparentize(mix($color-2, black, 95),.02);
+    color: inherit;
+    border-bottom: 1px solid mix($color-2, black, 85);
+    padding-top: 5em;
+    z-index: 3;
+}
+.browse__filter-container.is-active {
+    //display: block;
+}
+.browse__filter {
+    display: block;
+    position: relative;
+}
+.browse__message {
+    color: inherit;
+    margin-top: 2em;
+}

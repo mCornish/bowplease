@@ -20,12 +20,12 @@ GiftEdit = React.createClass({
   },
   renderOccasions() {
     return this.data.occasions.map(( occasion, index ) => {
-      return <option key={index}>{occasion.name}</option>;
+      return <option key={index} value={occasion.name}>{occasion.name}</option>;
     });
   },
   renderRecipients() {
     return this.data.recipients.map(( recipient, index ) => {
-      return <option key={index}>{recipient.name}</option>;
+      return <option key={index} value={recipient.name}>{recipient.name}</option>;
     });
   },
   render() {
@@ -79,7 +79,7 @@ GiftEdit = React.createClass({
               </div>
               <div className="col-xs-6 input-group--select">
                 <label htmlFor="occasion">Occasion</label>
-                <select id="occasion" className="col-xs-12" name="occasion" defaultValue="occasion" data-hook="occasion">
+                <select id="occasion" className="col-xs-12" name="occasion" defaultValue={this.data.gift.occasion} data-hook="occasion">
                   <option>I got it because...</option>
                   {this.renderOccasions()}
                 </select>
@@ -89,7 +89,7 @@ GiftEdit = React.createClass({
             <div className="row row--margin">
               <div className="col-xs-6 input-group--select">
                 <label htmlFor="recipient">Recipient</label>
-                <select id="recipient" className="col-xs-12" name="recipient" defaultValue="recipient" data-hook="recipient">
+                <select id="recipient" className="col-xs-12" name="recipient" defaultValue={this.data.gift.recipient} data-hook="recipient">
                   <option>This gift is for...</option>
                   {this.renderRecipients()}
                 </select>

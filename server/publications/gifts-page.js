@@ -1,8 +1,13 @@
 Meteor.publish( 'gifts-page', function( giftId ) {
   check( giftId, String );
-  return [
-    Gifts.find( giftId ),
-    Comments.find({ giftId: giftId } ),
-    Meteor.users.find()
-  ];
+  const gift = Gifts.find( giftId );
+  if ( gift ) {
+    return [
+      Gifts.find( giftId ),
+      Comments.find({ giftId: giftId } ),
+      Meteor.users.find()
+    ];
+  } else {
+    return this.ready();
+  }
 });

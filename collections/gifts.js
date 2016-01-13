@@ -103,7 +103,7 @@ const GiftsSchema = new SimpleSchema({
       }
     }
   },
-  'wants': {
+  'wantsCount': {
     type: Number,
     label: 'Number of Gift Wants',
     optional: true,
