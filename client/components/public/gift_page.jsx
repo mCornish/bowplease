@@ -18,7 +18,7 @@ GiftPage = React.createClass({
     Modules.client.giftPage.want( e, giftId );
   },
   linkClass() {
-    return '';
+    return isNull(this.data.gift.link) ? 'is-disabled' : '';
   },
   popupClass() {
     return '';

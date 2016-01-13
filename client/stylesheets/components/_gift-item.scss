@@ -1,127 +1,127 @@
 .gift {
-    font-size: .8em;
+  font-size: .8em;
 }
 a.gift__edit-button,
 a.gift__del-button {
-    display: block;
-    color: $color-1;
-    text-align: center;
-    border: 1px solid $color-1;
-    background-color: $color-2;
-    border-bottom: none;
+  display: block;
+  color: $color-1;
+  text-align: center;
+  border: 1px solid $color-1;
+  background-color: $color-2;
+  border-bottom: none;
 }
 a.gift__edit-button:hover,
 a.gift__del-button:hover {
-    color: $color-2;
-    background-color: $color-1;
+  color: $color-2;
+  background-color: $color-1;
 }
 .gift__image {
-    display: block;
-    min-width: 100%;
-    height: 100%;
-    background-color: black;
-    overflow: hidden;
-    padding: 0;
+  display: block;
+  min-width: 100%;
+  height: 100%;
+  background-color: black;
+  overflow: hidden;
+  padding: 0;
 
-    @media #{$break-small} {
-        height: 20em;
-    }
-    @media #{$break-medium} {
-        height: 30em;
-    }
+  @media #{$break-small} {
+    height: 20em;
+  }
+  @media #{$break-medium} {
+    height: 30em;
+  }
 }
 .gift__image img {
-    opacity: 1;
-    @include transition(opacity .2s ease);
+  opacity: 1;
+  @include transition(opacity .2s ease);
 }
 .gift__image:hover img {
-    opacity: .7;
+  opacity: .7;
 }
 .gift__want {
-    position: absolute;
-    font-size: .8em;
-    top: 0;
-    right: 0;
-    @include transition(opacity .2s ease);
-    background-color: $color-1;
-    color: $color-2;
-    cursor: pointer;
-    padding: .5em;
-    margin: 1em;
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,.5);
-    @include transition(box-shadow .2s ease);
-    @media #{$break-small} {
-        opacity: 1;
-    }
-    @media #{$break-medium} {
-        opacity: 0;
-    }
+  position: absolute;
+  font-size: .8em;
+  top: 0;
+  right: 0;
+  @include transition(opacity .2s ease);
+  background-color: $color-1;
+  color: $color-2;
+  cursor: pointer;
+  padding: .5em;
+  margin: 1em;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.5);
+  @include transition(box-shadow .2s ease);
+  @media #{$break-small} {
+    opacity: 1;
+  }
+  @media #{$break-medium} {
+    opacity: 0;
+  }
 }
 .gift__want:hover {
-    box-shadow: 0 1px 8px 0 rgba(0,0,0,.5);
+  box-shadow: 0 1px 8px 0 rgba(0,0,0,.5);
 }
 .gift__image:hover .gift__want {
-    opacity: 1;
+  opacity: 1;
 }
 .gift__want i {
-    @include transition(color .2s ease);
+  @include transition(color .2s ease);
 }
 .gift__want.unwantable i {
-    color: red;
+  color: red;
 }
 .gift__want.disabled {
-    display: none;
+  display: none;
 }
 .gift__icons {
-    opacity: 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    color: $color-2;
-    padding: .2em;
-    width: 100%;
-    text-align: center;
-    @include transition(opacity .2s ease);
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: $color-2;
+  padding: .2em;
+  width: 100%;
+  text-align: center;
+  @include transition(opacity .2s ease);
 }
 .gift__icons.is-small {
-    opacity: 1;
-    position: relative;
-    color: $color-3;
-    @media #{$break-small} {
-        display: block;
-    }
-    @media #{$break-medium} {
-        display: none;
-    }
+  opacity: 1;
+  position: relative;
+  color: $color-3;
+  @media #{$break-small} {
+    display: block;
+  }
+  @media #{$break-medium} {
+    display: none;
+  }
 }
 .gift__icons:not(.is-small) {
-    @media #{$break-small} {
-        display: none;
-    }
-    @media #{$break-medium} {
-        display: block;
-    }
+  @media #{$break-small} {
+    display: none;
+  }
+  @media #{$break-medium} {
+    display: block;
+  }
 }
 .gift__image:hover .gift__icons {
-    opacity: 1;
+  opacity: 1;
 }
 .gift__icon {
-    display: inline-block;
-    font-size: inherit;
-    padding: 0 .5em;
+  display: inline-block;
+  font-size: inherit;
+  padding: 0 .5em;
 }
 .gift__info {
-    border-top: 1px solid mix($color-2, black, 90);
+  border-top: 1px solid mix($color-2, black, 90);
 }
 .gift__info {
-    font-size: .8em;
+  font-size: .8em;
 }
 .gift__description {
-    padding-bottom: 1em;
-    border-bottom: 1px solid rgba(0,0,0,.3);
+  padding-bottom: 1em;
+  border-bottom: 1px solid rgba(0,0,0,.3);
 }
 .gift__user-image {
-    width: 2em;
-    height: 2em;
-    margin-right: .5em;
+  width: 2em;
+  height: 2em;
+  margin-right: .5em;
 }

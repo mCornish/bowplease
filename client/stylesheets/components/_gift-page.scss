@@ -1,0 +1,40 @@
+.gift-page__buttons {
+  position: fixed;
+  background-color: $color-2-t;
+  padding: 1em;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+.gift-page__buttons.is-page {
+  top: 3.8em;
+}
+.gift-page__button {
+  font-size: .8em;
+}
+.gift-page__description {
+  margin-bottom: 2em;
+}
+.gift-page__author {
+  display: block;
+  margin-top: 2em;
+}
+.want-button:hover,
+.want-button:not(.wantable),
+.want-button.is-disabled {
+  background-color: $color-1;
+  color: $color-2;
+}
+.want-button:hover i,
+.want-button:not(.wantable) i,
+.want-button.is-disabled i {
+  color: red;
+}
+.want-button .button--addon__addon,
+.want-button:hover .button--addon__addon {
+  color: inherit;
+}
+.want-button__count {
+  border-left: 1px solid currentColor;
+}
