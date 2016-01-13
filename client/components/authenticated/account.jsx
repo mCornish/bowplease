@@ -1,7 +1,6 @@
 Account = React.createClass({
   mixins: [ ReactMeteorData ],
   getMeteorData() {
-      const subscription = Meteor.subscribe( 'account' );
       return {
           user: Meteor.user()
       };

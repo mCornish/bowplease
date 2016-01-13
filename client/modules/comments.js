@@ -3,7 +3,6 @@ const comments = {
     _validate( options.form, options.giftId );
   },
   edit( options ) {
-    console.log('edit');
     _validate( options.form, options.commentId, true );
   },
   remove( commentId ) {
@@ -12,7 +11,6 @@ const comments = {
 }
 
 const _validate = ( form, id, editting=false ) => {
-  console.log(editting);
   if ( editting ) {
     $( form ).validate( _editValidation( id ) );
   } else {
@@ -53,7 +51,6 @@ const _editValidation = ( commentId ) => {
 };
 
 const _handleSubmit = ( giftId ) => {
-  console.log('test');
   const $body = $('[name=body]');
   const comment = {
     body: $body.val(),

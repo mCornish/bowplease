@@ -4,7 +4,7 @@ Me = React.createClass({
         const subscription = Meteor.subscribe( 'me' );
         return {
             isLoading: !subscription.ready(),
-            activity: Activity.find().fetch(),
+            activity: Activity.find({ 'userId': Meteor.userId() }).fetch(),
             posts: Gifts.find({'userId': Meteor.userId()}, {limit: 3, sort: {created: -1}}).fetch(),
             wants: Gifts.find({'wanters': Meteor.userId()}, {limit: 3, sort: {created: -1}}).fetch(),
             user: Meteor.user()

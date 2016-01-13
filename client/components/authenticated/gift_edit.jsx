@@ -1,10 +1,10 @@
 GiftEdit = React.createClass({
   mixins: [ ReactMeteorData ],
   getMeteorData() {
-    const subscription = Meteor.subscribe( 'gift-edit', FlowRouter.getParam('id') );
+    const subscription = Meteor.subscribe( 'gift-edit', FlowRouter.getParam( 'id' ) );
     return {
       isLoading: !subscription.ready(),
-      gift: Gifts.findOne(),
+      gift: Gifts.findOne( FlowRouter.getParam( 'id' ) ),
       occasions: Occasions.find().fetch(),
       recipients: Recipients.find().fetch()
     };

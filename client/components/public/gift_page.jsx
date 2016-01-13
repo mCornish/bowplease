@@ -1,11 +1,11 @@
 GiftPage = React.createClass({
   mixins: [ ReactMeteorData ],
   getMeteorData() {
-    const subscription = Meteor.subscribe( 'gifts-page', FlowRouter.getParam('id') );
+    const subscription = Meteor.subscribe( 'gifts-page', FlowRouter.getParam( 'id' ) );
     return {
       isLoading: !subscription.ready(),
-      gift: Gifts.findOne(),
-      comments: Comments.find().fetch()
+      gift: Gifts.findOne( FlowRouter.getParam( 'id' ) ),
+      comments: Comments.find({ userId: FlowRouter.getParam( 'id' ) }).fetch()
     };
   },
   createdMoment() {
