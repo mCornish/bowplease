@@ -10,6 +10,10 @@ UserInfo = React.createClass({
   render() {
     if ( this.data.isLoading ) {
       return <Loading />;
+    } else if ( !this.data.user ) {
+      return (
+        <p>User not found</p>
+      );
     } else {
       return (
         <div>

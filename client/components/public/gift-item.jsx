@@ -14,7 +14,7 @@ GiftItem = React.createClass({
   },
   ageString() {
     const age = this.props.gift.age;
-    if ( age ) {
+    if ( age && age > 0 ) {
       return ` age ${age}`;
     } else {
       return '';
@@ -55,8 +55,10 @@ GiftItem = React.createClass({
   },
   renderGiftInfo() {
     const recipient = this.props.gift.recipient;
+    const age = this.props.gift.age;
     const hasRecipient = recipient && recipient.indexOf('...') < 0;
-    if (hasRecipient || this.props.gift.age) {
+    const hasAge = age && age > 0;
+    if (hasRecipient || hasAge) {
       return (
         <div>
           {this.recipientString()}{this.ageString()}
@@ -65,7 +67,7 @@ GiftItem = React.createClass({
     } else {
       return (
         <span>
-          No info provided. <a href="{{pathFor 'giftPage' id=_id query='comments=true'}}">Request more info.</a>
+          No info provided. <a href={`/gifts/${this.props.gift._id}#info`}>Request more info.</a>
         </span>
       );
     }
