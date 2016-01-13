@@ -1,0 +1,59 @@
+.grid {
+  //display: block;
+
+  // Potential flexbox solution (height problems)
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  //height: 124em;
+}
+.grid__item {
+  display: block;
+  position: relative;
+
+  border: 1px solid mix($color-2, black, 90);
+  background: mix($color-2, black, 95);
+  color: $color-1;
+
+  @media #{$break-small} {
+    width: 48%;
+    // px accounts for border
+    margin: calc((4% - 4px) / 4);
+  }
+  @media #{$break-medium} {
+    width: 32%;
+    // px accounts for border
+    margin: calc((4% - 6px) / 6);
+  }
+  @media #{$break-large} {
+    width: 24%;
+    // px accounts for border
+    margin: calc((4% - 8px) / 8);
+  }
+}
+
+.grid__image {
+  display: block;
+  position: relative;
+  height: auto;
+  width: auto;
+  // transform fixes chrome rendering issue
+  -webkit-transform: translateZ(0);
+  cursor: pointer;
+  background-color: black;
+  text-align: center;
+  padding: 0;
+}
+.grid__image.is-long {
+  height: 100%;
+  left: 50%;
+  @include transform(translateX(-50%));
+}
+.grid__image.is-tall {
+  width: 100%;
+  top: 50%;
+  @include transform(translateY(-50%));
+}
+.grid__container {
+  padding: 1em;
+}

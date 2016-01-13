@@ -26,11 +26,17 @@ GiftItem = React.createClass({
       showPage: false
     });
   },
+  imageClass() {
+    return Modules.client.giftList.imageClass( this.props.gift.image );
+  },
   showPopup() {
     window.history.pushState( {},"", `/gifts/${this.props.gift._id}` );
     this.setState({
       showPage: true
     });
+  },
+  wantedClass() {
+    return Modules.client.giftList.wantedClass( this.props.gift.wanters );
   },
   recipientString() {
     const recipient = this.props.gift.recipient;
@@ -86,9 +92,9 @@ GiftItem = React.createClass({
     return (
       <div className="grid__item gift" data-hook="gift">
         <a className="no-hover gift__image" href={`/gifts/${this.props.gift._id}`}>
-          <img className={`grid__image ${this.imageClass}`} src={this.props.gift.image} data-id={this.props.gift._id} onClick={this.showPopup} />
+          <img className={`grid__image ${this.imageClass()}`} src={this.props.gift.image} data-id={this.props.gift._id} onClick={this.showPopup} />
           {/* Want button has to be in this container to provide correct hover affect on image */}
-          <p className={`gift__want ${this.wantedClass}`} data-hook="want"><i className="fa fa-gift"></i> Want</p>
+          <p className={`gift__want ${this.wantedClass()}`} data-hook="want"><i className="fa fa-gift"></i> Want</p>
 
           <div className="gift__icons">
             <p className="gift__icon">

@@ -2,8 +2,14 @@ const giftList = {
   filteredGifts( limit, giftSort ) {
     return _getFilteredGifts( limit, giftSort );
   },
+  imageClass( imageUrl ) {
+    return _getImageClass( imageUrl );
+  },
   track( e ) {
     _track( e );
+  },
+  wantedClass( wanters ) {
+    return _getWantedClass( wanters );
   }
 };
 
@@ -149,10 +155,43 @@ _isValidNum = ( number ) => {
   return number && !isNaN( number);
 };
 
+_getImageClass = ( imageUrl ) => {
+  const image = new Image();
+  image.src = imageUrl;
+
+  const imageWidth = image.width;
+  const imageHeight = image.height;
+
+  if (imageWidth > imageHeight) {
+    return 'is-long';
+  } else {
+    return 'is-tall';
+  }
+
+  // const id = Template.currentData()._id;
+  // $image = $('[data-id=' + id + ']');
+  // if (imageWidth > imageHeight) {
+  //   $image.addClass('is-long');
+  // } else {
+  //   $image.addClass('is-tall');
+  // }
+}
+
 _track = ( e ) => {
   const field = $(e.target).attr('name');
   const value = $(e.target).val();
   analytics.track('Gift Filter: ' + field, value);
+};
+
+_getWantedClass = ( wanters ) => {
+  const userId = Meteor.userId();
+  if ( userId && !_.include(wanters, userId) ) {
+    return 'wantable';
+  } else if ( userId ) {
+    return 'unwantable'
+  } else {
+    return 'disabled';
+  }
 };
 
 Modules.client.giftList = giftList;
