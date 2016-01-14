@@ -9,14 +9,14 @@ GiftEdit = React.createClass({
       recipients: Recipients.find().fetch()
     };
   },
-  componentDidMount() {
-    Modules.client.giftEdit.submits( { form: "[data-hook=edit-form]" } );
-  },
-  deleteGift() {
-    Modules.client.giftEdit.remove();
+  componentDidUpdate() {
+    Modules.client.giftEdit.submit( { form: "[data-hook=edit-form]", imageUrl: this.data.gift.image } );
   },
   handleSubmit( e ) {
     e.preventDefault();
+  },
+  deleteGift() {
+    Modules.client.giftEdit.remove();
   },
   renderOccasions() {
     return this.data.occasions.map(( occasion, index ) => {
@@ -64,7 +64,7 @@ GiftEdit = React.createClass({
               <div className="col-xs-12">
                 <label htmlFor="link">Link</label>
                 <input className="col-xs-12" name="link" placeholder="Where can someone buy it online?" id="link"
-                  type="url" defaultValue={this.data.gift.link} required/>
+                  type="url" defaultValue={this.data.gift.link}/>
               </div>
             </div>
 

@@ -1,21 +1,18 @@
 'use strict';
 const giftEdit = {
-  submits( options ) {
-    console.log('sub');
-    _validate( options.form );
+  submit( options ) {
+    _validate( options.form, options.imageUrl );
   },
-  removes() {
+  remove() {
     _remove();
   }
 };
 
-const _validate = ( form ) => {
-  console.log('val1');
-  $( form ).validate( validation() );
+const _validate = ( form, imageUrl ) => {
+  $( form ).validate( validation( imageUrl ) );
 };
 
-const validation = () => {
-  console.log('val');
+const validation = ( imageUrl ) => {
   return {
     rules: {
       'image-file': {
@@ -51,37 +48,48 @@ const validation = () => {
         url: "Your gift needs a valid link."
       }
     },
-    submitHandler() { _handleSubmit(); }
+    submitHandler() { _handleSubmit( imageUrl ); }
   };
 };
 
-const _handleSubmit = () => {
-  console.log('test');
+const _handleSubmit = ( imageUrl ) => {
   const giftId = Gifts.findOne()._id;
   const gift = {
-    image: Session.get('imageUrl'),
-    description: $('[name=description]').val(),
-    link: $('[name=link]').val(),
-    recipient: $('[name=recipient]').val(),
-    occasion: $('[name=occasion]').val()
+    image: Session.get('imageUrl') || imageUrl,
+    description: $('[name=description]').val()
   };
-
+  const linkVal = $('[name=link]').val();
+  const recipientVal = $('[name=recipient]').val();
+  const occasionVal = $('[name=occasion]').val();
+  const priceVal = parseFloat($('[name=price]').val());
+  const ageVal = parseInt($('[name=age]').val());
   // Append http:// to link if necessary
-  if (gift.link !== '' && gift.link.indexOf('http://') !== 0) {
-    gift.link = 'http://' + gift.link;
+  if ( linkVal && linkVal.indexOf('http://') !== 0 && linkVal.indexOf('https://') !== 0 ) {
+    gift.link = 'http://' + linkVal;
+  } else {
+    gift.link = linkVal;
   }
-
-  const price = parseFloat( $('[name=price]').val() );
-  const age = parseInt( $('[name=age]').val() );
-  if ( !isNaN(price) ) {
-    _.extend(gift, {
-      price: price
-    });
+  // Make sure recipient doesn't have default value;
+  if (recipientVal && recipientVal.indexOf('...') < 0) {
+    gift.recipient = recipientVal;
+  } else {
+    gift.recipient = '';
   }
-  if ( !isNaN(age) ) {
-    _.extend(gift, {
-      age: age
-    });
+  // Make sure occasion doesn't have default value;
+  if (occasionVal && occasionVal.indexOf('...') < 0) {
+    gift.occasion = occasionVal;
+  } else {
+    gift.occasion = '';
+  }
+  if ( !isNaN(priceVal) ) {
+    gift.price = priceVal
+  } else {
+    gift.price = 0;
+  }
+  if ( !isNaN(ageVal) ) {
+    gift.age = ageVal;
+  } else {
+    gift.age = 0;
   }
 
   Meteor.call('giftUpdate', giftId, gift, function( err ) {

@@ -83,12 +83,12 @@ const _handleSubmit = () => {
   if ( !isNaN(priceVal) ) {
     gift.price = priceVal
   } else {
-    gift.price = -1;
+    gift.price = 0;
   }
   if ( !isNaN(ageVal) ) {
     gift.age = ageVal;
   } else {
-    gift.age = -1;
+    gift.age = 0;
   }
 
   Meteor.call('giftInsert', gift, function( err, result ) {
