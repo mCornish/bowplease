@@ -9,7 +9,8 @@ GiftItem = React.createClass({
   },
   getInitialState() {
     return {
-      showPage: false
+      showPage: false,
+      wantedClass: Modules.client.giftList.wantedClass( this.props.gift.wanters )
     };
   },
   ageString() {
@@ -26,6 +27,20 @@ GiftItem = React.createClass({
       showPage: false
     });
   },
+  handleWant( e ) {
+    const giftId = this.props.gift._id;
+    Modules.client.giftPage.want( e, giftId );
+    if ( this.state.wantedClass === 'wantable' ) {
+      this.setState({
+        wantedClass: 'unwantable'
+      });
+    } else {
+      this.setState({
+        wantedClass: 'wantable'
+      });
+    }
+
+  },
   imageClass() {
     return Modules.client.giftList.imageClass( this.props.gift.image );
   },
@@ -34,9 +49,6 @@ GiftItem = React.createClass({
     this.setState({
       showPage: true
     });
-  },
-  wantedClass() {
-    return Modules.client.giftList.wantedClass( this.props.gift.wanters );
   },
   recipientString() {
     const recipient = this.props.gift.recipient;
@@ -93,10 +105,10 @@ GiftItem = React.createClass({
   render() {
     return (
       <div className="grid__item gift" data-hook="gift">
-        <a className="no-hover gift__image" href={`/gifts/${this.props.gift._id}`}>
+        <a className="no-hover gift__image">
           <img className={`grid__image ${this.imageClass()}`} src={this.props.gift.image} data-id={this.props.gift._id} onClick={this.showPopup} />
           {/* Want button has to be in this container to provide correct hover affect on image */}
-          <p className={`gift__want ${this.wantedClass()}`} data-hook="want"><i className="fa fa-gift"></i> Want</p>
+          <p className={`gift__want ${this.state.wantedClass}`} onClick={this.handleWant}><i className="fa fa-gift"></i> Want</p>
 
           <div className="gift__icons">
             <p className="gift__icon">
