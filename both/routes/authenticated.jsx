@@ -30,15 +30,9 @@ authenticatedRoutes.route( '/me/profile', {
   }
 });
 
-FlowRouter.route( '/me/posts', {
-  name: 'mePosts',
-  action() {
-    ReactLayout.render( Default, { yield: <UserGifts /> } );
-  }
-});
-
-FlowRouter.route( '/me/wants', {
-  name: 'meWants',
+// MUST COME AFTER OTHER 'ME' ROUTES
+FlowRouter.route( '/me/:giftType', {
+  name: 'meGifts',
   action() {
     ReactLayout.render( Default, { yield: <UserGifts /> } );
   }

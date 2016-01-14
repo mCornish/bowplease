@@ -40,15 +40,8 @@ FlowRouter.route( '/users/:id', {
   }
 });
 
-FlowRouter.route( '/users/:id/posts', {
-  name: 'userPosts',
-  action() {
-    ReactLayout.render( Default, { yield: <UserGifts /> } );
-  }
-});
-
-FlowRouter.route( '/users/:id/wants', {
-  name: 'userWants',
+FlowRouter.route( '/users/:id/:giftType', {
+  name: 'userGifts',
   action() {
     ReactLayout.render( Default, { yield: <UserGifts /> } );
   }
