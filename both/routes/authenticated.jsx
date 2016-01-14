@@ -12,7 +12,7 @@ const authenticatedRoutes = FlowRouter.group({
 authenticatedRoutes.route( '/me', {
   name: 'me',
   action() {
-    ReactLayout.render( Default, { yield: <Me /> } );
+    ReactLayout.render( Default, { yield: <UserPage /> } );
   }
 });
 
@@ -27,6 +27,20 @@ authenticatedRoutes.route( '/me/profile', {
   name: 'profile',
   action() {
     ReactLayout.render( Default, { yield: <Profile /> } );
+  }
+});
+
+FlowRouter.route( '/me/posts', {
+  name: 'mePosts',
+  action() {
+    ReactLayout.render( Default, { yield: <UserGifts /> } );
+  }
+});
+
+FlowRouter.route( '/me/wants', {
+  name: 'meWants',
+  action() {
+    ReactLayout.render( Default, { yield: <UserGifts /> } );
   }
 });
 

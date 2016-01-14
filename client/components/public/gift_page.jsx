@@ -136,7 +136,7 @@ GiftPage = React.createClass({
                   {this.renderOccasion()}
                 </div>
 
-                <a className="gift-page__author no-hover" href={`/user/${this.data.gift.userId}`}>
+                <a className="gift-page__author no-hover" href={`/users/${this.data.gift.userId}`}>
                     <UserInfo userId={this.data.gift.userId} />
                     <span className="comment__submitted"> {this.createdMoment()}</span>
                 </a>

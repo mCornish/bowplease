@@ -32,3 +32,24 @@ FlowRouter.route( '/trending', {
     ReactLayout.render( Default, { yield: <Trending /> } );
   }
 });
+
+FlowRouter.route( '/users/:id', {
+  name: 'userPage',
+  action() {
+    ReactLayout.render( Default, { yield: <UserPage /> } );
+  }
+});
+
+FlowRouter.route( '/users/:id/posts', {
+  name: 'userPosts',
+  action() {
+    ReactLayout.render( Default, { yield: <UserGifts /> } );
+  }
+});
+
+FlowRouter.route( '/users/:id/wants', {
+  name: 'userWants',
+  action() {
+    ReactLayout.render( Default, { yield: <UserGifts /> } );
+  }
+});
