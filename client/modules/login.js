@@ -116,7 +116,7 @@ const _handleFacebook = () => {
         id: Meteor.userId(),
         service: 'facebook'
       });
-      FlowRouter.go('/');
+      FlowRouter.reload();
     }
   });
 };
