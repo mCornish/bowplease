@@ -67,7 +67,7 @@ WantButton = React.createClass({
       );
     } else {
       return (
-        <button className={`want-button want-button--${this.props.modifier} button ${this.state.wantedClass}`} onClick={this.handleWant}>
+        <button className={`want-button want-button--${this.props.modifier} button col-xs-12 ${this.state.wantedClass}`} onClick={this.handleWant}>
           <i className="fa fa-gift"></i> {this.text()}
         </button>
       );

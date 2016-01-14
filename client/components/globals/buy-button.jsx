@@ -2,8 +2,12 @@ BuyButton = React.createClass({
   linkClass() {
     return isNull(this.props.link) ? 'is-disabled' : '';
   },
-  priceText() {
-    if ( this.props.price ) {
+  text() {
+    if ( !this.props.link ) {
+      return (
+        <span>No link provided</span>
+      );
+    } else if ( this.props.price ) {
       return (
         <span>Buy for <i className="fa fa-dollar">{this.props.price}</i></span>
       );
@@ -13,19 +17,34 @@ BuyButton = React.createClass({
       );
     }
   },
+  track( e ) {
+    const link = $( e.target ).attr( 'href' );
+    const url = link.replace('http://', '').replace('https://', '').replace('www.', '');
+    const slashLoc = url.indexOf('/');
+    let merchant = url;
+    if (slashLoc > -1) {
+      merchant = url.slice(0, slashLoc);
+    }
+
+    // Capitalize it to make it look nice
+    merchant = merchant.charAt(0).toUpperCase() + merchant.slice(1);
+
+    analytics.track('Buy clicked', {link: link});
+    analytics.track(merchant + ' clicked', {link: link});
+  },
   render() {
     if ( Meteor.userId() === this.props.userId ) {
       return (
         <div className="col-xs-3 col-sm-offset-2">
           <a className={`buy-button button col-xs-12 ${this.linkClass()}`} href={this.props.link} target="_blank"
-            data-track="buy"><i className="fa fa-dollar"></i></a>
+            onClick={this.track}><i className="fa fa-dollar"></i></a>
         </div>
       );
     } else {
       return (
         <div className="col-xs-6 col-sm-4 col-sm-offset-2">
           <a className={`buy-button button col-xs-12 ${this.linkClass()}`} href={this.props.link} target="_blank"
-            data-track="buy">{this.priceText()}</a>
+            onClick={this.track}>{this.text()}</a>
         </div>
       );
     }

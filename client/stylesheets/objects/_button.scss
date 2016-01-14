@@ -1,114 +1,113 @@
 .button {
-    background-color: transparent;
-    color: $color-1;
-    letter-spacing: 1px;
-    font-size: 1.5em;
-    font-weight: bold;
-    padding: 1em;
-    min-width: 4em;
-    text-align: center;
-    display: inline;
-    border-color: $color-1;
-    border-style: solid;
-    border-width: 3px;
-    @include transition(.2s all ease);
-    position: relative;
-    cursor: pointer;
+  background-color: transparent;
+  color: $color-1;
+  letter-spacing: 1px;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 1em;
+  min-width: 4em;
+  text-align: center;
+  display: inline;
+  border-color: $color-1;
+  border-style: solid;
+  border-width: 3px;
+  @include transition(.2s all ease);
+  position: relative;
+  cursor: pointer;
 }
 .button:hover,
 .button:focus:not(.button--submit):not(.menu__button),
 .button.is-active {
-    color: $color-2;
-    text-decoration: none;
-    background-color: $color-1;
+  color: $color-2;
+  text-decoration: none;
+  background-color: $color-1;
 }
 .button:active {
-    text-decoration: none;
-    color: $color-2;
-    background-color: $color-1;
+  text-decoration: none;
+  color: $color-2;
+  background-color: $color-1;
 }
 
 /* disabled button */
 .button.is-disabled {
-    cursor: default;
-    background-color: rgb(150, 150, 150);
-    color: rgb(100, 100, 100);
-    border-color: rgb(150, 150, 150);
+  cursor: default;
+  background-color: rgb(150, 150, 150);
+  color: rgb(100, 100, 100);
+  border-color: rgb(150, 150, 150);
 }
-.button.disabled:hover, .button.disabled:focus {
-    border-bottom-width: 5px;
-    top: 0;
-}
-.button.disabled:active {
-    border-bottom-width: 5px;
-    top: 0
+.button.is-disabled:hover,
+.button.is-disabled:focus,
+.button.is-disabled:active {
+  background-color: rgb(150, 150, 150);
+  color: rgb(100, 100, 100);
+  border-color: rgb(150, 150, 150);
 }
 
 .button--addon {
-    display: block;
-    padding: 0;
+  display: block;
+  padding: 0;
 }
 .button--addon > * {
-    padding-top: 1em;
-    padding-bottom: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 .button--addon:hover .button--addon__addon {
-    //color: inherit;
+  //color: inherit;
 }
 .button--addon .button--addon__addon {
-    //color: inherit;
+  //color: inherit;
 }
 
 .button--block {
-    display: block;
-    width: 100%;
-    margin: 0 auto;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
 }
 .button--select {
-    -webkit-appearance: inherit;
+  -webkit-appearance: inherit;
 }
 .button--submit {
-    color: $color-2;
-    background-color: $color-1;
-    border-color: transparent;
-    @media #{$break-small} {
-        bottom: 0;
-        left: 0;
-    }
-    @media #{$break-medium} {
-        position: relative;
-        //width: inherit;
-    }
+  color: $color-2;
+  background-color: $color-1;
+  border-color: transparent;
+  @media #{$break-small} {
+    bottom: 0;
+    left: 0;
+  }
+  @media #{$break-medium} {
+    position: relative;
+    //width: inherit;
+  }
 }
 .button--submit::before,
 .button--submit::after {
-    display: none;
+  display: none;
 }
 .button--submit:hover,
 .button--submit:focus {
-    background-color: $color-3;
-    border-color: $color-3;
+  background-color: $color-3;
+  border-color: $color-3;
 }
 .button--submit:after {
-    display: none;
+  display: none;
 }
 
 // (Button) Cancel
 .button--warning {
-    border-color: $color-warning;
-    color: $color-warning;
+  border-color: $color-warning;
+  color: $color-warning;
 }
 .button--warning:after {
-    background-color: $color-warning;
+  background-color: $color-warning;
 }
 
 // (Button) Icon
 .button--icon {
-    position: relative;
+  position: relative;
 }
 .button--icon:hover .hover-text {
-    opacity: 1;
+  opacity: 1;
 }
 .button--icon i {
-    font-size: 2.5em;
+  font-size: 2.5em;
 }

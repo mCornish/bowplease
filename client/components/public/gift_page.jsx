@@ -90,10 +90,10 @@ GiftPage = React.createClass({
             </div>
             <div className="popup row row--margin">
               <BuyButton userId={this.data.gift.userId} link={this.data.gift.link} price={this.data.gift.price} />
-              {this.renderEditButton()}
-              <div className="col-xs-6 col-sm-4">
+              <div className="col-xs-3">
                 <WantButton counter={false} gift={this.data.gift} />
               </div>
+              {this.renderEditButton()}
             </div>
             <div className={`popup__content-container ${this.popupClass()}`}>
                 <p className="gift-page__description">{this.data.gift.description}</p>
