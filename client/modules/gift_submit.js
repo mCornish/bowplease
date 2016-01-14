@@ -91,7 +91,7 @@ const _handleSubmit = () => {
     gift.age = 0;
   }
 
-  Meteor.call('giftInsert', gift, function( err, result ) {
+  Meteor.call('giftInsert', gift, function( err, giftId ) {
     if ( err ) {
       analytics.track("Gift submit failure", {
         gift: gift,
@@ -100,7 +100,8 @@ const _handleSubmit = () => {
       Bert.alert(`Gift submit failed: ${err.reason}`, 'danger');
     } else {
       if (isWant) {
-        Meteor.call('want', result._id, function( err ) {
+        console.log(giftId);
+        Meteor.call('want', giftId, function( err ) {
           if( err ) {
             analytics.track("Gift want failure", {
               gift: gift,
@@ -109,12 +110,12 @@ const _handleSubmit = () => {
             Bert.alert(`Unable to want gift: ${err.reason}`, 'danger');
           } else {
             analytics.track("Gift submit", gift);
-            FlowRouter.go('/gifts/:id', { id: result });
+            FlowRouter.go('/gifts/:id', { id: giftId });
           }
         });
       } else {
         analytics.track("Gift submit", gift);
-        FlowRouter.go('/gifts/:id', { id: result });
+        FlowRouter.go('/gifts/:id', { id: giftId });
       }
     }
   });

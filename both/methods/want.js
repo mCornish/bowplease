@@ -3,7 +3,7 @@ Meteor.methods({
     check( giftId, String );
 
     try {
-      var affected = Gifts.update({
+      const affected = Gifts.update({
         _id: giftId,
         wanters: {$ne: this.userId}
       }, {

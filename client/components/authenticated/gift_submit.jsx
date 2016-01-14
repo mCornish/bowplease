@@ -7,21 +7,67 @@ GiftSubmit = React.createClass({
           recipients: Recipients.find().fetch()
       };
   },
+  getInitialState() {
+    return {
+      want: false
+    };
+  },
   componentDidMount() {
     Modules.client.giftSubmit.submit( { form: "[data-hook=submit-form]" } );
   },
   handleSubmit( e ) {
     e.preventDefault();
   },
+  toggleWant() {
+    const state = this.state.want;
+    this.setState({
+      want: !state
+    });
+  },
   renderOccasions() {
     return this.data.occasions.map(( occasion, index ) => {
       return <option key={index}>{occasion.name}</option>;
     });
   },
+  renderRecipientInfo() {
+    if ( !this.state.want ) {
+      return (
+        <div className="row row--margin">
+          <div className="col-xs-6 input-group--select">
+              <label htmlFor="recipient">Recipient</label>
+              <select id="recipient" className="col-xs-12" name="recipient" data-hook="recipient"
+                      data-track="change">
+                  <option>This gift is for...</option>
+                  {this.renderRecipients()}
+              </select>
+          </div>
+
+          <div className="col-xs-6">
+            <label htmlFor="age">Recipient Age</label>
+            <span className="input-addon input-suffix">
+              <input name="age" placeholder="##" id="age" type="number" data-track="change"/>years old
+            </span>
+          </div>
+        </div>
+      );
+    }
+  },
   renderRecipients() {
     return this.data.recipients.map(( recipient, index ) => {
       return <option key={index}>{recipient.name}</option>;
     });
+  },
+  renderSelfAge() {
+    if ( this.state.want ) {
+      return (
+        <div className="col-xs-6">
+          <label htmlFor="age">My Age</label>
+          <span className="input-addon input-suffix">
+            <input name="age" placeholder="##" id="age" type="number" data-track="change"/>years old
+          </span>
+        </div>
+      );
+    }
   },
   render() {
     return (
@@ -48,10 +94,11 @@ GiftSubmit = React.createClass({
             </div>
 
             <div className="row row--margin">
-              <div className="col-xs-12">
+              <div className="col-xs-6">
                 <label htmlFor="is-want" className="inline-block">This is for me</label>
-                <input id="is-want" className="inline-block" name="is-want" type="checkbox" data-track="change"/>
+                <input id="is-want" className="inline-block" name="is-want" type="checkbox" data-track="change" onChange={this.toggleWant}/>
               </div>
+              {this.renderSelfAge()}
             </div>
 
             <div className="row row--margin">
@@ -78,23 +125,7 @@ GiftSubmit = React.createClass({
               </div>
             </div>
 
-            <div className="row row--margin">
-              <div className="col-xs-6 input-group--select">
-                  <label htmlFor="recipient">Recipient</label>
-                  <select id="recipient" className="col-xs-12" name="recipient" data-hook="recipient"
-                          data-track="change">
-                      <option>This gift is for...</option>
-                      {this.renderRecipients()}
-                  </select>
-              </div>
-
-              <div className="col-xs-6">
-                <label htmlFor="age">Recipient Age</label>
-                <span className="input-addon input-suffix">
-                  <input name="age" placeholder="##" id="age" type="number" data-track="change"/>years old
-                </span>
-              </div>
-            </div>
+            {this.renderRecipientInfo()}
 
             {/* Double row allows for desired button styling */}
             <div className="row row--margin">
