@@ -9,6 +9,7 @@
 @import 'objects/forms';
 @import 'objects/grid';
 @import 'objects/inline-form';
+@import 'objects/overlay';
 @import 'objects/parallax';
 @import 'objects/tabs';
 
@@ -76,7 +77,6 @@ a:focus,
 .fake-link:hover {
     color: $color-1;
     text-decoration: none;
-    cursor: pointer;
 }
 // For links that should have no hover affect
 .no-hover {

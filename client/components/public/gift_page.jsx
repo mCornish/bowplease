@@ -1,10 +1,9 @@
 GiftPage = React.createClass({
   mixins: [ ReactMeteorData ],
   getMeteorData() {
-    const id = FlowRouter.getParam( 'id' );
-    const subscription = Meteor.subscribe( 'gifts-page', id );
-    // Will get gift from Gift Item for popup layout, not for page layout
     const propsGift = this.props.gift;
+    const id = propsGift ? propsGift._id : FlowRouter.getParam( 'id' );
+    const subscription = Meteor.subscribe( 'gifts-page', id );
 
     return {
       isLoading: !subscription.ready(),

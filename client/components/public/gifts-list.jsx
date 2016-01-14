@@ -10,7 +10,9 @@ GiftsList = React.createClass({
   },
   getInitialState() {
     return {
+      overlay: null,
       showFilter: false,
+      showOverlay: false,
       sort: {created: -1}
     };
   },
@@ -25,15 +27,32 @@ GiftsList = React.createClass({
       showFilter: false
     });
   },
+  hideOverlay() {
+    this.setState({
+      showOverlay: false
+    });
+  },
+  setOverlay( overlay ) {
+    this.setState({
+      overlay: overlay
+    });
+  },
   showFilter() {
     this.setState({
       showFilter: true
     });
   },
+  showOverlay() {
+    this.setState({
+      showOverlay: true
+    });
+  },
   renderGifts() {
     if ( this.filteredGifts() ) {
       return this.filteredGifts().map((gift, index) => {
-        return <GiftItem key={index} gift={gift} />;
+        return <GiftItem key={index} gift={gift}
+          hideOverlay={this.hideOverlay} showOverlay={this.showOverlay}
+          setOverlay={this.setOverlay} />;
       });
     } else {
       return (
@@ -46,9 +65,9 @@ GiftsList = React.createClass({
     }
   },
   render() {
-    if (this.data.isLoading) {
+    if ( this.data.isLoading ) {
       return <Loading />;
-    } else {
+    } else if ( !this.state.showOverlay ) {
       return (
         <div className="browse page">
           <div className={`browse__filter-container form-inline in-top ${this.filterClass()}`}>
@@ -68,6 +87,12 @@ GiftsList = React.createClass({
           <div className="grid row row--margin" data-hook="gifts">
             {this.renderGifts()}
           </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+        {this.state.overlay}
         </div>
       );
     }

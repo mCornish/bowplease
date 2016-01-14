@@ -44,7 +44,17 @@ GiftItem = React.createClass({
   imageClass() {
     return Modules.client.giftList.imageClass( this.props.gift.image );
   },
-  showPopup() {
+  showOverlay() {
+    this.props.setOverlay(
+      <div className="overlay">
+        <div className="container">
+          <div className="overlay__close" onClick={this.props.hideOverlay}><i className="fa fa-close"></i></div>
+          <div className="overlay__shade"></div>
+          <GiftPage gift={this.props.gift} />
+        </div>
+      </div>
+    );
+    this.props.showOverlay();
     window.history.pushState( {},"", `/gifts/${this.props.gift._id}` );
     this.setState({
       showPage: true
@@ -84,17 +94,19 @@ GiftItem = React.createClass({
       );
     }
   },
-  renderPopup() {
-    if ( this.state.showPage ) {
-      return (
-        <div>
-          <div className="popup__close" data-hook="close"><i className="fa fa-close"></i></div>
-          <div className="popup__shade" data-hook="shade"></div>
-          <GiftPage gift={this.props.gift} />
-        </div>
-      );
-    }
-  },
+  // renderOverlay() {
+  //   if ( this.state.showPage ) {
+  //     return (
+  //       <div className="overlay">
+  //         <div className="container">
+  //           <div className="overlay__close" onClick={this.props.hideOverlay}><i className="fa fa-close"></i></div>
+  //           <div className="overlay__shade"></div>
+  //           <GiftPage gift={this.props.gift} />
+  //         </div>
+  //       </div>
+  //     );
+  //   }
+  // },
   renderWantsCount() {
     if ( this.props.gift.wantsCount ) {
       return (
@@ -105,8 +117,8 @@ GiftItem = React.createClass({
   render() {
     return (
       <div className="grid__item gift" data-hook="gift">
-        <a className="no-hover gift__image">
-          <img className={`grid__image ${this.imageClass()}`} src={this.props.gift.image} data-id={this.props.gift._id} onClick={this.showPopup} />
+        <div className="no-hover gift__image">
+          <img className={`grid__image ${this.imageClass()}`} src={this.props.gift.image} data-id={this.props.gift._id} onClick={this.showOverlay} />
           {/* Want button has to be in this container to provide correct hover affect on image */}
           <p className={`gift__want ${this.state.wantedClass}`} onClick={this.handleWant}><i className="fa fa-gift"></i> Want</p>
 
@@ -118,7 +130,7 @@ GiftItem = React.createClass({
               {this.renderCommentsCount()}
             </p>
           </div>
-        </a>
+        </div>
 
         <div className="grid__container gift__info">
           <div className="gift__icons visible-xs visible-sm">
@@ -140,7 +152,8 @@ GiftItem = React.createClass({
           </div>
           */}
         </div>
-        {this.renderPopup()}
+        {//this.renderOverlay()
+        }
     </div>
     );
   }
