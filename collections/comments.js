@@ -16,13 +16,6 @@ Comments.deny({
     }
 });
 
-Comments.deny({
-    update: function(userId, comment, fieldNames, modifier) {
-        var errors = validateComment(modifier.$set);
-        return errors.body;
-    }
-});
-
 const CommentsSchema = new SimpleSchema({
     'giftId': {
         type: String,

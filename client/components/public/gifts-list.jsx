@@ -50,7 +50,7 @@ GiftsList = React.createClass({
       return <Loading />;
     } else {
       return (
-        <div className="browse">
+        <div className="browse page">
           <div className={`browse__filter-container form-inline in-top ${this.filterClass()}`}>
             <div className="container">
               <GiftsFilter reRender={this.renderGifts} />

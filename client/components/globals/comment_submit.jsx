@@ -16,7 +16,7 @@ CommentSubmit = React.createClass({
   },
   render() {
     return (
-      <form data-hook="comment-form" onSubmit={this.handleSubmit}>
+      <form id="info" data-hook="comment-form" onSubmit={this.handleSubmit}>
         <div className="row">
             <div className="col-xs-12">
                 <label htmlFor="body">Comment on this gift</label>

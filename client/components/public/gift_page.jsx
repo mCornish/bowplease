@@ -1,13 +1,15 @@
 GiftPage = React.createClass({
   mixins: [ ReactMeteorData ],
   getMeteorData() {
-    const subscription = Meteor.subscribe( 'gifts-page', FlowRouter.getParam( 'id' ) );
+    const id = FlowRouter.getParam( 'id' );
+    const subscription = Meteor.subscribe( 'gifts-page', id );
     // Will get gift from Gift Item for popup layout, not for page layout
     const propsGift = this.props.gift;
+
     return {
       isLoading: !subscription.ready(),
-      gift: propsGift || Gifts.findOne( FlowRouter.getParam( 'id' ) ),
-      comments: Comments.find({ userId: FlowRouter.getParam( 'id' ) }).fetch()
+      gift: propsGift || Gifts.findOne( id ),
+      comments: Comments.find({ giftId: id }).fetch()
     };
   },
   createdMoment() {
@@ -79,7 +81,7 @@ GiftPage = React.createClass({
     }
   },
   renderComments() {
-    return this.data.comments.map((comment, index) => {
+    return this.data.comments.map(( comment, index ) => {
         return <CommentItem key={index} comment={comment} />;
     });
   },

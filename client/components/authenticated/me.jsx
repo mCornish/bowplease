@@ -10,17 +10,10 @@ Me = React.createClass({
             user: Meteor.user()
         };
     },
-    componentDidMount() {
-        // Set default tab/hash to activity
-        if (window.location.hash.length < 1) {
-          window.location.hash = '#activity';
-        }
-    },
     renderActivity() {
         if ( this.data.activity.length > 0 ) {
             return this.data.activity.map(( item, index ) => {
-              const gift = Gifts.findOne( item.giftId );
-              return <ActivityItem key={index} activity={item} gift={gift} />;
+              return <ActivityItem key={index} activity={item} giftId={item.giftId} />;
             });
         } else {
           return (
@@ -57,7 +50,7 @@ Me = React.createClass({
             return  (
                 <div className="col-xs-12">
                     <div className="row">
-                        {this.data.wants.map(( want, key ) => {
+                        {this.data.wants.map(( want, index ) => {
                             return (
                                 <a className="user__gift no-hover col-xs-4" href={`/gifts/${want._id}`} key={index}>
                                     <img src={want.image}/>

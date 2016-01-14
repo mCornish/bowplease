@@ -4,8 +4,8 @@ Meteor.methods({
     check(comment, Comments.simpleSchema());
 
     try {
-      const commentId = Comments.update(commentId, { $set: comment });
-      return commentId;
+      const newId = Comments.update(commentId, { $set: comment });
+      return newId;
     } catch( exception ) {
       return exception;
     }
