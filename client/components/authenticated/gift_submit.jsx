@@ -105,7 +105,7 @@ GiftSubmit = React.createClass({
               <div className="col-xs-12">
                 <label htmlFor="link">Link</label>
                 <input className="col-xs-12" name="link" placeholder="Where can someone buy it online?"
-                  id="link" type="url" value="" data-track="change"/>
+                  id="link" type="text" defaultValue="" data-track="change"/>
               </div>
             </div>
 

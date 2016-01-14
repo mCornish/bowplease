@@ -16,19 +16,19 @@
   color: $color-1;
 
   @media #{$break-small} {
-    width: 48%;
+    width: calc(99% / 2);
     // px accounts for border
-    margin: calc((4% - 4px) / 4);
+    margin: .5em calc((1% - 4px) / 4);
   }
   @media #{$break-medium} {
-    width: 32%;
+    width: calc(99% / 3);
     // px accounts for border
-    margin: calc((4% - 6px) / 6);
+    margin: .5em calc((1% - 6px) / 6);
   }
   @media #{$break-large} {
-    width: 24%;
+    width: calc(99% / 4);
     // px accounts for border
-    margin: calc((4% - 8px) / 8);
+    margin: .5em calc((1% - 8px) / 8);
   }
 }
 

@@ -28,19 +28,6 @@
     background-color: $color-1;
 }
 
-/* Cancel button */
-.button--cancel {
-    background-color: transparent;
-    border-color: $color-warning;
-    color: $color-warning;
-}
-.button--cancel:hover,
-.button--cancel:focus {
-    background-color: $color-warning;
-    color: $color-2;
-    border-color: $color-warning;
-}
-
 /* disabled button */
 .button.is-disabled {
     cursor: default;
@@ -79,30 +66,6 @@
 }
 .button--select {
     -webkit-appearance: inherit;
-}
-.button:after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    @include transition(all 0.2s);
-    // 101% to fix bug where button would not fill completely
-    width: 101%;
-    height: 0;
-    top: 50%;
-    left: 50%;
-    background-color: $color-1;
-    opacity: 0;
-    @include transform(translateX(-50%) translateY(-50%));
-}
-.button:hover:after {
-    @media #{$break-small} {
-        //No hover affect on phones
-    }
-    @media #{$break-medium} {
-        // 101% to fix bug where button would not fill completely
-        height: 101%;
-        opacity: 1;
-    }
 }
 .button--submit {
     color: $color-2;

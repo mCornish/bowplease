@@ -7,9 +7,6 @@ const giftList = {
   },
   track( e ) {
     _track( e );
-  },
-  wantedClass( wanters ) {
-    return _getWantedClass( wanters );
   }
 };
 
@@ -181,17 +178,6 @@ _track = ( e ) => {
   const field = $(e.target).attr('name');
   const value = $(e.target).val();
   analytics.track('Gift Filter: ' + field, value);
-};
-
-_getWantedClass = ( wanters ) => {
-  const userId = Meteor.userId();
-  if ( userId && !_.include(wanters, userId) ) {
-    return 'wantable';
-  } else if ( userId ) {
-    return 'unwantable'
-  } else {
-    return 'disabled';
-  }
 };
 
 Modules.client.giftList = giftList;

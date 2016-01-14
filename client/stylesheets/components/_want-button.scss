@@ -1,0 +1,40 @@
+.want-button {
+  font-size: .8em;
+  background-color: transparent;
+  color: $color-1;
+}
+.want-button:hover {
+  background-color: transparent;
+  color: $color-1;
+}
+.want-button.is-unwantable {
+  background-color: $color-1;
+  color: $color-2;
+}
+.want-button:hover i,
+.want-button.is-unwantable i {
+    color: red;
+}
+.want-button.is-disabled,
+.want-button.is-disabled i {
+  background-color: mix($color-1, white, 30);
+  color: mix($color-1, white, 80);
+  border-color: mix($color-1, white, 30);
+}
+.want-button .button--addon__addon,
+.want-button:hover .button--addon__addon {
+    color: inherit;
+}
+.want-button__count {
+    border-left: 1px solid currentColor;
+}
+
+.want-button--light {
+  background-color: $color-2;
+  color: $color-1;
+  border: none;
+}
+.want-button--light:hover {
+  background-color: $color-2;
+  color: $color-1;
+}

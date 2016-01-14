@@ -1,9 +1,6 @@
 const giftPage = {
   trackBuy( e ) {
     _trackBuyClick( e );
-  },
-  want( e, giftId ) {
-    _handleWantClick( e, giftId );
   }
 }
 
@@ -27,23 +24,5 @@ const _getMerchant = () => {
   }
   return merchant;
 }
-
-const _handleWantClick = ( e, giftId ) => {
-  const wantable = $( e.target ).hasClass( 'wantable' )
-    || $( e.target ).parent().hasClass( 'wantable' );
-  if ( wantable ) {
-    Meteor.call('want', giftId, function( err ) {
-      if ( err ) {
-        Bert.alert( `Want failed: ${err.reason}`, danger );
-      }
-    });
-  } else {
-    Meteor.call('unwant', giftId, function( err ) {
-      if ( err ) {
-        Bert.alert( `Unwant failed: ${err.reason}`, danger );
-      }
-    });
-  }
-};
 
 Modules.client.giftPage = giftPage;

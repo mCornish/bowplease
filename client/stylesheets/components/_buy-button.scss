@@ -1,0 +1,12 @@
+.buy-button {
+  font-size: .8em;
+  font-weight: normal;
+  background-color: $color-3;
+  color: $color-2;
+  border-color: $color-3;
+}
+.buy-button:hover,
+.buy-button:focus {
+  background-color:$color-1;
+  border-color: $color-1;
+}

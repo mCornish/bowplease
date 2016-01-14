@@ -14,37 +14,14 @@ GiftPage = React.createClass({
   createdMoment() {
     return moment( this.data.gift.created ).fromNow();
   },
-  handleWant( e ) {
-    const giftId = this.data.gift._id;
-    Modules.client.giftPage.want( e, giftId );
-  },
-  linkClass() {
-    return isNull(this.data.gift.link) ? 'is-disabled' : '';
-  },
   popupClass() {
     return '';
   },
-  wantedClass() {
-    return Modules.client.giftList.wantedClass( this.data.gift.wanters );
-  },
-  renderBuyButton() {
+  renderEditButton() {
     if ( Meteor.userId() === this.data.gift.userId ) {
       return (
-        <div>
-          <div className="col-xs-3">
-            <a className={`gift-page__button button col-xs-12 ${this.linkClass()}`} href={this.data.gift.link} target="_blank"
-              data-track="buy"><i className="fa fa-dollar"></i></a>
-          </div>
-          <div className="col-xs-3">
-            <a className="gift-page__button button col-xs-12" href={FlowHelpers.pathFor( '/gifts/:id/edit', {id: this.data.gift._id} )}>Edit</a>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="col-xs-6 col-sm-4">
-          <a className={`gift-page__button button col-xs-12 ${this.linkClass()}`} href="{this.data.gift.link}" target="_blank"
-            data-track="buy"><i className="fa fa-dollar">Buy</i></a>
+        <div className="col-xs-3">
+          <a className="gift-page__button button col-xs-12" href={FlowHelpers.pathFor( '/gifts/:id/edit', {id: this.data.gift._id} )}>Edit</a>
         </div>
       );
     }
@@ -105,25 +82,18 @@ GiftPage = React.createClass({
     } else {
       return (
         <div className="page">
-          <div className={`popup row ${this.popupClass()}`}>
-            <div className="col-xs-6 col-sm-4 col-sm-offset-2">
-              <div className={`gift-page__button want-button button button--addon ${this.wantedClass()}`} onClick={this.handleWant}>
-                <div className={`row ${this.wantedClass()}`}>
-                  <div className={`button--addon__addon col-xs-6 col-sm-8 ${this.wantedClass()}`}><i className="fa fa-gift"></i> <span
-                    className="hidden-xs">Want</span>
-                  </div>
-                  <div className={`want-button__count col-xs-6 col-sm-4 ${this.wantedClass()}`}>{this.data.gift.wantsCount}</div>
-                </div>
-              </div>
-            </div>
-            {this.renderBuyButton()}
-          </div>
-
-        <div className={`popup__container ${this.popupClass()}`}>
+          <div className={`popup__container ${this.popupClass()}`}>
             <div className={`popup__image-container ${this.popupClass()}`}>
                 <a href={this.data.gift.link} target="_blank">
                     <img className="popup__image" src={this.data.gift.image}/>
                 </a>
+            </div>
+            <div className="popup row row--margin">
+              <BuyButton userId={this.data.gift.userId} link={this.data.gift.link} price={this.data.gift.price} />
+              {this.renderEditButton()}
+              <div className="col-xs-6 col-sm-4">
+                <WantButton counter={false} gift={this.data.gift} />
+              </div>
             </div>
             <div className={`popup__content-container ${this.popupClass()}`}>
                 <p className="gift-page__description">{this.data.gift.description}</p>

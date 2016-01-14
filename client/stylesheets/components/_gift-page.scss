@@ -20,21 +20,3 @@
   display: block;
   margin-top: 2em;
 }
-.want-button:hover,
-.want-button:not(.wantable),
-.want-button.is-disabled {
-  background-color: $color-1;
-  color: $color-2;
-}
-.want-button:hover i,
-.want-button:not(.wantable) i,
-.want-button.is-disabled i {
-  color: red;
-}
-.want-button .button--addon__addon,
-.want-button:hover .button--addon__addon {
-  color: inherit;
-}
-.want-button__count {
-  border-left: 1px solid currentColor;
-}
