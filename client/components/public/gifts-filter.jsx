@@ -8,8 +8,19 @@ GiftsFilter = React.createClass({
       recipients: Recipients.find().fetch()
     }
   },
+  componentDidMount() {
+    // Initialize filtered gifts
+    this.props.setFilteredGifts( Modules.client.giftList.filteredGifts( 100, this.props.sort ) );
+  },
+  componentWillReceiveProps( nextProps ) {
+    console.log(nextProps);
+    // Update filtered gifts on "sort" change
+    if ( nextProps.sort != this.props.sort ) {
+      this.props.setFilteredGifts( Modules.client.giftList.filteredGifts( 100, nextProps.sort ) );
+    }
+  },
   trackChange( e ) {
-    this.props.reRender();
+    this.props.setFilteredGifts( Modules.client.giftList.filteredGifts( 100, this.props.sort ) );
     Modules.client.giftList.track( e );
   },
   renderOccasions() {
@@ -27,28 +38,14 @@ GiftsFilter = React.createClass({
       <div className="browse__filter row">
         <div className="col-xs-12">
           <div className="row">
-            <div className="col-xs-6">
-              <a className={`browse__filter-button button col-xs-12 ${FlowHelpers.currentEndpoint( 'new' )}`} href="./new">
-                <i className="fa fa-star"> Newest</i>
-              </a>
-            </div>
-            <div className="col-xs-6">
-              <a className={`browse__filter-button button col-xs-12 ${FlowHelpers.currentEndpoint( 'top' )}`} href="./top">
-                <i className="fa fa-trophy"> Top</i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="col-xs-12">
-          <div className="row row--margin">
             <div className="input-group--select col-xs-12 col-md-4 grp-sm">
               <label htmlFor="created">Submitted</label>
-              <select id="created" className="col-xs-12" name="created" defaultValue={null} onChange={this.trackChange}>
+              <select id="created" className="col-xs-12" name="created" defaultValue="All time" onChange={this.trackChange}>
                 <option value="Today">Today</option>
                 <option value="This week">This week</option>
                 <option value="This month">This month</option>
                 <option value="This year">This year</option>
-                <option value={null}>All time</option>
+                <option value="All time">All time</option>
               </select>
             </div>
 
@@ -93,14 +90,14 @@ GiftsFilter = React.createClass({
                   <label htmlFor="age">Age</label>
                   <select id="age" className="col-xs-12" name="age" onChange={this.trackChange}>
                     <option>Any</option>
-                    <option value="0">Newborn</option>
-                    <option value="1">1 - 5</option>
-                    <option value="11">11 - 15</option>
-                    <option value="16">16 - 20</option>
-                    <option value="21">21 - 30</option>
-                    <option value="31">31 - 40</option>
-                    <option value="41">41 - 50</option>
-                    <option value="50">50+</option>
+                    <option>Newborn</option>
+                    <option>1 - 5</option>
+                    <option>11 - 15</option>
+                    <option>16 - 20</option>
+                    <option>21 - 30</option>
+                    <option>31 - 40</option>
+                    <option>41 - 50</option>
+                    <option>50+</option>
                   </select>
                 </div>
 

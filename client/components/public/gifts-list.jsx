@@ -10,6 +10,7 @@ GiftsList = React.createClass({
   },
   getInitialState() {
     return {
+      filteredGifts: Modules.client.giftList.filteredGifts( 100, {created: -1} ),
       overlay: null,
       showFilter: false,
       showOverlay: false,
@@ -18,9 +19,6 @@ GiftsList = React.createClass({
   },
   filterClass() {
     return this.state.showFilter ? 'is-active' : '';
-  },
-  filteredGifts() {
-    return Modules.client.giftList.filteredGifts( 100, this.state.sort );
   },
   hideFilter() {
     this.setState({
@@ -32,10 +30,29 @@ GiftsList = React.createClass({
       showOverlay: false
     });
   },
+  setFilteredGifts( gifts ) {
+    this.setState({
+      filteredGifts: gifts
+    });
+  },
   setOverlay( overlay ) {
     this.setState({
       overlay: overlay
     });
+  },
+  setSort( e ) {
+    const sort = $( e.target ).attr('data-sort') || $( e.target ).parent().attr('data-sort');
+    newQuery = {created: -1};
+    topQuery = {wantsCount: -1};
+    if ( sort === 'new' && this.state.sort != newQuery ) {
+      this.setState({
+        sort: newQuery
+      });
+    } else if ( sort === 'top' && this.state.sort != topQuery ) {
+      this.setState({
+        sort: topQuery
+      });
+    }
   },
   showFilter() {
     this.setState({
@@ -48,8 +65,8 @@ GiftsList = React.createClass({
     });
   },
   renderGifts() {
-    if ( this.filteredGifts() ) {
-      return this.filteredGifts().map((gift, index) => {
+    if ( this.state.filteredGifts ) {
+      return this.state.filteredGifts.map((gift, index) => {
         return <GiftItem key={index} gift={gift}
           hideOverlay={this.hideOverlay} showOverlay={this.showOverlay}
           setOverlay={this.setOverlay} />;
@@ -72,7 +89,7 @@ GiftsList = React.createClass({
         <div className="browse page">
           <div className={`browse__filter-container form-inline in-top ${this.filterClass()}`}>
             <div className="container">
-              <GiftsFilter reRender={this.renderGifts} />
+              <GiftsFilter setFilteredGifts={this.setFilteredGifts} sort={this.state.sort} />
               <div className="row row--margin">
                 <p className="fake-link text-center col-xs-12" onClick={this.hideFilter}>
                   <i className="fa fa-close"> Close</i>
@@ -81,7 +98,17 @@ GiftsList = React.createClass({
             </div>
           </div>
           <div className="row">
-          <h2 className="fake-link text-center col-xs-12" onClick={this.showFilter}>Filter</h2>
+            <h2 className="fake-link text-center col-xs-6" onClick={this.showFilter}>Filter</h2>
+            <div className="col-xs-6">
+              <div className="row">
+                <a className={`browse__filter-button button col-xs-6 ${FlowHelpers.currentHash( 'new' )}`} href="#new" data-sort="new" onClick={this.setSort}>
+                  <i className="fa fa-star"> Newest</i>
+                </a>
+                <a className={`browse__filter-button button col-xs-6 ${FlowHelpers.currentHash( 'top' )}`} href="#top" data-sort="top" onClick={this.setSort}>
+                  <i className="fa fa-trophy"> Top</i>
+                </a>
+              </div>
+            </div>
           </div>
 
           <div className="grid row row--margin" data-hook="gifts">

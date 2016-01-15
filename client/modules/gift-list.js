@@ -16,6 +16,7 @@ _getFilteredGifts = ( limit, giftSort ) => {
   if ( queries.length > 0 ) {
     query = { $and: queries };
   }
+
   const filteredGifts = Gifts.find( query, {
     limit: limit,
     sort: giftSort
@@ -35,11 +36,17 @@ _getQueries = () => {
   if ( filters.created ) {
     queries.push({ created: { $gte: new Date( filters.created )}});
   }
-  if ( _isValidNum( filters.minAge ) && _isValidNum( filters.maxAge ) && filters.minAge >= 0 && filters.maxAge >= 1 ) {
-    queries.push({ $and: [ { age: { $gte: filters.minAge } }, { age: { $lte: filters.maxAge }}]});
+  if ( _isValidNum( filters.minAge ) && filters.minAge >= 0 ) {
+    queries.push({ age: { $gte: filters.minAge }});
   }
-  if ( _isValidNum( filters.minPrice ) && _isValidNum( filters.maxPrice ) ) {
-    queries.push({ $and: [ { price: { $gte: filters.minPrice } }, { price: { $lte: filters.maxPrice }}]});
+  if ( _isValidNum( filters.maxAge ) && filters.maxAge >= 1 ) {
+    queries.push({ age: { $lte: filters.maxAge }});
+  }
+  if ( _isValidNum( filters.minPrice ) && filters.minPrice > 0) {
+    queries.push({ price: { $gte: filters.minPrice }});
+  }
+  if ( _isValidNum( filters.maxPrice ) && filters.maxPrice > 0.01 ) {
+    queries.push({ price: { $lte: filters.maxPrice }});
   }
   if ( filters.recipient ) {
     queries.push({ recipient: filters.recipient });
@@ -102,7 +109,7 @@ _getAgeVal = ( minOrMax ) => {
       break;
       default:
       const hyphen = ageVal.indexOf('-');
-      return parseInt(ageVal.substr(0, hyphen));
+      return parseInt( ageVal.substr(0, hyphen) );
       break;
     }
   } else {
@@ -118,7 +125,7 @@ _getAgeVal = ( minOrMax ) => {
       break;
       default:
       const hyphen = ageVal.indexOf('-');
-      return parseInt(ageVal.substr(hyphen + 1));
+      return parseInt( ageVal.substr(hyphen + 1) );
       break;
     }
   }
@@ -129,7 +136,7 @@ _getRecipientVal = () => {
     return null;
   }
   const recipientVal = $('[name=recipient]').val().toLowerCase();
-  if ( recipientVal === 'Anyone' ) {
+  if ( recipientVal.toLowerCase().indexOf('any') > -1 ) {
     return null;
   } else {
     return recipientVal;
@@ -141,7 +148,7 @@ _getOccasionVal = () => {
     return null;
   }
   const occasionVal = $('[name=occasion]').val().toLowerCase();
-  if ( occasionVal === 'Any Occasion' ) {
+  if ( occasionVal.toLowerCase().indexOf('any') > -1 ) {
     return null;
   } else {
     return occasionVal;

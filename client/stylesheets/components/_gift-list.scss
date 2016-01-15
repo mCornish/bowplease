@@ -23,6 +23,13 @@
 }
 .browse__filter-button {
     font-size: 1em;
+    background-color: mix($color-2, black, 90);
+    color: mix($color-2, black, 70);
+    border: none;
+}
+.browse__filter-button:not(.is-active):hover {
+  background-color: mix($color-2, black, 90);
+  color: $color-1;
 }
 .browse__filter-container {
     position: fixed;
@@ -32,7 +39,7 @@
     background-color: transparentize(mix($color-2, black, 95),.02);
     color: inherit;
     border-bottom: 1px solid mix($color-2, black, 85);
-    padding-top: 5em;
+    margin-bottom: 5em;
     z-index: 3;
 }
 .browse__filter-container.is-active {
@@ -41,6 +48,10 @@
 .browse__filter {
     display: block;
     position: relative;
+    font-size: .8em;
+}
+.browse__filter label {
+  margin-top: 1em;
 }
 .browse__message {
     color: inherit;

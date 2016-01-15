@@ -80,6 +80,9 @@ a:focus,
     color: $color-1;
     text-decoration: none;
 }
+.fake-link {
+  cursor: pointer;
+}
 // For links that should have no hover affect
 .no-hover {
     border-bottom: none;
