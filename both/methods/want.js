@@ -16,12 +16,12 @@ Meteor.methods({
 
       // Add activity
       const gift = Gifts.findOne(giftId);
-      let desc = gift.description;
       if (desc.length > 50) {
         desc = desc.substr(45) + '...'
       }
       const activity = {
-        text: `Wanted a gift: ${desc}`,
+        title: 'Wanted a gift',
+        text: gift.description,
         giftId: giftId
       }
       Meteor.call('activityInsert', activity);

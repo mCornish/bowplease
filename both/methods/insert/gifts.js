@@ -4,12 +4,9 @@ Meteor.methods({
 
     try {
       const giftId = Gifts.insert( gift );
-      let desc = gift.description;
-      if (desc.length > 50) {
-        desc = desc.substr(45) + '...'
-      }
       Meteor.call('activityInsert', {
-        text: `Shared a gift: ${desc}`,
+        title: 'Shared a gift',
+        text: gift.description,
         giftId: giftId
       });
       return giftId;

@@ -1,0 +1,43 @@
+.activity__container {
+  border-bottom: 1px solid mix($color-2, black, 90);
+  height: 7em;
+  padding: 1em;
+}
+.activity__image-container {
+  display: block;
+  float: left;
+  width: 5em;
+  height: 5em;
+  overflow: hidden;
+  border-radius: .5em;
+}
+.activity__image {
+  height: 100%;
+  width: auto;
+}
+.activity__text-container {
+  display: block;
+  float: left;
+  padding: 0 1em;
+  width: calc(100% - 12em - 1px);
+}
+.activity__text {
+  color: mix($color-2, black, 50);
+}
+.activity__created {
+  color: mix($color-2, black, 70);
+  font-size: .8em;
+}
+.activity__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  float: right;
+  color: mix($color-2, black, 50);
+  width: 2em;
+  height: 100%;
+}
+.activity__link:hover {
+  color: $color-3;
+}

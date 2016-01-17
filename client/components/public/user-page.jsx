@@ -5,7 +5,7 @@ UserPage = React.createClass({
     const subscription = Meteor.subscribe( 'user-page', userId );
     return {
       isLoading: !subscription.ready(),
-      activity: Activity.find({ 'userId': userId }).fetch(),
+      activity: Activity.find({ 'userId': userId }, { sort: {created: -1}}).fetch(),
       posts: Gifts.find({'userId': userId}, {limit: 3, sort: {created: -1}}).fetch(),
       wants: Gifts.find({'wanters': userId}, {limit: 3, sort: {created: -1}}).fetch(),
       user: Meteor.users.findOne( userId )
@@ -123,26 +123,19 @@ UserPage = React.createClass({
               data-tab="wants">Wants</a>
           </div>
 
-          <div className={'tabs__container ' + FlowHelpers.currentHash( 'activity' )}>
-            <div className="row">
-              <h1 className="text-center col-xs-12">Activity</h1>
+          <div className={`tabs__container row ${FlowHelpers.currentHash( 'activity' )}`}>
+            <div className="col-xs-12">
+              {this.renderActivity()}
             </div>
-            {this.renderActivity()}
           </div>
-          <div className={'tabs__container ' + FlowHelpers.currentHash( 'shares' )}>
-            <h1 className="text-center col-xs-12">You Shared</h1>
-
-            <div className="user__gifts row">
+          <div className={`tabs__container row ${FlowHelpers.currentHash( 'shares' )}`}>
+            <div className="user__gifts col-xs-12">
               {this.renderPosts()}
             </div>
           </div>
-          <div className={'tabs__container ' + FlowHelpers.currentHash( 'wants' )}>
-            <h1 className="text-center col-xs-12">You Want</h1>
-
-            <div className="user__gifts row">
-              <div className="col-xs-12">
-                {this.renderWants()}
-              </div>
+          <div className={`tabs__container row ${FlowHelpers.currentHash( 'wants' )}`}>
+            <div className="col-xs-12">
+              {this.renderWants()}
             </div>
           </div>
         </div>

@@ -21,6 +21,11 @@ const ActivitySchema = new SimpleSchema({
     },
     denyUpdate: true
   },
+  'title': {
+    type: String,
+    label: 'Activity Title',
+    denyUpdate: true
+  },
   'text': {
     type: String,
     label: 'Activity Text',
