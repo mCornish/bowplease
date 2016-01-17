@@ -1,5 +1,10 @@
-.me__user-image {
+.user__profile-image {
     border-radius: 100%;
-    width: 3em;
-    height: 3em;
+    width: 5em;
+    height: 5em;
+}
+
+.user__text,
+.user__text * {
+  color: mix($color-2, black, 60);
 }

@@ -8,14 +8,20 @@ GiftsFilter = React.createClass({
       recipients: Recipients.find().fetch()
     }
   },
+  getInitialState() {
+    return {
+      initialize: true
+    };
+  },
   componentDidMount() {
-    // Initialize filtered gifts
     this.props.setFilteredGifts( Modules.client.giftList.filteredGifts( 100, this.props.sort ) );
   },
   componentWillReceiveProps( nextProps ) {
-    console.log(nextProps);
-    // Update filtered gifts on "sort" change
+    // Initialize/Update filtered gifts
     if ( nextProps.sort != this.props.sort ) {
+      this.setState({
+        initialize: false
+      });
       this.props.setFilteredGifts( Modules.client.giftList.filteredGifts( 100, nextProps.sort ) );
     }
   },
@@ -80,24 +86,25 @@ GiftsFilter = React.createClass({
               <div className="row">
                 <div className="input-group--select col-xs-6">
                   <label htmlFor="recipient">Recipient</label>
-                  <select id="recipient" className="col-xs-12" name="recipient" onChange={this.trackChange}>
-                    <option>Anyone</option>
+                  <select id="recipient" className="col-xs-12" name="recipient"
+                    defaultValue={Session.get('recipientVal')} onChange={this.trackChange}>
+                    <option value="default">Anyone</option>
                     {this.renderRecipients()}
                   </select>
                 </div>
 
                 <div className="input-group--select col-xs-6">
                   <label htmlFor="age">Age</label>
-                  <select id="age" className="col-xs-12" name="age" onChange={this.trackChange}>
-                    <option>Any</option>
-                    <option>Newborn</option>
-                    <option>1 - 5</option>
-                    <option>11 - 15</option>
-                    <option>16 - 20</option>
-                    <option>21 - 30</option>
-                    <option>31 - 40</option>
-                    <option>41 - 50</option>
-                    <option>50+</option>
+                  <select id="age" className="col-xs-12" name="age" defaultValue={Session.get('ageVal')} onChange={this.trackChange}>
+                    <option value="Any">Any</option>
+                    <option value="Newborn">Newborn</option>
+                    <option value="1 - 5">1 - 5</option>
+                    <option value="11 - 15">11 - 15</option>
+                    <option value="16 - 20">16 - 20</option>
+                    <option value="21 - 30">21 - 30</option>
+                    <option value="31 - 40">31 - 40</option>
+                    <option value="41 - 50">41 - 50</option>
+                    <option value="50+">50+</option>
                   </select>
                 </div>
 
@@ -106,8 +113,9 @@ GiftsFilter = React.createClass({
 
             <div className="input-group--select col-xs-12 col-md-4">
               <label htmlFor="occasion">Occassion</label>
-              <select id="occasion" className="col-xs-12" name="occasion" onChange={this.trackChange}>
-                <option>Any Occasion</option>
+              <select id="occasion" className="col-xs-12" name="occasion"
+                defaultValue={Session.get('occasionVal')} onChange={this.trackChange}>
+                <option value="default">Any Occasion</option>
                 {this.renderOccasions()}
               </select>
             </div>

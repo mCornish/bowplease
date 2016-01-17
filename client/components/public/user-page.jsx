@@ -14,9 +14,10 @@ UserPage = React.createClass({
   renderAccount() {
     if ( !FlowRouter.getParam( 'id' ) ) {
       return (
-        <div className="col-xs-6 text-right">
-          <a href="/me/account"><i className="fa fa-cog"> Account</i></a>
-        </div>
+        <a className="text-center float-right" href="/me/account">
+          <i className="fa fa-cog"></i><br/>
+          Account
+        </a>
       );
     }
   },
@@ -86,13 +87,31 @@ UserPage = React.createClass({
       return (
         <div className="me page">
           <div className="row">
+            <a href="/me/profile">
+              <div className="col-xs-2">
+                <img className="user__profile-image" src={this.data.user.profile.image}/>
+              </div>
+              <div className="col-xs-6">
+                {this.data.user.username}
+              </div>
+            </a>
+          </div>
+          <div className="row">
             <div className="col-xs-6">
-              <a href="/me/profile">
-                <img className="me__user-image" src={this.data.user.profile.image}/>
-                &nbsp;{this.data.user.username}
-              </a>
+              <div className="user__text row">
+                <div className="text-center col-xs-4">
+                  <strong>{this.data.posts.length}</strong><br/>
+                  Shares
+                </div>
+                <div className="text-center col-xs-4">
+                  <strong>{this.data.wants.length}</strong><br/>
+                  Wants
+                </div>
+              </div>
             </div>
-            {this.renderAccount()}
+            <div className="user__text col-xs-6">
+              {this.renderAccount()}
+            </div>
           </div>
 
           <div className="tabs__menu row row--margin">

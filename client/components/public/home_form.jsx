@@ -10,7 +10,8 @@ HomeForm = React.createClass({
   },
   filterGifts( e ) {
     e.preventDefault();
-    Modules.client.homeForm.filterGifts( e );
+    Modules.client.homeForm.setFilters();
+    FlowRouter.go( '/browse#new' );
   },
   renderOccasions() {
     return this.data.occasions.map((occasion, index) => {
@@ -27,7 +28,7 @@ HomeForm = React.createClass({
       <form className="home__form inline-form col-xs-12" onSubmit={this.filterGifts}>
         <label htmlFor="recipient">Recipient</label>
         <select id="recipient" className="col-xs-4 col-sm-3 col-md-2 col-md-offset-2" name="recipient">
-          <option>Who is it for?</option>
+          <option value="default">Who is it for?</option>
           {this.renderRecipients()}
         </select>
         <label htmlFor="age">Age</label>
@@ -44,7 +45,7 @@ HomeForm = React.createClass({
         </select>
         <label htmlFor="occasion">Occassion</label>
         <select id="occasion" className="hidden-xs col-sm-3 col-md-2" name="occasion">
-          <option>The occasion?</option>
+          <option value="default">The occasion?</option>
           {this.renderOccasions()}
         </select>
         <button className="button button--submit col-xs-4 col-sm-3 col-md-2" type="submit">

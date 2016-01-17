@@ -66,6 +66,13 @@
 .button--select {
   -webkit-appearance: inherit;
 }
+
+.button--slim {
+  font-size: 1em;
+  background-color: mix($color-2, black, 80);
+  border: none;
+}
+
 .button--submit {
   color: $color-2;
   background-color: $color-1;

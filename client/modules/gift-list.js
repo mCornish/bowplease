@@ -95,9 +95,10 @@ _getAgeVal = ( minOrMax ) => {
   if ( $('[name=age]').length < 1 ) {
     return null;
   }
-  const ageVal = $('[name=age]').val().toLowerCase();
+  const ageVal = Session.get( 'ageVal') || $('[name=age]').val();
+  Session.set( 'ageVal', null );
   if ( minOrMax === 'min' ) {
-    switch ( ageVal ) {
+    switch ( ageVal.toLowerCase() ) {
       case 'any':
       return null;
       break;
@@ -135,11 +136,12 @@ _getRecipientVal = () => {
   if ( $('[name=recipient]').length < 1 ) {
     return null;
   }
-  const recipientVal = $('[name=recipient]').val().toLowerCase();
-  if ( recipientVal.toLowerCase().indexOf('any') > -1 ) {
+  const recipientVal = Session.get( 'recipientVal') || $('[name=recipient]').val();
+  Session.set( 'recipientVal', null );
+  if ( recipientVal.toLowerCase() === 'default' ) {
     return null;
   } else {
-    return recipientVal;
+    return recipientVal.toLowerCase();
   }
 };
 
@@ -147,11 +149,12 @@ _getOccasionVal = () => {
   if ( $('[name=occasion]').length < 1 ) {
     return null;
   }
-  const occasionVal = $('[name=occasion]').val().toLowerCase();
-  if ( occasionVal.toLowerCase().indexOf('any') > -1 ) {
+  const occasionVal = Session.get( 'occasionVal') || $('[name=occasion]').val();
+  Session.set( 'occasionVal', null );
+  if ( occasionVal.toLowerCase() === 'default' ) {
     return null;
   } else {
-    return occasionVal;
+    return occasionVal.toLowerCase();
   }
 };
 
@@ -171,14 +174,6 @@ _getImageClass = ( imageUrl ) => {
   } else {
     return 'is-tall';
   }
-
-  // const id = Template.currentData()._id;
-  // $image = $('[data-id=' + id + ']');
-  // if (imageWidth > imageHeight) {
-  //   $image.addClass('is-long');
-  // } else {
-  //   $image.addClass('is-tall');
-  // }
 }
 
 _track = ( e ) => {
