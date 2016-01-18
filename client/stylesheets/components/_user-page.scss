@@ -1,0 +1,39 @@
+.user__identity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.user__profile-image {
+    border-radius: 100%;
+    width: 5em;
+    height: 5em;
+}
+.user__name {
+  margin-left: .5em;
+}
+.user__text,
+.user__text * {
+  color: mix($color-2, black, 60);
+}
+.user__gifts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.user__gift {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: .25em;
+  @media #{$break-small} {
+    width: calc((100% - (3 * .5em)) / 3);
+  }
+  @media #{$break-medium} {
+    width: calc((100% - (4 * .5em)) / 4);
+  }
+  @media #{$break-large} {
+    width: calc((100% - (5 * .5em)) / 5);
+  }
+}

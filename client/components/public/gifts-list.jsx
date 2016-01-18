@@ -14,7 +14,17 @@ GiftsList = React.createClass({
       overlay: null,
       showFilter: false,
       showOverlay: false,
-      sort: {created: -1}
+      sort: (() => {
+        const hash = window.location.hash.substr(1, 4);
+        if ( hash === 'top' ) {
+          return {wantCount: 1};
+        } else {
+          if ( hash != 'new' ) {
+            window.history.pushState( {},"", '/#new' );
+          }
+          return {created: -1};
+        }
+      })()
     };
   },
   filterClass() {

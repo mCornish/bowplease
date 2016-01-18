@@ -6,8 +6,8 @@ UserPage = React.createClass({
     return {
       isLoading: !subscription.ready(),
       activity: Activity.find({ 'userId': userId }, { sort: {created: -1}}).fetch(),
-      posts: Gifts.find({'userId': userId}, {limit: 3, sort: {created: -1}}).fetch(),
-      wants: Gifts.find({'wanters': userId}, {limit: 3, sort: {created: -1}}).fetch(),
+      posts: Gifts.find({'userId': userId}, {limit: 100, sort: {created: -1}}).fetch(),
+      wants: Gifts.find({'wanters': userId}, {limit: 100, sort: {created: -1}}).fetch(),
       user: Meteor.users.findOne( userId )
     };
   },
@@ -35,19 +35,14 @@ UserPage = React.createClass({
   renderPosts() {
     if ( this.data.posts.length > 0 ) {
       return  (
-        <div className="col-xs-12">
-          <div className="row">
-            {this.data.posts.map(( post, index ) => {
-              return (
-                <a className="user__gift no-hover col-xs-4" href={`/gifts/${post._id}`} key={index}>
-                  <img src={post.image}/>
-                </a>
-              );
-            })}
-          </div>
-          <div className="row row--margin">
-            <a className="col-xs-12 text-center" href="/me/posts">View All</a>
-          </div>
+        <div className="user__gifts">
+          {this.data.posts.map(( post, index ) => {
+            return (
+              <a className="user__gift" href={`/gifts/${post._id}`} key={index}>
+                <img src={post.image}/>
+              </a>
+            );
+          })}
         </div>
       );
     } else {
@@ -59,19 +54,14 @@ UserPage = React.createClass({
   renderWants() {
     if ( this.data.wants.length > 0 ) {
       return  (
-        <div className="col-xs-12">
-          <div className="row">
-            {this.data.wants.map(( want, index ) => {
-              return (
-                <a className="user__gift no-hover col-xs-4" href={`/gifts/${want._id}`} key={index}>
-                  <img src={want.image}/>
-                </a>
-              );
-            })}
-          </div>
-          <div className="row row--margin">
-            <a className="col-xs-12 text-center" href="/me/wants">View All</a>
-          </div>
+        <div className="user__gifts">
+          {this.data.wants.map(( want, index ) => {
+            return (
+              <a className="user__gift" href={`/gifts/${want._id}`} key={index}>
+                <img src={want.image}/>
+              </a>
+            );
+          })}
         </div>
       );
     } else {
@@ -87,13 +77,9 @@ UserPage = React.createClass({
       return (
         <div className="me page">
           <div className="row">
-            <a href="/me/profile">
-              <div className="col-xs-2">
-                <img className="user__profile-image" src={this.data.user.profile.image}/>
-              </div>
-              <div className="col-xs-6">
-                {this.data.user.username}
-              </div>
+            <a className="user__identity" href="/me/profile">
+              <img className="user__profile-image" src={this.data.user.profile.image}/>
+              <div className="user__name">{this.data.user.username}</div>
             </a>
           </div>
           <div className="row">
@@ -123,20 +109,14 @@ UserPage = React.createClass({
               data-tab="wants">Wants</a>
           </div>
 
-          <div className={`tabs__container row ${FlowHelpers.currentHash( 'activity' )}`}>
-            <div className="col-xs-12">
-              {this.renderActivity()}
-            </div>
+          <div className={`tabs__container ${FlowHelpers.currentHash( 'activity' )}`}>
+            {this.renderActivity()}
           </div>
-          <div className={`tabs__container row ${FlowHelpers.currentHash( 'shares' )}`}>
-            <div className="user__gifts col-xs-12">
-              {this.renderPosts()}
-            </div>
+          <div className={`tabs__container ${FlowHelpers.currentHash( 'shares' )}`}>
+            {this.renderPosts()}
           </div>
-          <div className={`tabs__container row ${FlowHelpers.currentHash( 'wants' )}`}>
-            <div className="col-xs-12">
-              {this.renderWants()}
-            </div>
+          <div className={`tabs__container ${FlowHelpers.currentHash( 'wants' )}`}>
+            {this.renderWants()}
           </div>
         </div>
       );

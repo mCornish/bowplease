@@ -23,7 +23,7 @@ UserGifts = React.createClass({
       return (
         <div className="row row--margin" onClick={this.showFilter}>
           <div className="col-xs-12">
-            There doesn't appear to be any gifts. Maybe you should try a <span className="fake-link">different filter</span>.
+            There doesn't appear to be any gifts.
           </div>
         </div>
       );
