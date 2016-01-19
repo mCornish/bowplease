@@ -3,6 +3,7 @@ GiftSubmit = React.createClass({
   getMeteorData() {
       const subscription = Meteor.subscribe( 'gift-submit' );
       return {
+          isLoading: !subscription.ready(),
           occasions: Occasions.find().fetch(),
           recipients: Recipients.find().fetch()
       };
@@ -30,27 +31,25 @@ GiftSubmit = React.createClass({
     });
   },
   renderRecipientInfo() {
-    if ( !this.state.want ) {
-      return (
-        <div className="row row--margin">
-          <div className="col-xs-6 input-group--select">
-              <label htmlFor="recipient">Recipient</label>
-              <select id="recipient" className="col-xs-12" name="recipient" data-hook="recipient"
-                      data-track="change">
-                  <option>This gift is for...</option>
-                  {this.renderRecipients()}
-              </select>
-          </div>
-
-          <div className="col-xs-6">
-            <label htmlFor="age">Recipient Age</label>
-            <span className="input-addon input-suffix">
-              <input name="age" placeholder="##" id="age" type="number" data-track="change"/>years old
-            </span>
-          </div>
+    return (
+      <div className="row row--margin">
+        <div className="col-xs-6 input-group--select">
+            <label htmlFor="recipient">Recipient</label>
+            <select id="recipient" className="col-xs-12" name="recipient" data-hook="recipient"
+                    data-track="change">
+                <option>This gift is for...</option>
+                {this.renderRecipients()}
+            </select>
         </div>
-      );
-    }
+
+        <div className="col-xs-6">
+          <label htmlFor="age">Recipient Age</label>
+          <span className="input-addon input-suffix">
+            <input name="age" placeholder="##" id="age" type="number" data-track="change"/>years old
+          </span>
+        </div>
+      </div>
+    );
   },
   renderRecipients() {
     return this.data.recipients.map(( recipient, index ) => {
