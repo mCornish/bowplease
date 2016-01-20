@@ -88,11 +88,7 @@ GiftEdit = React.createClass({
 
             <div className="row row--margin">
               <div className="col-xs-6 input-group--select">
-                <label htmlFor="recipient">Recipient</label>
-                <select id="recipient" className="col-xs-12" name="recipient" defaultValue={this.data.gift.recipient} data-hook="recipient">
-                  <option>This gift is for...</option>
-                  {this.renderRecipients()}
-                </select>
+                <RecipientSelect value={this.data.gift.recipient} />
               </div>
 
               <div className="col-xs-6">
