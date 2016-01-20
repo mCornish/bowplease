@@ -25,7 +25,7 @@ GiftsFilter = React.createClass({
       this.props.setFilteredGifts( Modules.client.giftList.filteredGifts( 100, nextProps.sort ) );
     }
   },
-  trackChange( e ) {
+  handleChange( e ) {
     this.props.setFilteredGifts( Modules.client.giftList.filteredGifts( 100, this.props.sort ) );
     Modules.client.giftList.track( e );
   },
@@ -46,7 +46,7 @@ GiftsFilter = React.createClass({
           <div className="row">
             <div className="input-group--select col-xs-12 col-md-4 grp-sm">
               <label htmlFor="created">Submitted</label>
-              <select id="created" className="col-xs-12" name="created" defaultValue="All time" onChange={this.trackChange}>
+              <select id="created" className="col-xs-12" name="created" defaultValue="All time" onChange={this.handleChange}>
                 <option value="Today">Today</option>
                 <option value="This week">This week</option>
                 <option value="This month">This month</option>
@@ -62,7 +62,7 @@ GiftsFilter = React.createClass({
                   <label className="input-group__label" htmlFor="min-price">Min Price</label>
                   <div className="input-addon input-prefix">$
                     <input id="min-price" className="input-group__input--addon" name="min-price"  placeholder="0.00" type="number"
-                      step="any" min="0" onChange={this.trackChange} required/>
+                      step="any" min="0" onChange={this.handleChange} required/>
                   </div>
                 </div>
 
@@ -70,7 +70,7 @@ GiftsFilter = React.createClass({
                   <label className="input-group__label" htmlFor="max-price">Max Price</label>
                   <div className="input-addon input-prefix">$
                     <input id="max-price" className="input-group__input--addon" name="max-price" placeholder="0.00" type="number"
-                      step="any" min="0" onChange={this.trackChange} required/>
+                      step="any" min="0" onChange={this.handleChange} required/>
                   </div>
                 </div>
 
@@ -87,7 +87,7 @@ GiftsFilter = React.createClass({
                 <div className="input-group--select col-xs-6">
                   <label htmlFor="recipient">Recipient</label>
                   <select id="recipient" className="col-xs-12" name="recipient"
-                    defaultValue={Session.get('recipientVal')} onChange={this.trackChange}>
+                    defaultValue={Session.get('recipientVal')} onChange={this.handleChange}>
                     <option value="default">Anyone</option>
                     {this.renderRecipients()}
                   </select>
@@ -95,7 +95,7 @@ GiftsFilter = React.createClass({
 
                 <div className="input-group--select col-xs-6">
                   <label htmlFor="age">Age</label>
-                  <select id="age" className="col-xs-12" name="age" defaultValue={Session.get('ageVal')} onChange={this.trackChange}>
+                  <select id="age" className="col-xs-12" name="age" defaultValue={Session.get('ageVal')} onChange={this.handleChange}>
                     <option value="Any">Any</option>
                     <option value="Newborn">Newborn</option>
                     <option value="1 - 5">1 - 5</option>
@@ -114,7 +114,7 @@ GiftsFilter = React.createClass({
             <div className="input-group--select col-xs-12 col-md-4">
               <label htmlFor="occasion">Occassion</label>
               <select id="occasion" className="col-xs-12" name="occasion"
-                defaultValue={Session.get('occasionVal')} onChange={this.trackChange}>
+                defaultValue={Session.get('occasionVal')} onChange={this.handleChange}>
                 <option value="default">Any Occasion</option>
                 {this.renderOccasions()}
               </select>

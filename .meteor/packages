@@ -46,3 +46,4 @@ cfs:gridfs
 cfs:standard-packages
 fortawesome:fontawesome
 service-configuration
+ejson

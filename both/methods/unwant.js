@@ -13,7 +13,9 @@ Meteor.methods({
 
       // Remove respective activity
       const gift = Gifts.findOne(giftId);
-      Activity.remove({userId: this.userId, image: gift.image});
+      Activity.remove({giftId: giftId});
+
+      return giftId;
     } catch( exception ) {
       return exception;
     }

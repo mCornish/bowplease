@@ -71,10 +71,12 @@ _getFilters = () => {
 };
 
 _getCreatedVal = () => {
-  if ( $('[name=created]').length < 1 ) {
+  if ( $('[name=created]').length < 1 || $('[name=created]').val() === null ) {
     return null;
   }
+
   const createdVal = $('[name=created]').val().toLowerCase();
+
   switch ( createdVal ) {
     case 'today':
     return moment().subtract(1, 'days').toDate();

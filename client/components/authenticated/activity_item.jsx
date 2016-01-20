@@ -12,8 +12,8 @@ ActivityItem = React.createClass({
   },
   abbrText() {
     let text = this.props.activity.text;
-    if (text.length > 140) {
-      text = text.substr(140) + '...'
+    if (text.length > 50) {
+      text = text.substr(0, 30) + '...'
     }
     return text;
   },
