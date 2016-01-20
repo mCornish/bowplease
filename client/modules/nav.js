@@ -30,6 +30,7 @@ const _beginSubmit = ( e ) => {
   } else {
     Session.set('imageName', null);
     Session.set('imageUrl', null);
+    $( e.target ).blur();
     Bert.alert(`Image must be a JPG or PNG`, 'warning');
   }
 }
