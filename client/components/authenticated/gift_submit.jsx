@@ -34,12 +34,7 @@ GiftSubmit = React.createClass({
     return (
       <div className="row row--margin">
         <div className="col-xs-6 input-group--select">
-            <label htmlFor="recipient">Recipient</label>
-            <select id="recipient" className="col-xs-12" name="recipient" data-hook="recipient"
-                    data-track="change">
-                <option>This gift is for...</option>
-                {this.renderRecipients()}
-            </select>
+          <RecipientSelect className="col-xs-12" value="" />
         </div>
 
         <div className="col-xs-6">

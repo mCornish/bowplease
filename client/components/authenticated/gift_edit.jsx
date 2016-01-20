@@ -23,11 +23,6 @@ GiftEdit = React.createClass({
       return <option key={index} value={occasion.name}>{occasion.name}</option>;
     });
   },
-  renderRecipients() {
-    return this.data.recipients.map(( recipient, index ) => {
-      return <option key={index} value={recipient.name}>{recipient.name}</option>;
-    });
-  },
   render() {
     if ( this.data.isLoading ) {
       return <Loading />;
@@ -88,7 +83,7 @@ GiftEdit = React.createClass({
 
             <div className="row row--margin">
               <div className="col-xs-6 input-group--select">
-                <RecipientSelect value={this.data.gift.recipient} />
+                <RecipientSelect className="col-xs-12" value={this.data.gift.recipient} />
               </div>
 
               <div className="col-xs-6">

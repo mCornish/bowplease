@@ -7,11 +7,16 @@ RecipientSelect = React.createClass({
       recipients: Recipients.find().fetch()
     }
   },
-  renderFemaleOptions() {
+  renderGenderOptions() {
     return this.data.recipients.map(( recipient, index ) => {
       if ( recipient.gender != 'neutral' ) {
         return <option key={index} value={recipient.name}>{recipient.name}</option>;
-      } else {
+      }
+    });
+  },
+  renderFemaleOptions() {
+    return this.data.recipients.map(( recipient, index ) => {
+      if ( recipient.gender === 'neutral' ) {
         return <option key={index} value={`${recipient.name} (Female)`}>{recipient.name} (Female)</option>;
       }
     });
@@ -19,8 +24,6 @@ RecipientSelect = React.createClass({
   renderMaleOptions() {
     return this.data.recipients.map(( recipient, index ) => {
       if ( recipient.gender === 'neutral' ) {
-        return <option key={index} value={recipient.name}>{recipient.name}</option>;
-      } else {
         return <option key={index} value={`${recipient.name} (Male)`}>{recipient.name} (Male)</option>;
       }
     });
@@ -32,8 +35,9 @@ RecipientSelect = React.createClass({
       return (
         <div>
           <label htmlFor="recipient">Recipient</label>
-          <select id="recipient" className="col-xs-12" name="recipient" defaultValue={this.props.value} data-hook="recipient">
-            <option>This gift is for...</option>
+          <select id="recipient" className={this.props.className} name="recipient" defaultValue={this.props.value} data-hook="recipient">
+            <option value="default">Who is it for?</option>
+            {this.renderGenderOptions()}
             {this.renderFemaleOptions()}
             {this.renderMaleOptions()}
           </select>

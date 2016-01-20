@@ -26,11 +26,7 @@ HomeForm = React.createClass({
   render() {
     return (
       <form className="home__form inline-form col-xs-12" onSubmit={this.filterGifts}>
-        <label htmlFor="recipient">Recipient</label>
-        <select id="recipient" className="col-xs-4 col-sm-3 col-md-2 col-md-offset-2" name="recipient">
-          <option value="default">Who is it for?</option>
-          {this.renderRecipients()}
-        </select>
+        <RecipientSelect className="col-xs-4 col-sm-3 col-md-2 col-md-offset-2" value="" />
         <label htmlFor="age">Age</label>
         <select id="age" className="col-xs-4 col-sm-3 col-md-2" name="age">
           <option>How old?</option>
