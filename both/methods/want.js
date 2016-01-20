@@ -16,15 +16,13 @@ Meteor.methods({
 
       // Add activity
       const gift = Gifts.findOne(giftId);
-      if (desc.length > 50) {
-        desc = desc.substr(45) + '...'
-      }
-      const activity = {
+      Meteor.call('activityInsert', {
         title: 'Wanted a gift',
         text: gift.description,
         giftId: giftId
-      }
-      Meteor.call('activityInsert', activity);
+      });
+
+      return giftId;
     } catch( exception ) {
       return exception;
     }
