@@ -2,6 +2,8 @@
   font-size: .8em;
   background-color: transparent;
   color: $color-1;
+  width: 30%;
+  max-width: 10em;
 }
 .want-button:hover {
   background-color: transparent;
@@ -13,7 +15,7 @@
 }
 .want-button:hover i,
 .want-button.is-unwantable i {
-    color: red;
+  color: red;
 }
 .want-button.is-disabled,
 .want-button.is-disabled i {
@@ -23,16 +25,18 @@
 }
 .want-button .button--addon__addon,
 .want-button:hover .button--addon__addon {
-    color: inherit;
+  color: inherit;
 }
 .want-button__count {
-    border-left: 1px solid currentColor;
+  border-left: 1px solid currentColor;
 }
 
+// Used on Gift Item
 .want-button--light {
   background-color: $color-2;
   color: $color-1;
   border: none;
+  width: 100%;
 }
 .want-button--light:hover {
   background-color: $color-2;

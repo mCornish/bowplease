@@ -35,17 +35,13 @@ BuyButton = React.createClass({
   render() {
     if ( Meteor.userId() === this.props.userId ) {
       return (
-        <div className="col-xs-3 col-sm-offset-2">
-          <a className={`buy-button button col-xs-12 ${this.linkClass()}`} href={this.props.link} target="_blank"
-            onClick={this.track}><i className="fa fa-dollar"></i></a>
-        </div>
+        <a className={`buy-button button ${this.linkClass()}`} href={this.props.link} target="_blank"
+          onClick={this.track}><i className="fa fa-dollar"></i></a>
       );
     } else {
       return (
-        <div className="col-xs-6 col-sm-4 col-sm-offset-2">
-          <a className={`buy-button button col-xs-12 ${this.linkClass()}`} href={this.props.link} target="_blank"
-            onClick={this.track}>{this.text()}</a>
-        </div>
+        <a className={`buy-button button col-xs-12 ${this.linkClass()}`} href={this.props.link} target="_blank"
+          onClick={this.track}>{this.text()}</a>
       );
     }
   }

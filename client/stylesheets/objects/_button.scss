@@ -31,16 +31,20 @@
 /* disabled button */
 .button.is-disabled {
   cursor: default;
-  background-color: rgb(150, 150, 150);
-  color: rgb(100, 100, 100);
-  border-color: rgb(150, 150, 150);
+  background-color: mix($color-2, black, 70);
+  color: mix($color-2, black, 50);
+  border-color: mix($color-2, black, 65);
 }
 .button.is-disabled:hover,
 .button.is-disabled:focus,
 .button.is-disabled:active {
-  background-color: rgb(150, 150, 150);
-  color: rgb(100, 100, 100);
-  border-color: rgb(150, 150, 150);
+  background-color: mix($color-2, black, 70);
+  color: mix($color-2, black, 50);
+  border-color: mix($color-2, black, 65);
+}
+
+.button + .button:not(.no-spacer):not(.menu__button) {
+  margin-left: 1em;
 }
 
 .button--addon {
@@ -68,9 +72,10 @@
 }
 
 .button--slim {
-  font-size: 1em;
-  background-color: mix($color-2, black, 80);
-  border: none;
+  font-size: .8em;
+  //font-size: 1em;
+  //background-color: mix($color-2, black, 80);
+  //border: none;
 }
 
 .button--submit {

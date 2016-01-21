@@ -1,25 +1,27 @@
-.comments-container {
-    padding: 3em 0;
-}
 .comment {
-    display: block;
-    padding: 1em;
+  display: block;
 }
 .comment:nth-child(even) {
-    background-color: $color-2;
+  background-color: $color-2;
 }
 .comment__author {
-    font-weight: bold;
+  font-weight: bold;
 }
 .comment__submitted {
-    color: rgb(150,150,150);
-    font-weight: normal;
+  color: rgb(150,150,150);
+  font-weight: normal;
 }
 .comment__image {
-    width: 3em;
-    height: 3em;
-    margin-right: .5em;
+  width: 3em;
+  height: 3em;
+  margin-right: .5em;
 }
 .comment__body {
-    margin-top: 1em;
+  margin: 1em 0 0;
+}
+
+.comment + .comment {
+  border-top: 1px solid mix($color-2, black, 80);
+  margin-top: 1.5em;
+  padding-top: 1.5em;
 }

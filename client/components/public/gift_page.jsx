@@ -20,30 +20,7 @@ GiftPage = React.createClass({
   renderEditButton() {
     if ( Meteor.userId() === this.data.gift.userId ) {
       return (
-        <div className="col-xs-3">
-          <a className="gift-page__button button col-xs-12" href={FlowHelpers.pathFor( '/gifts/:id/edit', {id: this.data.gift._id} )}>Edit</a>
-        </div>
-      );
-    }
-  },
-  renderPrice() {
-    if ( this.data.gift.price > 0 ) {
-      return (
-        <p className="col-xs-12 col-sm-6 col-md-3"><strong>Price:</strong> ${this.data.gift.price.toFixed(2)}</p>
-      );
-    }
-  },
-  renderRecipient() {
-    if ( this.data.gift.recipient ) {
-      return (
-        <p className="col-xs-12 col-sm-6 col-md-3"><strong>Recipient:</strong> {this.data.gift.recipient}</p>
-      );
-    }
-  },
-  renderAge() {
-    if ( this.data.gift.age > 0 ) {
-      return (
-        <p className="col-xs-12 col-sm-6 col-md-3"><strong>Age:</strong> {this.data.gift.age}</p>
+        <a className="gift-page__edit button button--slim" href={FlowHelpers.pathFor( '/gifts/:id/edit', {id: this.data.gift._id} )}>Edit</a>
       );
     }
   },
@@ -52,7 +29,7 @@ GiftPage = React.createClass({
       return <CommentSubmit giftId={this.data.gift._id} />;
     } else {
       return (
-        <p className="col-xs-12 text-center">Please log in to leave a comment.</p>
+        <p className="flex-center">Please log in to leave a comment.</p>
       );
     }
   },
@@ -61,12 +38,44 @@ GiftPage = React.createClass({
         return <CommentItem key={index} comment={comment} />;
     });
   },
-  renderOccasion() {
+  renderInfoString() {
+    let string = '';
+    string += this._occasionString();
+    string += this._recipientString();
+    string += this._ageString();
+    return string;
+  },
+  _occasionString() {
+    let string = '';
     if ( this.data.gift.occasion ) {
-      return (
-        <p className="col-xs-12 col-sm-6 col-md-3"><strong>Occasion:</strong> {this.data.gift.occasion}</p>
-      );
+      string += `A ${this.data.gift.occasion} gift `;
     }
+    return string;
+  },
+  _recipientString() {
+    let string = '';
+    const recipient = this.data.gift.recipient;
+    const occasion = this.data.gift.occasion;
+    const age = this.data.gift.age;
+    if ( occasion ) {
+      string += 'for ';
+    } else {
+      string += 'For ';
+    }
+    if ( recipient ) {
+      string += `a ${recipient}`;
+    } else if ( age > 0 ) {
+      string += 'someone';
+    }
+    return string;
+  },
+  _ageString() {
+    let string = '';
+    const age = this.data.gift.age;
+    if ( age > 0 ) {
+      string += `, age ${age}`;
+    }
+    return string;
   },
   render() {
     if ( this.data.isLoading ) {
@@ -83,45 +92,34 @@ GiftPage = React.createClass({
       return (
         <div className="page">
           <div className={`popup__container ${this.popupClass()}`}>
-            <div className={`popup__image-container ${this.popupClass()}`}>
-                <a href={this.data.gift.link} target="_blank">
-                    <img className="popup__image" src={this.data.gift.image}/>
-                </a>
-            </div>
-            <div className="popup row row--margin">
+            <a className="flex-center" href={this.data.gift.link} target="_blank">
+              <img className="gift-page__image" src={this.data.gift.image}/>
+            </a>
+            <div className="gift-page__info flex-center">{this.renderInfoString()}</div>
+            <div className="flex-center flex-wrap row--margin">
               <BuyButton userId={this.data.gift.userId} link={this.data.gift.link} price={this.data.gift.price} />
-              <div className="col-xs-3">
-                <WantButton counter={false} gift={this.data.gift} />
-              </div>
+              <WantButton counter={false} gift={this.data.gift} />
               {this.renderEditButton()}
             </div>
-            <div className={`popup__content-container ${this.popupClass()}`}>
-                <p className="gift-page__description">{this.data.gift.description}</p>
-
-                <div className="row">
-                  {this.renderPrice()}
-                  {this.renderRecipient()}
-                  {this.renderAge()}
-                  {this.renderOccasion()}
-                </div>
-
-                <a className="gift-page__author no-hover" href={`/users/${this.data.gift.userId}`}>
-                    <UserInfo userId={this.data.gift.userId} />
-                    <span className="comment__submitted"> {this.createdMoment()}</span>
+            <div className="row row--margin">
+              <div className="col-xs-12 col-md-6 col-md-offset-3">
+                <p>{this.data.gift.description}</p>
+                <a href={`/users/${this.data.gift.userId}`}>
+                  <UserInfo userId={this.data.gift.userId} />
+                  <span className="comment__submitted"> {this.createdMoment()}</span>
                 </a>
-
+              </div>
             </div>
-        </div>
-        <div className={`popup__container ${this.popupClass()}`}>
-            <div className={`popup__comments-container ${this.popupClass()}`}>
-                {this.renderCommentForm()}
-
-                <ul className={`comments-container ${this.popupClass()}`}>
-                    {this.renderComments()}
-                </ul>
+          </div>
+          <div className="row--margin">
+            {this.renderCommentForm()}
+          </div>
+          <div className="row row--margin">
+            <div className="col-xs-12 col-md-6 col-md-offset-3">
+              {this.renderComments()}
             </div>
+          </div>
         </div>
-  </div>
       );
     }
   }

@@ -18,15 +18,15 @@ CommentSubmit = React.createClass({
     return (
       <form id="info" data-hook="comment-form" onSubmit={this.handleSubmit}>
         <div className="row">
-            <div className="col-xs-12">
-                <label htmlFor="body">Comment on this gift</label>
-                <textarea id="body" name="body" defaultValue={this.autoText()} ref="commentBody" rows="3" autoFocus={this.autoFocus()}></textarea>
-            </div>
+          <div className="col-xs-12 col-md-6 col-md-offset-3">
+            <label htmlFor="body">Comment on this gift</label>
+            <textarea id="body" name="body" defaultValue={this.autoText()} ref="commentBody" rows="3" autoFocus={this.autoFocus()}></textarea>
+          </div>
         </div>
         <div className="row row--margin">
-            <div className="col-xs-12 col-md-6 col-md-offset-3">
-                <button type="submit" className="button button--submit col-xs-12 col-md-6 col-md-offset-3">Add comment</button>
-            </div>
+          <div className="col-xs-12 col-md-6 col-md-offset-3">
+            <button type="submit" className="button button--submit col-xs-12">Add comment</button>
+          </div>
         </div>
     </form>
     );

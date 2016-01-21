@@ -36,7 +36,7 @@ CommentItem = React.createClass({
     } else {
       return (
         <form data-hook="edit-form" onSubmit={this.handleSubmit}>
-          <div className="row row--margin">
+          <div className="row">
             <textarea name="body" defaultValue={this.props.comment.body} data-id={this.props.comment._id}></textarea>
           </div>
           <div className="row row--margin">
@@ -71,9 +71,9 @@ CommentItem = React.createClass({
   },
   render() {
     return (
-      <li className="comment">
+      <div className="comment">
         <div className="row">
-          <a className="no-hover col-xs-6" href={`/user/${this.props.comment.userId}`}>
+          <a className="col-xs-6" href={`/user/${this.props.comment.userId}`}>
             <UserInfo userId={this.props.comment.userId} />
             <span className="comment__submitted"> {this.createdMoment()}</span>
           </a>
@@ -84,7 +84,7 @@ CommentItem = React.createClass({
             {this.renderBody()}
           </div>
         </div>
-    </li>
+    </div>
     );
   }
 });

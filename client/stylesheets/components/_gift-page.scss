@@ -1,22 +1,19 @@
-.gift-page__buttons {
-  position: fixed;
-  background-color: $color-2-t;
-  padding: 1em;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 3;
+.gift-page__image {
+  max-width: 100%;
 }
-.gift-page__buttons.is-page {
-  top: 3.8em;
+.gift-page__info {
+  color: mix($color-1, white, 50);
+  margin-top: .5em;
 }
-.gift-page__button {
-  font-size: .8em;
-}
-.gift-page__description {
-  margin-bottom: 2em;
-}
-.gift-page__author {
-  display: block;
-  margin-top: 2em;
+.gift-page__edit {
+  @media #{$break-small} {
+    order: -1;
+    width: 50%;
+    margin-bottom: 1em;
+  }
+  @media #{$break-medium} {
+    order: 0;
+    width: auto;
+    margin-bottom: 0;
+  }
 }
