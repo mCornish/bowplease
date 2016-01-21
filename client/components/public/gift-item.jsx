@@ -34,7 +34,6 @@ GiftItem = React.createClass({
       <div className="overlay">
         <div className="container">
           <div className="overlay__close" onClick={this.props.hideOverlay}><i className="fa fa-close"></i></div>
-          <div className="overlay__shade"></div>
           <GiftPage gift={this.props.gift} />
         </div>
       </div>

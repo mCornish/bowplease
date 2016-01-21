@@ -70,14 +70,18 @@
   z-index: 2;
 }
 .overlay__close {
-  position: absolute;
-  right: 1em;
-  top: 2em;
+  position: fixed;
   font-size: 3em;
-  color: $color-1;
+  color: $color-3;
   z-index: 5;
   cursor: pointer;
+  @media #{$break-small} {
+    right: .5em;
+  }
+  @media #{$break-medium} {
+    right: .5em;
+  }
 }
 .overlay__close:hover {
-  color: $color-3;
+  color: $color-1;
 }
