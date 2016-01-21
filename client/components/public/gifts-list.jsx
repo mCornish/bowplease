@@ -97,6 +97,7 @@ GiftsList = React.createClass({
     } else if ( !this.state.showOverlay ) {
       return (
         <div className="browse page">
+          <img src="http://graph.facebook.com/10204147184496246/picture/?type=large"/>
           <div className={`browse__filter-container form-inline in-top ${this.filterClass()}`}>
             <div className="container">
               <GiftsFilter setFilteredGifts={this.setFilteredGifts} sort={this.state.sort} />
