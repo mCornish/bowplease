@@ -7,7 +7,7 @@ const startup = () => {
 };
 
 const _setEnvironmentVariables = () => Modules.server.setEnvironmentVariables();
-const _setBrowserPolicies = () => {};
+const _setBrowserPolicies = () => Modules.server.setBrowserPolicies();
 const _generateAccounts = () => Modules.server.generateAccounts();
 const _generateOccasions = () => Modules.server.generateOccasions();
 const _generateRecipients = () => Modules.server.generateRecipients();
