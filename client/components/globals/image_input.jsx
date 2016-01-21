@@ -2,7 +2,6 @@ ImageInput = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
-      imageName: Session.get('imageName'),
       imageUrl: Session.get('imageUrl')
     };
   },
@@ -10,6 +9,9 @@ ImageInput = React.createClass({
     return {
       uploading: true
     }
+  },
+  componentWillUnmount() {
+    Session.set('imageUrl', null);
   },
   buttonText() {
     return Session.get('imageName') || 'Choose a gift image';
