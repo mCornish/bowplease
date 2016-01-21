@@ -107,18 +107,14 @@ GiftsList = React.createClass({
               </div>
             </div>
           </div>
-          <div className="row">
-            <h2 className="fake-link text-center col-xs-6" onClick={this.showFilter}>Filter</h2>
-            <div className="col-xs-6">
-              <div className="row">
-                <a className={`browse__filter-button button col-xs-6 ${FlowHelpers.currentHash( 'new' )}`} href="#new" data-sort="new" onClick={this.setSort}>
-                  <i className="fa fa-star"> Newest</i>
-                </a>
-                <a className={`browse__filter-button button col-xs-6 ${FlowHelpers.currentHash( 'top' )}`} href="#top" data-sort="top" onClick={this.setSort}>
-                  <i className="fa fa-trophy"> Top</i>
-                </a>
-              </div>
-            </div>
+          <div className="flex-center">
+            <h2 className="browse__filter-button fake-link" onClick={this.showFilter}>Filter</h2>
+            <a className={`browse__sort-button button ${FlowHelpers.currentHash( 'new' )}`} href="#new" data-sort="new" onClick={this.setSort}>
+              <i className="fa fa-star"> Newest</i>
+            </a>
+            <a className={`browse__sort-button button no-spacer ${FlowHelpers.currentHash( 'top' )}`} href="#top" data-sort="top" onClick={this.setSort}>
+              <i className="fa fa-trophy"> Top</i>
+            </a>
           </div>
 
           <div className="grid row row--margin" data-hook="gifts">
