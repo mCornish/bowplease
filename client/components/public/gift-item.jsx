@@ -20,12 +20,6 @@ GiftItem = React.createClass({
       return '';
     }
   },
-  closePopup() {
-    window.history.pushState( {},"", `/` );
-    this.setState({
-      showPage: false
-    });
-  },
   imageClass() {
     return Modules.client.giftList.imageClass( this.props.gift.image );
   },
