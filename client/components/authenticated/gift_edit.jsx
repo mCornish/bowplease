@@ -16,7 +16,7 @@ GiftEdit = React.createClass({
     e.preventDefault();
   },
   deleteGift() {
-    Modules.client.giftEdit.remove();
+    Modules.client.giftEdit.remove( this.data.gift._id );
   },
   renderOccasions() {
     return this.data.occasions.map(( occasion, index ) => {

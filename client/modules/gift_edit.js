@@ -3,8 +3,8 @@ const giftEdit = {
   submit( options ) {
     _validate( options.form, options.imageUrl );
   },
-  remove() {
-    _remove();
+  remove( giftId ) {
+    _remove( giftId );
   }
 };
 
@@ -103,11 +103,11 @@ const _handleSubmit = ( imageUrl ) => {
   });
 };
 
-const _remove = () => {
-  const giftId = Gifts.findOne()._id;
+const _remove = ( giftId ) => {
+  console.log(giftId);
   const confirmed = confirm('Delete this gift?');
   if ( confirmed ) {
-    Meteor.call('giftRemove', giftId, gift, function( err ) {
+    Meteor.call('giftRemove', giftId, function( err ) {
       if ( err ) {
         Bert.alert(`Gift delete failed: ${err.reason}`, 'danger');
       } else {
