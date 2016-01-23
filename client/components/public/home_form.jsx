@@ -11,16 +11,10 @@ HomeForm = React.createClass({
   filterGifts( e ) {
     e.preventDefault();
     Modules.client.homeForm.setFilters();
-    FlowRouter.go( '/browse#new' );
   },
   renderOccasions() {
     return this.data.occasions.map((occasion, index) => {
       return <option key={index}>{occasion.name}</option>;
-    });
-  },
-  renderRecipients() {
-    return this.data.recipients.map((recipient, index) => {
-      return <option key={index}>{recipient.name}</option>;
     });
   },
   render() {
@@ -29,7 +23,7 @@ HomeForm = React.createClass({
         <RecipientSelect className="col-xs-4 col-sm-3 col-md-2 col-md-offset-2" value="" />
         <label htmlFor="age">Age</label>
         <select id="age" className="col-xs-4 col-sm-3 col-md-2" name="age">
-          <option>How old?</option>
+          <option value="default">How old?</option>
           <option>Newborn</option>
           <option>1 - 5</option>
           <option>11 - 15</option>

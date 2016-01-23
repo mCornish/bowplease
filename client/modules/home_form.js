@@ -5,9 +5,21 @@ const homeForm = {
 };
 
 _setFilterValues = ( e ) => {
-  Session.set( 'ageVal', $('[name=age]').val() );
-  Session.set( 'recipientVal', $('[name=recipient]').val() );
-  Session.set( 'occasionVal', $('[name=occasion]').val() );
+  query = ''
+  const ageVal = $('[name=age]').val();
+  const recipientVal = $('[name=recipient]').val();
+  const occasionVal = $('[name=occasion]').val();
+  if ( ageVal != 'default' ) {
+    query += `age=${ageVal}`;
+  }
+  if ( recipientVal != 'default' ) {
+    query += `&recipient=${recipientVal}`;
+  }
+  if ( occasionVal != 'default' ) {
+    query += `&occasion=${occasionVal}`;
+  }
+  console.log(query);
+  FlowRouter.go( `/browse#new?${query}` )
 };
 
 Modules.client.homeForm = homeForm;

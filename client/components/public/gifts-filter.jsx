@@ -8,20 +8,12 @@ GiftsFilter = React.createClass({
       recipients: Recipients.find().fetch()
     }
   },
-  getInitialState() {
-    return {
-      initialize: true
-    };
-  },
   componentDidMount() {
     this.props.setFilteredGifts( Modules.client.giftList.filteredGifts( 100, this.props.sort ) );
   },
   componentWillReceiveProps( nextProps ) {
     // Initialize/Update filtered gifts
     if ( nextProps.sort != this.props.sort ) {
-      this.setState({
-        initialize: false
-      });
       this.props.setFilteredGifts( Modules.client.giftList.filteredGifts( 100, nextProps.sort ) );
     }
   },
@@ -87,7 +79,7 @@ GiftsFilter = React.createClass({
                 <div className="input-group--select col-xs-6">
                   <label htmlFor="recipient">Recipient</label>
                   <select id="recipient" className="col-xs-12" name="recipient"
-                    defaultValue={Session.get('recipientVal')} onChange={this.handleChange}>
+                    defaultValue={FlowRouter.getQueryParam('recipient')} onChange={this.handleChange}>
                     <option value="default">Anyone</option>
                     {this.renderRecipients()}
                   </select>
@@ -95,7 +87,7 @@ GiftsFilter = React.createClass({
 
                 <div className="input-group--select col-xs-6">
                   <label htmlFor="age">Age</label>
-                  <select id="age" className="col-xs-12" name="age" defaultValue={Session.get('ageVal')} onChange={this.handleChange}>
+                  <select id="age" className="col-xs-12" name="age" defaultValue={FlowRouter.getQueryParam('age')} onChange={this.handleChange}>
                     <option value="Any">Any</option>
                     <option value="Newborn">Newborn</option>
                     <option value="1 - 5">1 - 5</option>
@@ -114,7 +106,7 @@ GiftsFilter = React.createClass({
             <div className="input-group--select col-xs-12 col-md-4">
               <label htmlFor="occasion">Occassion</label>
               <select id="occasion" className="col-xs-12" name="occasion"
-                defaultValue={Session.get('occasionVal')} onChange={this.handleChange}>
+                defaultValue={FlowRouter.getQueryParam('occasion')} onChange={this.handleChange}>
                 <option value="default">Any Occasion</option>
                 {this.renderOccasions()}
               </select>

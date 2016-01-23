@@ -21,7 +21,12 @@ const currentEndpoint = ( endpoint ) => {
 
 const currentHash = ( hash ) => {
   FlowRouter.watchPathChange();
-  return window.location.hash.substr(1) === hash ? 'is-active' : '';
+  let current = window.location.hash.substr( 1 );
+  const qLoc = current.indexOf( '?' );
+  if ( qLoc > -1 ) {
+    current = current.substr( 0, qLoc );
+  }
+  return hash === current ? 'is-active' : '';
 };
 
 FlowHelpers = {

@@ -19,9 +19,6 @@ GiftsList = React.createClass({
         if ( hash === 'top' ) {
           return {wantCount: 1};
         } else {
-          if ( hash != 'new' ) {
-            window.history.pushState( {},"", '/#new' );
-          }
           return {created: -1};
         }
       })()
@@ -36,7 +33,7 @@ GiftsList = React.createClass({
     });
   },
   hideOverlay() {
-    window.history.pushState( {}, '', '/' );
+    window.history.pushState( {}, '', '/#new' );
     this.setState({
       showOverlay: false
     });
@@ -64,6 +61,16 @@ GiftsList = React.createClass({
         sort: topQuery
       });
     }
+    this._updateHash( sort );
+  },
+  _updateHash( hash ) {
+    const current = window.location.hash;
+    const qLoc = current.indexOf( '?' );
+    let query = '';
+    if ( qLoc > -1 ) {
+      query = current.substr( qLoc );
+    }
+    window.location.hash = `#${hash}${query}`;
   },
   showFilter() {
     this.setState({
@@ -110,12 +117,12 @@ GiftsList = React.createClass({
           </div>
           <div className="flex-center">
             <h2 className="browse__filter-button fake-link" onClick={this.showFilter}>Filter</h2>
-            <a className={`browse__sort-button button ${FlowHelpers.currentHash( 'new' )}`} href="#new" data-sort="new" onClick={this.setSort}>
+            <div className={`browse__sort-button button ${FlowHelpers.currentHash( 'new' )}`} data-sort="new" onClick={this.setSort}>
               <i className="fa fa-star"> Newest</i>
-            </a>
-            <a className={`browse__sort-button button no-spacer ${FlowHelpers.currentHash( 'top' )}`} href="#top" data-sort="top" onClick={this.setSort}>
+            </div>
+            <div className={`browse__sort-button button no-spacer ${FlowHelpers.currentHash( 'top' )}`} data-sort="top" onClick={this.setSort}>
               <i className="fa fa-trophy"> Top</i>
-            </a>
+            </div>
           </div>
 
           <div className="grid row row--margin" data-hook="gifts">

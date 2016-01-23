@@ -97,8 +97,7 @@ _getAgeVal = ( minOrMax ) => {
   if ( $('[name=age]').length < 1 ) {
     return null;
   }
-  const ageVal = Session.get( 'ageVal') || $('[name=age]').val();
-  Session.set( 'ageVal', null );
+  const ageVal = $('[name=age]').val();
   if ( minOrMax === 'min' ) {
     switch ( ageVal.toLowerCase() ) {
       case 'any':
@@ -138,8 +137,7 @@ _getRecipientVal = () => {
   if ( $('[name=recipient]').length < 1 ) {
     return null;
   }
-  const recipientVal = Session.get( 'recipientVal') || $('[name=recipient]').val();
-  Session.set( 'recipientVal', null );
+  const recipientVal = $('[name=recipient]').val();
   if ( recipientVal.toLowerCase() === 'default' ) {
     return null;
   } else {
@@ -151,8 +149,7 @@ _getOccasionVal = () => {
   if ( $('[name=occasion]').length < 1 ) {
     return null;
   }
-  const occasionVal = Session.get( 'occasionVal') || $('[name=occasion]').val();
-  Session.set( 'occasionVal', null );
+  const occasionVal = $('[name=occasion]').val();
   if ( occasionVal.toLowerCase() === 'default' ) {
     return null;
   } else {
