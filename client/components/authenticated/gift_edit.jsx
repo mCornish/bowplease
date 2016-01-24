@@ -16,15 +16,14 @@ GiftEdit = React.createClass({
     e.preventDefault();
   },
   deleteGift() {
-    const mainEl = document.querySelector('main');
-    wrapper = mainEl.appendChild(document.createElement('div'));
     const onDelete = () => {
       Modules.client.giftEdit.remove( this.data.gift._id );
     };
-    ReactDOM.render(
-      <Confirm text="Delete this gift?" trueText="Delete" onTrue={onDelete} />,
-      wrapper
-    );
+    approve({
+      text: 'Delete this gift?',
+      onTrue: onDelete,
+      trueText: 'Delete'
+    });
   },
   renderOccasions() {
     return this.data.occasions.map(( occasion, index ) => {
