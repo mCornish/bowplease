@@ -104,9 +104,8 @@ const _handleSubmit = ( imageUrl ) => {
 };
 
 const _remove = ( giftId ) => {
-  console.log(giftId);
-  const confirmed = confirm('Delete this gift?');
-  if ( confirmed ) {
+  //const confirmed = confirm('Delete this gift?');
+  //if ( confirmed ) {
     Meteor.call('giftRemove', giftId, function( err ) {
       if ( err ) {
         Bert.alert(`Gift delete failed: ${err.reason}`, 'danger');
@@ -116,7 +115,7 @@ const _remove = ( giftId ) => {
         FlowRouter.go('/');
       }
     });
-  }
+  //}
 };
 
 Modules.client.giftEdit = giftEdit;

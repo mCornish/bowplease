@@ -91,26 +91,23 @@
     //width: inherit;
   }
 }
-.button--submit::before,
-.button--submit::after {
-  display: none;
-}
 .button--submit:hover,
 .button--submit:focus {
   background-color: $color-3;
   border-color: $color-3;
 }
-.button--submit:after {
-  display: none;
-}
+
 
 // (Button) Cancel
 .button--warning {
   border-color: $color-warning;
-  color: $color-warning;
-}
-.button--warning:after {
   background-color: $color-warning;
+  color: $color-2;
+}
+.button--warning:hover {
+  background-color: $color-1;
+  border-color: $color-1;
+  color: $color-warning;
 }
 
 // (Button) Icon
