@@ -43,10 +43,16 @@ Profile = React.createClass({
             </div>
 
             <div className="row row--margin">
-              <div className="col-xs-6">
+              {/*<div className="col-xs-6">
                 <label htmlFor="name">Full Name</label>
                 <input id="name" className="col-xs-12" name="name" defaultValue={this.data.user.profile.name} type="text"
                   autocapitalize="words" autocorrect="off" autocomplete="name" onChange={this.trackChange}/>
+              </div>
+              */}
+              <div className="col-xs-6">
+                <label className="input-group__label" htmlFor="birthday">Birthday</label>
+                <input id="birthday" className="col-xs-12" name="birthday" defaultValue={this.data.user.profile.birthday}
+                  data-hook="birthday" type="date" onChange={this.trackChange} />
               </div>
               <div className="col-xs-6">
                 <fieldset className="row">
@@ -65,6 +71,7 @@ Profile = React.createClass({
                 </fieldset>
               </div>
             </div>
+            {/*
             <div className="row row--margin">
               <div className="col-xs-6">
                 <label className="input-group__label" htmlFor="birthday">Birthday</label>
@@ -92,6 +99,7 @@ Profile = React.createClass({
                   defaultValue={this.data.user.profile.location} data-hook="location" type="text" onChange={this.trackChange} />
               </div>
             </div>
+            */}
 
             <div className="row row--margin">
               <button className="button button--submit col-xs-12" type="submit">Update</button>
