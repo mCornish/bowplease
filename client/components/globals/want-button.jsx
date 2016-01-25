@@ -6,6 +6,9 @@ WantButton = React.createClass({
     }
   },
   handleWant( e ) {
+    if ( !Meteor.userId() ) {
+      return authenticate();
+    }
     const wantable = $( e.target ).hasClass( 'is-wantable' )
       || $( e.target ).parent().hasClass( 'is-wantable' );
 
@@ -39,7 +42,7 @@ WantButton = React.createClass({
       return 'Want';
     } else {
       return (
-        <span><a href='/#login'>Sign in</a> to want</span>
+        <span>Log in to want</span>
       );
     }
   },

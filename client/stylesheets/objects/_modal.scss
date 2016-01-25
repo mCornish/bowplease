@@ -8,13 +8,15 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 3;
+  z-index: 5;
 }
 .modal {
   display: block;
   position: relative;
   background-color: $color-2;
   min-width: 50vw;
+  max-width: 80vw;
+  max-height: 80vh;
 }
 .modal__head {
   margin: 0;
@@ -27,6 +29,22 @@
 .modal__body {
   padding: 1em 2em 2em;
   text-align: center;
+}
+.modal__close {
+  position: fixed;
+  font-size: 3em;
+  color: $color-3;
+  z-index: 5;
+  cursor: pointer;
+  @media #{$break-small} {
+    right: .5em;
+  }
+  @media #{$break-medium} {
+    right: .5em;
+  }
+}
+.modal__close:hover {
+  color: black;
 }
 
 .button--modal {

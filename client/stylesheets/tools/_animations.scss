@@ -28,6 +28,7 @@
 .in-right {
   @include transform(translateX(100vw));
   @include transition(.2s);
+  position: absolute !important;
 }
 .in-right.is-active {
   @include transform(none);

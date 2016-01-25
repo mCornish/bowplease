@@ -29,7 +29,7 @@ GiftPage = React.createClass({
       return <CommentSubmit giftId={this.data.gift._id} />;
     } else {
       return (
-        <p className="flex-center">Please log in to leave a comment.</p>
+        <p className="flex-center"><button className="fake-link" onClick={authenticate}>Log in</button> to leave a comment.</p>
       );
     }
   },

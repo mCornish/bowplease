@@ -27,7 +27,7 @@ GiftItem = React.createClass({
     this.props.setOverlay(
       <div className="overlay">
         <div className="container">
-          <div className="overlay__close" onClick={this.props.hideOverlay}><i className="fa fa-close"></i></div>
+          <div className="modal__close" onClick={this.props.hideOverlay}><i className="fa fa-close"></i></div>
           <GiftPage gift={this.props.gift} />
         </div>
       </div>
@@ -77,7 +77,7 @@ GiftItem = React.createClass({
   //     return (
   //       <div className="overlay">
   //         <div className="container">
-  //           <div className="overlay__close" onClick={this.props.hideOverlay}><i className="fa fa-close"></i></div>
+  //           <div className="modal__close" onClick={this.props.hideOverlay}><i className="fa fa-close"></i></div>
   //           <div className="overlay__shade"></div>
   //           <GiftPage gift={this.props.gift} />
   //         </div>

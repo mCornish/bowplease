@@ -20,8 +20,7 @@ Trending = React.createClass({
         );
       } else {
         return (
-          <p>No gifts yet today. <a href="/">Sign in</a> to post one.</p>
-
+          <p>No gifts yet today. <button className="fake-link" onClick={authenticate}>Sign in</button> to post one.</p>
         );
       }
     } else {
@@ -40,9 +39,15 @@ Trending = React.createClass({
   },
   renderWeek() {
     if ( this.data.topWeek.length < 1 ) {
-      return (
-        <p>Be the first to <a href="/submit">post a gift</a> this week!</p>
-      );
+      if ( Meteor.userId() ) {
+        return (
+          <p>Be the first to <a href="/submit">post a gift</a> this week!</p>
+        );
+      } else {
+        return (
+          <p>No gifts yet this week. <button className="fake-link" onClick={authenticate}>Sign in</button> to post one.</p>
+        );
+      }
     } else {
       return (
         <div className="flex-center">

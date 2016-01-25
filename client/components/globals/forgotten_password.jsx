@@ -10,7 +10,7 @@ ForgottenPassword = React.createClass({
     },
     render() {
         return (
-            <div className="row in-right" data-hook="password-form">
+            <div className="row" data-hook="password-form">
                 <div className="col-xs-12 col-md-6 col-md-offset-3">
                     <a className="login__link" onClick={this.goBack}><i className="fa fa-angle-left"> Back to Login</i></a>
                     <div className="row row--margin">
