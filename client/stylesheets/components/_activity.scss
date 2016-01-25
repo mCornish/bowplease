@@ -44,9 +44,9 @@
   font-size: .8em;
 }
 .activity__link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
   font-size: 2em;
   float: right;
   color: mix($color-2, black, 50);

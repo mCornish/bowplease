@@ -2,9 +2,9 @@
   //display: block;
 
   // Potential flexbox solution (height problems)
-  display: flex;
-  flex-flow: row wrap;
-  align-items: stretch;
+  @include flexbox;
+  @include flex-flow(row wrap);
+  @include align-items(stretch);
   //height: 124em;
 }
 .grid__item {
