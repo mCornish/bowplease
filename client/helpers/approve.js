@@ -11,5 +11,4 @@ approve = function( options ) {
     }),
     wrapper
   );
-  console.log('approve');
 };

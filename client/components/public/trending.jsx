@@ -14,9 +14,16 @@ Trending = React.createClass({
   },
   renderToday() {
     if ( this.data.topToday.length < 1 ) {
-      return (
-        <p>Be the first to <a href="/submit">post a gift</a> today!</p>
-      );
+      if ( Meteor.userId() ) {
+        return (
+          <p>Be the first to <a href="/submit">post a gift</a> today!</p>
+        );
+      } else {
+        return (
+          <p>No gifts yet today. <a href="/">Sign in</a> to post one.</p>
+
+        );
+      }
     } else {
       return (
         <div className="flex-center">

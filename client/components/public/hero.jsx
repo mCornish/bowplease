@@ -8,8 +8,7 @@ Hero = React.createClass({
         if (this.state.loggingIn) {
             return (
                 <div className="home__login-form is-rotated" data-hook="login">
-                    <Login />
-                    <ForgottenPassword />
+                    <Authenticate />
                 </div>
             );
         }
