@@ -82,7 +82,7 @@ GiftEdit = React.createClass({
               <div className="col-xs-6 input-group--select">
                 <label htmlFor="occasion">Occasion</label>
                 <select id="occasion" className="col-xs-12" name="occasion" defaultValue={this.data.gift.occasion} data-hook="occasion">
-                  <option>I got it because...</option>
+                  <option value="default">I got it because...</option>
                   {this.renderOccasions()}
                 </select>
               </div>

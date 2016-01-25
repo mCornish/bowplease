@@ -113,7 +113,7 @@ GiftSubmit = React.createClass({
               <div className="col-xs-6 input-group--select">
                 <label htmlFor="occasion">Occasion</label>
                 <select id="occasion" className="col-xs-12" name="occasion" data-hook="occasion" data-track="change">
-                  <option>I got it because...</option>
+                  <option value="default">I got it because...</option>
                   {this.renderOccasions()}
                 </select>
               </div>

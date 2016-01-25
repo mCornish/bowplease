@@ -39,11 +39,17 @@ GiftPage = React.createClass({
     });
   },
   renderInfoString() {
-    let string = '';
-    string += this._occasionString();
-    string += this._recipientString();
-    string += this._ageString();
-    return string;
+    if ( this.data.gift.occasion || this.data.gift.recipient || this.data.gift.age ) {
+      let string = '';
+      string += this._occasionString();
+      string += this._recipientString();
+      string += this._ageString();
+      return string;
+    } else {
+      return (
+        <span>No gift info. <a href="#info">Request info</a>.</span>
+      );
+    }
   },
   _occasionString() {
     let string = '';
@@ -104,7 +110,7 @@ GiftPage = React.createClass({
             <div className="row row--margin">
               <div className="col-xs-12 col-md-6 col-md-offset-3">
                 <p>{this.data.gift.description}</p>
-                <a href={`/users/${this.data.gift.userId}`}>
+                <a href={`/users/${this.data.gift.userId}#activity`}>
                   <UserInfo userId={this.data.gift.userId} />
                   <span className="comment__submitted"> {this.createdMoment()}</span>
                 </a>

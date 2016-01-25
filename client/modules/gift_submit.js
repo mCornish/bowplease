@@ -69,13 +69,13 @@ const _handleSubmit = () => {
     gift.link = linkVal;
   }
   // Make sure recipient doesn't have default value;
-  if (recipientVal && recipientVal.indexOf('...') < 0) {
+  if ( recipientVal != 'default' ) {
     gift.recipient = recipientVal;
   } else {
     gift.recipient = '';
   }
   // Make sure occasion doesn't have default value;
-  if (occasionVal && occasionVal.indexOf('...') < 0) {
+  if ( occasionVal != 'default' ) {
     gift.occasion = occasionVal;
   } else {
     gift.occasion = '';
