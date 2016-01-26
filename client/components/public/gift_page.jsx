@@ -14,9 +14,6 @@ GiftPage = React.createClass({
   createdMoment() {
     return moment( this.data.gift.created ).fromNow();
   },
-  popupClass() {
-    return '';
-  },
   renderEditButton() {
     if ( Meteor.userId() === this.data.gift.userId ) {
       return (
@@ -97,24 +94,23 @@ GiftPage = React.createClass({
     } else {
       return (
         <div className="page">
-          <div className={`popup__container ${this.popupClass()}`}>
-            <a className="flex-center" href={this.data.gift.link} target="_blank">
-              <img className="gift-page__image" src={this.data.gift.image}/>
-            </a>
-            <div className="gift-page__info flex-center">{this.renderInfoString()}</div>
-            <div className="flex-center flex-wrap row--margin">
-              <BuyButton userId={this.data.gift.userId} link={this.data.gift.link} price={this.data.gift.price} />
-              <WantButton counter={false} gift={this.data.gift} />
-              {this.renderEditButton()}
-            </div>
-            <div className="row row--margin">
-              <div className="col-xs-12 col-md-6 col-md-offset-3">
-                <p>{this.data.gift.description}</p>
-                <a href={`/users/${this.data.gift.userId}#activity`}>
-                  <UserInfo userId={this.data.gift.userId} />
-                  <span className="comment__submitted"> {this.createdMoment()}</span>
-                </a>
-              </div>
+          <BackButton />
+          <a className="flex-center" href={this.data.gift.link} target="_blank">
+            <img className="gift-page__image" src={this.data.gift.image}/>
+          </a>
+          <div className="gift-page__info flex-center">{this.renderInfoString()}</div>
+          <div className="flex-center flex-wrap row--margin">
+            <BuyButton userId={this.data.gift.userId} link={this.data.gift.link} price={this.data.gift.price} />
+            <WantButton counter={false} gift={this.data.gift} />
+            {this.renderEditButton()}
+          </div>
+          <div className="row row--margin">
+            <div className="col-xs-12 col-md-6 col-md-offset-3">
+              <p>{this.data.gift.description}</p>
+              <a href={`/users/${this.data.gift.userId}#activity`}>
+                <UserInfo userId={this.data.gift.userId} />
+                <span className="comment__submitted"> {this.createdMoment()}</span>
+              </a>
             </div>
           </div>
           <div className="row--margin">

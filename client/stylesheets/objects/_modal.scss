@@ -8,6 +8,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  overflow: scroll;
   z-index: 5;
 }
 .modal {
@@ -16,7 +17,7 @@
   background-color: $color-2;
   min-width: 50vw;
   max-width: 80vw;
-  max-height: 80vh;
+  //max-height: 80vh;
 }
 .modal__head {
   margin: 0;
@@ -31,20 +32,20 @@
   text-align: center;
 }
 .modal__close {
-  position: fixed;
+  position: absolute;
   font-size: 3em;
-  color: $color-3;
+  color: mix($color-3, $color-2, 50);
   z-index: 5;
   cursor: pointer;
-  @media #{$break-small} {
-    right: .5em;
-  }
-  @media #{$break-medium} {
-    right: .5em;
-  }
+  top: 0;
+  right: .5em;
 }
 .modal__close:hover {
-  color: black;
+  color: $color-3;
+}
+
+.modal--tall {
+  @include align-self(baseline);
 }
 
 .button--modal {

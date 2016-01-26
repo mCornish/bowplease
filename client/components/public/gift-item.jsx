@@ -25,8 +25,8 @@ GiftItem = React.createClass({
   },
   showOverlay() {
     this.props.setOverlay(
-      <div className="overlay">
-        <div className="container">
+      <div className="modal-container">
+        <div className="modal modal--tall">
           <div className="modal__close" onClick={this.props.hideOverlay}><i className="fa fa-close"></i></div>
           <GiftPage gift={this.props.gift} />
         </div>
