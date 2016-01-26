@@ -76,6 +76,7 @@ UserPage = React.createClass({
     } else {
       return (
         <div className="me page">
+          <BackButton />
           <div className="row">
             <a className="user__identity" href="/me/profile">
               <img className="user__profile-image" src={this.data.user.profile.image}/>

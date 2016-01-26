@@ -36,6 +36,7 @@ GiftEdit = React.createClass({
     } else {
       return (
         <div className="page row">
+          <BackButton />
           <form className="edit-form col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" data-hook="edit-form" onSubmit={this.handleSubmit}>
             <div className="row">
               <p className="text-center">Sharing is caring: The more you describe the gift, the more helpful it will be to other gift-givers!</p>
