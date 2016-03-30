@@ -15,7 +15,6 @@ meteorhacks:npm
 
 themeteorchef:bert
 meteorhacks:ssr
-standard-minifiers
 
 
 npm-container
@@ -33,12 +32,10 @@ reactive-var
 reactive-dict
 aldeed:collection2
 tracker
-react
 kadira:react-layout
 okgrow:analytics
 momentjs:moment
 accounts-facebook
-tomi:upload-jquery
 tomi:upload-server
 alanning:roles
 cfs:gridfs
@@ -46,3 +43,6 @@ cfs:standard-packages
 fortawesome:fontawesome
 service-configuration
 ejson
+standard-minifier-css
+standard-minifier-js
+react-meteor-data

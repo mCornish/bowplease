@@ -5,9 +5,9 @@ Accounts.onCreateUser(function(options, user) {
   }
   if (user.services.facebook) {
     var facebook = user.services.facebook;
-    if (!process.env.IS_MIRROR && testerEmails.indexOf(facebook.email) < 0) {
-      throw new Meteor.Error('non-tester', 'Only approved testers may register.')
-    }
+    // if (!process.env.IS_MIRROR && testerEmails.indexOf(facebook.email) < 0) {
+    //   throw new Meteor.Error('non-tester', 'Only approved testers may register.')
+    // }
     user.emails.push({address: facebook.email, verified: true});
     // convert email to username
     user.username = facebook.email.substr(0, facebook.email.indexOf('@'));
@@ -18,9 +18,7 @@ Accounts.onCreateUser(function(options, user) {
     options.profile.image = 'http://graph.facebook.com/' + facebook.id + '/picture/?type=large';
     options.profile.service = 'facebook';
   } else {
-    if (!process.env.IS_MIRROR && testerEmails.indexOf(user.username) < 0) {
-      throw new Meteor.Error('non-tester', 'Only approved testers may register.')
-    }
+    // f
     user.emails.push({address: user.username, verified: false});
     if ( !('profile' in options) ) {
       options.profile = {};

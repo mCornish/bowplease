@@ -15,6 +15,7 @@
       "secret": "d76e680eedeb236446629798785a529f"
     },
     "approvedEmails": [
+      "admin@admin.com",
       "test@test.com",
       "cornishmw@gmail.com",
       "cornish.mw@gmail.com",
