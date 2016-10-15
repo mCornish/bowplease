@@ -1,2 +1,2 @@
 # BowPlease
-The source for the BowPlease app.
+The source for the BowPlease app. Built with MeteorJS.
